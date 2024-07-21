@@ -1,5 +1,6 @@
 
 @extends('Backend.Auth.main')
+@section('title','Online Avenue -  Forgot password')
 @section('content')
 
 

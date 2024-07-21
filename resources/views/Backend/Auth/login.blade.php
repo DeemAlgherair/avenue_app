@@ -1,6 +1,7 @@
 @extends('Backend.Auth.main')
+@section('title','Online Avenue - Login')
 @section('content')
-<title>SB Admin 2 Login </title>
+<title> Online Avenue - Login </title>
 
     <div class="container">
 

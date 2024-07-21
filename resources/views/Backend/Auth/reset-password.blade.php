@@ -1,5 +1,6 @@
 
 @extends('Backend.Auth.main')
+@section('title','Online Avenue -  Reset password')
 @section('content')
 
 <body class="bg-gradient-primary">

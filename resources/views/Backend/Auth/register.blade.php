@@ -1,10 +1,10 @@
 @extends('Backend.Auth.main')
+@section('title','Online Avenue -  Registeration')
 @section('content')
 
 
 
 
-<title>SB Admin 2 Register </title>
 
 <div class="container">
   <div class="card o-hidden border-0 shadow-lg my-5">
