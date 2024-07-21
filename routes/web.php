@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AvenueController;
+
 
 
 
@@ -25,8 +27,9 @@ Route::post('/reset-password', [AuthController::class, 'storeResetPassword'])->n
 Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('AdminDashboard');
+    Route::get('/show-avenue', [AvenueController::class, 'index'])->name('showAvenue');
+
 });    
     
     

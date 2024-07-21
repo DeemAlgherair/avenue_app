@@ -13,7 +13,7 @@ class AvenueController extends Controller
      */
     public function index()
     {
-        //
+        return view ('Backend.Avenue.show-avenue');
     }
 
     /**
