@@ -15,9 +15,24 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Avenues</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($owners as $key => $owner)
+                        <tr>
+                            <th scope="row">{{ ++$key }}</th>
+                            <td>{{ $owner->name }}</td>
+                            <td>{{ $owner->email }}</td>
+                            <td>{{ $owner->phone }}</td>
+                            <td></td>
+
+                            <td>
+                                <!-- Edit Button -->
+                                <a href="/Admin-Online-Avenue/show-owner/{{$owner->id}}/edit-owner" class="btn btn-primary btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
@@ -26,6 +41,8 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Avenues</th>
+                            <th>Edit</th>
+
                         </tr>
                     </tfoot>
                 </table>
@@ -33,4 +50,5 @@
         </div>
     </div>
 </div>
+<!-- /.container-fluid -->
 @endsection

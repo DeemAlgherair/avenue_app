@@ -113,8 +113,7 @@
                             <a class="collapse-item" href="#">Profile</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Owner Screens::</h6>
-                            <a class="collapse-item" href="#">Ownership</a>
-                            <a class="collapse-item" href="#">Profile</a>
+                            <a class="collapse-item" href="{{route('showOwner')}}">Owners</a>
                             <h6 class="collapse-header">Avenue Screens::</h6>
                             <a class="collapse-item" href=" {{route('showAvenue')}}">Avenues</a>
                         </div>
