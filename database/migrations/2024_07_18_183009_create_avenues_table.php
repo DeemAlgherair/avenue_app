@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('avenues', function (Blueprint $table) {
             $table->id();
             $table->string('name')->notNull();
-            $table->string('serial_number')->notNull();
+            $table->string('serial_no')->notNull();
             $table->string('location')->notNull();
             $table->decimal('price_per_hours');
             $table->integer('size')->nullable();
