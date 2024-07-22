@@ -23,7 +23,7 @@ class StoreUserRequset extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|min:2',
-            "email"=>"required|email:rfc,dns|string|max:255",
+            "email"=>"required|string|max:255",
             "password"=>"required|min:3|max:255",
         ];
     }

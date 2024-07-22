@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Owner extends Authenticatable
 {
+    protected $table = 'owners';
 
     use HasFactory;
 }

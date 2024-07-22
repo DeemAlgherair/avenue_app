@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserAuthController;
+
 use App\Http\Controllers\AvenueController;
 use App\Http\Controllers\OwnerController;
 
@@ -14,9 +16,14 @@ Route::get('/login', [AuthController::class, 'loginIndex'])->name('loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 
+Route::get('/login-customer', [UserAuthController::class, 'index'])->name('customerloginIndex');
+Route::post('/login-customer', [UserAuthController::class, 'customerLogin'])->name('customerLogin');
 
-Route::get('/register', [AuthController::class, 'registerIndex'])->name('registerIndex');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+
+Route::get('/register', [UserAuthController::class, 'registerIndex'])->name('registerIndex');
+Route::post('/register', [UserAuthController::class, 'register'])->name('register');
+
 Route::get('/forgot-password', [AuthController::class, 'forgotPasswordIndex'])->name('forgotPasswordIndex');
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
 Route::get('/reset-password/{token}', [AuthController::class, 'resetPassword']);

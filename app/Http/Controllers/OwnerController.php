@@ -56,6 +56,7 @@ class OwnerController extends Controller
     public function update(UpdateOwnerRequest $request, )
     {
         
+        
     }
 
     /**

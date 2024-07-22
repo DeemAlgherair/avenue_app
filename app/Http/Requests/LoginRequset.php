@@ -22,7 +22,7 @@ class LoginRequset extends FormRequest
     public function rules(): array
     {
         return [
-            "email"=>"required|email:rfc,dns|string|max:255",
+            "email"=>"required|string|max:255",
             "password"=>"required|min:3|max:255",
         ];
     }

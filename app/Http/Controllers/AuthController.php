@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequset;
 use Auth;
 use App\Models\User;
+use App\Models\Owner;
 use App\Models\ResetPasswordToken;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterMail;
@@ -26,28 +27,10 @@ class AuthController extends Controller
 
 
     }
-    public function loginOwner()
-    {
-        return view('Backend.Auth.owner-login');
-
-
-    }
-    public function registerIndex()
-    {
-        return view('Backend.Auth.register');
-
-
-    }
-   
+    
+   /*
     public function register(StoreUserRequset $request) {
         $request->validated();
-
-        /* 
-        validate([
-            'name' => 'required|string|max:255',
-            "email"=>"required|email:rfc,dns|string|max:255",
-            "password"=>"required|min:3|max:255",
-        ]);*/ 
 
         $user = User::create([
             'name' => $request->name,
@@ -62,18 +45,11 @@ class AuthController extends Controller
 
         return redirect()->route('AdminDashboard');
     }
-
+*/
     
     public function login(LoginRequset $request){
 
         $request->validated();
-        /*$request->validate([
-            "email"=>"required|email:rfc,dns|string|max:255|exists:users,email",
-            "password"=>"required|min:3|max:255",
-
-        ]);*/
-
-
         $email = $request->validated()['email'];
         $user = User::where('email', $email)->first();
       
@@ -96,7 +72,7 @@ class AuthController extends Controller
     }
   
 
-    public function logout(Request $request) {
+      public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();    
         return redirect()->route('login');

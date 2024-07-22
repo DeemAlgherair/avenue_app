@@ -40,6 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'owners' => [
+            'driver' => 'session',
+            'provider' => 'owners',
+        ],
+        'customers' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+
     ],
 
     /*
@@ -66,9 +75,13 @@ return [
         ],
 
          'owners' => [
-             'driver' => 'session',
+             'driver' => 'eloquent',
              'model' =>  App\Models\Owner::class,
         ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' =>  App\Models\Customer::class,
+       ],
     ],
 
     /*
@@ -99,6 +112,12 @@ return [
         ],
         'owners' => [
             'provider' => 'owners',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'customers' => [
+            'provider' => 'customers',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

@@ -46,7 +46,7 @@
               <a class="small" href={{ route('forgotPasswordIndex') }}>Forgot Password?</a>
           </div>
           <div class="text-center">
-              <a class="small" href={{ route('loginIndex') }}>Already have an account? Login!</a>
+              <a class="small" href={{ route('customerloginIndex') }}>Already have an account? Login!</a>
           </div>
            
           </div>
