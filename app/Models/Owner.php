@@ -11,4 +11,13 @@ class Owner extends Authenticatable
     protected $table = 'owners';
 
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+    ];
+    public function avenues()
+    {
+        return $this->Hasmany(Avenue::class,'owener_id');
+    }
 }

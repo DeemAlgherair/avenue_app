@@ -22,8 +22,9 @@ class UpdateOwnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            
+            'name' => 'required|string|max:255|min:1',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'required|string|max:20|min:9',
       
          ];
     }

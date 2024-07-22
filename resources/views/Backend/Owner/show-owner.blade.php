@@ -14,7 +14,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Avenues</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
@@ -25,7 +24,6 @@
                             <td>{{ $owner->name }}</td>
                             <td>{{ $owner->email }}</td>
                             <td>{{ $owner->phone }}</td>
-                            <td></td>
 
                             <td>
                                 <!-- Edit Button -->
@@ -40,7 +38,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Avenues</th>
                             <th>Edit</th>
 
                         </tr>

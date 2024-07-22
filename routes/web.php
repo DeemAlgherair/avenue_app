@@ -38,8 +38,12 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('AdminDashboard');
     Route::get('/show-avenue', [AvenueController::class, 'index'])->name('showAvenue');
     Route::get('/show-owner', [OwnerController::class, 'index'])->name('showOwner');
-    Route::delete('show-owner/{id}/edit-owner', [OwnerController::class, 'destroy']);
+    Route::delete('show-owner/{id}/edit-owner', [OwnerController::class, 'destroy'])->name('deleteOwner');
     Route::get('show-owner/{id}/edit-owner', [OwnerController::class, 'edit']);
+    Route::put('show-owner/{id}/edit-owner', [OwnerController::class, 'update'])->name('updateOwner');
+    Route::get('create-owner', [OwnerController::class, 'create'])->name('showCreateOwner');
+    Route::post('create-owner', [OwnerController::class, 'store'])->name('createOwner');
+
 
     
 

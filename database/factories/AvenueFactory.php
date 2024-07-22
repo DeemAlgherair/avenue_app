@@ -17,7 +17,7 @@ class AvenueFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
         ];
     }
 }

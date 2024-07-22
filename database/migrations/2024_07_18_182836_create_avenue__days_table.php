@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('day_id')->constrained('days');
             $table->foreignId('status_id')->constrained('avenue_day_status');
-
             $table->timestamps();
         });
     }
