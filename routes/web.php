@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -43,6 +44,11 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::put('show-owner/{id}/edit-owner', [OwnerController::class, 'update'])->name('updateOwner');
     Route::get('create-owner', [OwnerController::class, 'create'])->name('showCreateOwner');
     Route::post('create-owner', [OwnerController::class, 'store'])->name('createOwner');
+    Route::get('/show-reservation', [BookingController::class, 'index'])->name('showReservation');
+    Route::get('show-reservation/{id}/edit-reservation', [BookingController::class, 'edit']);
+    Route::put('show-reservation/{id}/edit-reservation', [BookingController::class, 'update'])->name('updateReservation');
+    Route::delete('show-reservation/{id}/edit-reservation', [BookingController::class, 'destroy'])->name('deleteReservation');
+
 
 
     

@@ -19,15 +19,6 @@
                     </thead>
                     <tbody>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Avenues</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

@@ -6,6 +6,8 @@ use App\Models\Owner;
 use App\Models\Avenue;
 use App\Http\Requests\StoreOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
+use Illuminate\Support\Facades\Hash;
+
 
 class OwnerController extends Controller
 {
@@ -29,7 +31,9 @@ class OwnerController extends Controller
         $owner = Owner::create([
             'name' => $request->name,
             'email' => $request->email,
+            'password' => Hash::make($request->password),
             'phone' => $request->phone,
+
         ]);
         
         if ($request->has('avenue_ids')) {
@@ -39,7 +43,8 @@ class OwnerController extends Controller
     
         session()->flash('success', 'Owner created successfully!');
         return redirect()->route('showOwner'); 
-    }    public function edit($id)
+    }   
+     public function edit($id)
     {
         $owner = Owner::findOrFail($id);
         $avenues = Avenue::where('owener_id')->get();

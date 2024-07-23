@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Avenue;
+use App\Models\Customer;
 use App\Models\Booking;
 use App\Http\Requests\StoreAvenuebookingRequest;
 use App\Http\Requests\UpdateAvenuebookingRequest;
+
 
 class BookingController extends Controller
 {
@@ -13,7 +16,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::with(['customers','avenues','status'])->get();
+        
+        return view('Backend.booking.show-booking')->with('bookings',$bookings);
     }
 
     /**
@@ -43,9 +48,10 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Booking $avenuebooking)
+    public function edit($id)
     {
-        //
+        $bookings =  Booking::findOrFail($id);
+        return view('Backend.booking.edit-booking')->with('bookings',$bookings);
     }
 
     /**
@@ -59,8 +65,11 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Booking $avenuebooking)
+    public function destroy($id)
     {
-        //
+        $bookings= Booking::findOrFail($id);
+        $bookings->delete();
+        session()->flash('success', 'Reservation deleted successfully!');
+        return redirect()->route('showReservation');
     }
 }
