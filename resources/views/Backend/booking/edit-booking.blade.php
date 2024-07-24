@@ -7,30 +7,36 @@
             <h6 class="m-0 font-weight-bold text-primary">Edit Reservations</h6>
         </div>
         <div class="card-body">
-<form action="{{ route('updateReservation', $bookings->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    
-    <div class="form-group">
-        <label for="name">avenue_id</label>
-        <input type="text" class="form-control" id="name" name="avenue_id" value="{{ $bookings->avenue_id}}" required>
-    </div>
-    <div class="form-group">
-        <label for="email">customer_id</label>
-        <input type="email" class="form-control" id="email" name="customer_id" value="{{ $bookings->customer_id}}" required>
-    </div>
-    <div class="form-group">
-        <label for="phone">total</label>
-        <input type="text" class="form-control" id="phone" name="total" value="{{ $bookings->total }}" required>
-    </div>
-    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this owner?')">Update Reservation</button>
-    </form>
-<form action="{{ route('deleteReservation', $bookings->id) }}" method="POST" style="display:inline;">
+<form action="" method="POST">
+<div class="row">
+<div class="col">
+  <label for="phone">Serial_No</label>
+    <input type="text" class="form-control"name="serial_no" value="{{$bookings->serial_no}}">
+  </div>
+  <div class="col">
+  <label for="name">Avenues Name</label>
+    <input type="text" class="form-control" name="avenue_id" value="{{ $bookings->avenues->name}}">
+  </div>
+  <div class="col">
+  <label for="email">Customers Name</label>
+    <input type="text" class="form-control" name="customer_id" value="{{ $bookings->customers->name}}">
+  </div>
+  <div class="col">
+  <label for="phone">Total</label>
+    <input type="text" class="form-control" name="total" value="{{ $bookings->total }}">
+  </div>
+  <div class="col">
+  <label for="phone">Status</label>
+    <input type="text" class="form-control" name="total" value="{{  $bookings->booking_statuses->statues_name }}">
+  </div>
+</div>
+<br>
+<br>
+    <form action="{{ route('deleteReservation', $bookings->id) }}" method="POST" style="display:inline;">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Delete Reservation</button>
-</form>
-
+    </form>
         </div>
         </div> 
  

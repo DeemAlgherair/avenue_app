@@ -18,6 +18,7 @@
                             <th>Total</th>
                             <th>Status</th>
                             <th>Edit</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,14 +26,16 @@
                         <tr>
                             <th scope="row">{{ ++$key }}</th>
                             <td>{{ $booking->serial_no}}</td>
-                            <td>{{ $booking->avenue_id}}</td>
-                            <td>{{ $booking->customer_id}}</td>
+                            <td>{{ $booking->avenues->name}}</td>
+                            <td>{{ $booking->customers->name}}</td>
                             <td>{{ $booking->total}}</td>
-                            <td>{{ $booking->status_id}}</td>
-
+                            <td>{{ $booking->booking_statuses->statues_name}}</td>
                             <td>
                                 <!-- Edit Button -->
                                 <a href="/Admin-Online-Avenue/show-reservation/{{$booking->id}}/edit-reservation" class="btn btn-primary btn-sm">Edit</a>
+                            </td>
+                            <td>
+                            <a href="/Admin-Online-Avenue/show-reservation/{{$booking->id}}/datail-reservation" class="btn btn-primary btn-sm">Detail</a>
                             </td>
                         </tr>
                         @endforeach

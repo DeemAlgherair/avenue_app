@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Avenue extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'name',
         'avenue_day_id',
@@ -37,4 +37,8 @@ class Avenue extends Model
             'image_id',
             'images_id');
         }
+        public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

@@ -9,12 +9,12 @@ class Booking extends Model
 {
     use HasFactory;
     public function customers(){
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class,'customer_id');
     }
     public function avenues(){
-        return $this->belongsTo(Avenue::class);
+        return $this->belongsTo(Avenue::class,'avenue_id');
     }
-    public function status(){
-        return $this->belongsTo(Booking_status::class);
+    public function booking_statuses(){
+        return $this->belongsTo(Booking_status::class,'status_id');
     }
 }

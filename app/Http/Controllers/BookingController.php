@@ -16,7 +16,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with(['customers','avenues','status'])->get();
+        $bookings = Booking::with(['customers','avenues','booking_statuses'])->get();
         
         return view('Backend.booking.show-booking')->with('bookings',$bookings);
     }
@@ -51,7 +51,18 @@ class BookingController extends Controller
     public function edit($id)
     {
         $bookings =  Booking::findOrFail($id);
+
         return view('Backend.booking.edit-booking')->with('bookings',$bookings);
+    }
+    public function detailsBooking($id)
+    {
+       $bookings = Booking::findOrFail($id);
+      return view('Backend.booking.details-booking')->with('bookings',$bookings);
+    }
+    public function printinvoice($id)
+    {
+       $bookings = Booking::findOrFail($id);
+      return view('Backend.booking.print-invoice')->with('bookings',$bookings);
     }
 
     /**
