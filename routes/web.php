@@ -7,6 +7,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\AvenueController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\IndexController;
+
+use App\Http\Controllers\profileController;
 
 
 
@@ -17,9 +20,6 @@ use App\Http\Controllers\OwnerController;
 Route::get('/login', [AuthController::class, 'loginIndex'])->name('loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-
-Route::get('/login-customer', [UserAuthController::class, 'index'])->name('customerloginIndex');
-Route::post('/login-customer', [UserAuthController::class, 'customerLogin'])->name('customerLogin');
 
 
 
@@ -62,9 +62,20 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
 
 });    
 
+
 Route::get('/login-customer', [UserAuthController::class, 'index'])->name('customerloginIndex');
 Route::post('/login-customer', [UserAuthController::class, 'customerLogin'])->name('customerLogin');
 
 
+Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(function () {
+    //login
+    Route::get('logout', [UserAuthController::class,'logout'])->name('customerLogout');
+        Route::get('/index', [indexController::class,'Index'])->name('home');
+        //profile
+        Route::get('/profile/{id}',[profileController::class,'info'])->name('profile');
+        Route::patch('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
+        Route::delete('/profile/{id}',[profileController::class,'destroy'])->name('deleteProfile');
+        Route::get('/avenue/{id}', [AvenueController::class, 'show'])->name('show');
+    });
     
     

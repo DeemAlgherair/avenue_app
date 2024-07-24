@@ -23,4 +23,5 @@ class Avenue_Image extends Model
     {
         return $this->belongsTo(Image::class);
     }
+    
 }

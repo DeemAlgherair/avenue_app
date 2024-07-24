@@ -58,4 +58,8 @@ class Avenue extends Model
     {
         return $this->hasMany(Booking::class);
     }
+    public function owners()
+    {
+        return $this->belongsTo(Owner::class,'owener_id');
+    }
 }

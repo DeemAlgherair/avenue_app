@@ -13,7 +13,9 @@ class Customer extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
+        'profile_pic'
     ];
     public function bookings()
     {

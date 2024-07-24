@@ -62,7 +62,7 @@
                     <form action="{{ route('deleteAvenue', $avenue->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Delete Avenue</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this avenue?')">Delete Avenue</button>
                     </form>
         </div>
     </div>

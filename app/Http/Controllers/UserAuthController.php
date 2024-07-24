@@ -25,13 +25,14 @@ class UserAuthController extends Controller
     public function customerLogin(LoginRequset $request)
     {
         $request->validated();
-        if(!Auth::guard('customers')->attempt(['email' => $request->email,'password' => $request->password])) {
+        if(!Auth::guard('customers')->attempt(['email' => $request->email,'password' => $request->password])) 
+        {
             toastr()->error('Email or Password are Invalid');
             return back();
     }
     $request->session()->regenerate();
-    return redirect()->route('OwnerDashboard');
-    }
+    return redirect()->route('home');
+}
     public function register(StoreUserRequset $request) {
         $request->validated();
 
@@ -53,9 +54,14 @@ class UserAuthController extends Controller
         //Mail::to($user->email)->send(new RegisterMail($user));
 
 
-        return redirect()->route('OwnerDashboard');
+        return redirect()->route('customerLogin');
     }
 
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();    
+        return redirect()->route('customerLogin');
+}
     
 
 }
