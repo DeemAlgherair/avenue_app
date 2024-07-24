@@ -54,7 +54,7 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item  Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -82,7 +82,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                          <h6 class="collapse-header">Owner Screens:</h6>
-                        <a class="collapse-item" href="{{route('showCreateOwner')}}">Add Owners</a>
+                        <a class="collapse-item" href="{{route('showCreateOwner')}}">Add Owner</a>
                         <a class="collapse-item" href="{{route('showOwner')}}">Edit Owners</a>
 
 
@@ -103,7 +103,8 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Avenues Screens:</h6>
-                            <a class="collapse-item" href=" {{route('showAvenue')}}">Avenues</a>
+                            <a class="collapse-item" href="{{route('showCreateAvenue')}}">Add Avenue</a>
+                            <a class="collapse-item" href="{{route('showAvenue')}}">Avenues</a>
                         </div>
                 
                     </div>

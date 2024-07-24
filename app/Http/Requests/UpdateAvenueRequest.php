@@ -11,7 +11,7 @@ class UpdateAvenueRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateAvenueRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'day' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'size' => 'required|numeric',
+            'advantages' => 'required|string|max:255',
         ];
     }
 }

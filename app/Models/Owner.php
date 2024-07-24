@@ -21,4 +21,5 @@ class Owner extends Authenticatable
     {
         return $this->Hasmany(Avenue::class,'owener_id');
     }
+   
 }

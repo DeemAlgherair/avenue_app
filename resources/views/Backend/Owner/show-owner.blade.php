@@ -27,7 +27,6 @@
                             <td>{{ $owner->phone }}</td>
 
                             <td>
-                                <!-- Edit Button -->
                                 <a href="/Admin-Online-Avenue/show-owner/{{$owner->id}}/edit-owner" class="btn btn-primary btn-sm">Edit</a>
                             </td>
                         </tr>
@@ -38,5 +37,4 @@
         </div>
     </div>
 </div>
-<!-- /.container-fluid -->
 @endsection
