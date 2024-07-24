@@ -80,7 +80,7 @@ class OwnerController extends Controller
         
         // Flash a success message and redirect
         session()->flash('success', 'Owner updated successfully!');
-        return redirect()->route('showOwner');
+        return back();
     }
     
 
