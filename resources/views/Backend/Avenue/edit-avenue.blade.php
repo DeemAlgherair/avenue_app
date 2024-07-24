@@ -47,6 +47,10 @@
                     </div>
                 @endif                
             </div>
+            <div class="form-group">
+                <label for="image">Update Image</label>
+                <input type="file" class="form-control" id="image" name="image" >
+            </div>
                 <div class="form-group">
                     <label for="advantages">Advantages</label>
                     <textarea class="form-control" id="advantages" name="advantages" rows="4" required>{{ $avenue->advantages }}</textarea>

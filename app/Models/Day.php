@@ -10,6 +10,9 @@ class Day extends Model
     use HasFactory;
     public function avenues()
     {
-        return $this->hasMany( Avenue_Day::class);
+        return $this->hasMany(Avenue_Day::class);
     }
+   
+   
+ 
 }

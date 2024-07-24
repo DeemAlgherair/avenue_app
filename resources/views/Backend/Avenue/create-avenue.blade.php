@@ -19,6 +19,7 @@
                         <select class="form-control" id="day" name="day" required>
                             @foreach($days as $day)
                                 <option value="{{ $day->id }}">{{ $day->name }}</option>
+
                             @endforeach
                         </select>
                     </div>

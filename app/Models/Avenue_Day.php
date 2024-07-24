@@ -18,4 +18,9 @@ class Avenue_Day extends Model
     {
         return $this->hasMany(Avenue::class);
     }
+    public function status(){
+        return $this->belongsTo(Avenue_Day_Status::class,'status_id');
+    }
+
+    
 }

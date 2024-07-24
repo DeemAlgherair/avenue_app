@@ -19,8 +19,8 @@ return new class extends Migration
             $table->decimal('price_per_hours');
             $table->integer('size')->nullable();
             $table->longText('advantages')->nullable();
-            $table->foreignId('avenue_day_id')->constrained('avenue_days');
-            $table->foreignId('image_id')->constrained('avenue_images');
+            $table->foreignId('avenue_day_id')->constrained('days');
+            $table->foreignId('image_id')->constrained('images');
             $table->foreignId('owener_id')->constrained('owners');
             $table->timestamps();
         });

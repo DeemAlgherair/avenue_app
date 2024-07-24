@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Avenue;
+use App\Models\Avenue_Day;
 use App\Models\Day;
 
 use App\Models\Avenue_Image;
@@ -29,7 +30,8 @@ class AvenueController extends Controller
     public function create()
     {
         $days = Day::all();
-        return view ('Backend.Avenue.create-avenue')->with('days',$days);
+        $status = Avenue_Day::with(['status'])->get();
+        return view ('Backend.Avenue.create-avenue')->with('days',$days)->with('status',$status);
     }
 
     /**
@@ -42,9 +44,9 @@ class AvenueController extends Controller
 
     //
     $path= $request->file('image')->store('avenues','public');
-    $image = Image::create(['url' => $path]);
-    $avenue_image =Avenue_Image::create(['images_id' =>  $image->id]);
-    //
+    $image = Image::insertGetId(['url' => $path]);
+
+    //$avenue_image =Avenue_Image::create(['images_id' =>  $image->id]);
     $serial_number = Str::random(10);
 
     $avenue = Avenue::create([
@@ -54,9 +56,11 @@ class AvenueController extends Controller
         'price_per_hours' => $request->price,
         'size' => $request->size,
         'advantages' => $request->advantages,
-        'image_id' =>$avenue_image->id,
+        'image_id' => $image,
         'serial_no' => $serial_number, 
     ]);
+
+    //$avenue_image =Avenue::update(['images_id' =>  $image->id]);
 
     session()->flash('success', 'Avenue created successfully!');
     return redirect()->route('showAvenue');
@@ -91,8 +95,13 @@ class AvenueController extends Controller
         
         $avenue = Avenue::findOrFail($id);
 
-        
-     
+        $image= $avenue->image_id;
+
+        if ($request->hasFile('image')) {
+            $path= $request->file('image')->store('avenues','public');
+
+            $image = Image::insertGetId(['url' => $path]);
+        }
         $avenue->update([
             'name' => $request->name,
             'avenue_day_id' => $request->day,
@@ -100,6 +109,7 @@ class AvenueController extends Controller
             'price_per_hours' => $request->price,
             'size' => $request->size,
             'advantages' => $request->advantages,
+            'image_id'=>$image
         ]);
     
         session()->flash('success', 'Avenue updated successfully!');
