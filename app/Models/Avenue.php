@@ -16,7 +16,7 @@ class Avenue extends Model
         'price_per_hours',
         'size',
         'advantages',
-        'image_id ',
+        'image_id',
         'serial_no',
     ];
     public function owner()

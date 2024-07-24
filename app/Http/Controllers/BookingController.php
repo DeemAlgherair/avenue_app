@@ -48,12 +48,6 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-        $bookings =  Booking::findOrFail($id);
-
-        return view('Backend.booking.edit-booking')->with('bookings',$bookings);
-    }
     public function detailsBooking($id)
     {
        $bookings = Booking::findOrFail($id);
@@ -61,6 +55,7 @@ class BookingController extends Controller
     }
     public function printinvoice($id)
     {
+        
        $bookings = Booking::findOrFail($id);
       return view('Backend.booking.print-invoice')->with('bookings',$bookings);
     }

@@ -30,7 +30,7 @@ class UserAuthController extends Controller
             return back();
     }
     $request->session()->regenerate();
-    return 456;
+    return redirect()->route('OwnerDashboard');
     }
     public function register(StoreUserRequset $request) {
         $request->validated();
@@ -53,7 +53,7 @@ class UserAuthController extends Controller
         //Mail::to($user->email)->send(new RegisterMail($user));
 
 
-        return 456;
+        return redirect()->route('OwnerDashboard');
     }
 
     

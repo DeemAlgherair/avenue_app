@@ -5,9 +5,10 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserAuthController;
-
 use App\Http\Controllers\AvenueController;
 use App\Http\Controllers\OwnerController;
+
+
 
 
 
@@ -46,7 +47,6 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::post('create-owner', [OwnerController::class, 'store'])->name('createOwner');
     //reservation
     Route::get('/show-reservation', [BookingController::class, 'index'])->name('showReservation');
-    Route::get('show-reservation/{id}/edit-reservation', [BookingController::class, 'edit']);
     Route::get('show-reservation/{id}/datail-reservation', [BookingController::class, 'detailsBooking']);
     Route::delete('show-reservation/{id}/edit-reservation', [BookingController::class, 'destroy'])->name('deleteReservation');
     Route::get('show-reservation/{id}/print-invoice', [BookingController::class, 'printinvoice'])->name('printinvoice');
@@ -61,5 +61,10 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
 
 
 });    
+
+Route::get('/login-customer', [UserAuthController::class, 'index'])->name('customerloginIndex');
+Route::post('/login-customer', [UserAuthController::class, 'customerLogin'])->name('customerLogin');
+
+
     
     

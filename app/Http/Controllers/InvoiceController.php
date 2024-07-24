@@ -13,7 +13,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoice =Invoice::with(['bookings','invoice_statuses'])->get();
+        
+        return view('Backend.booking.show-booking')->with('$invoice',$invoice);
     }
 
     /**
