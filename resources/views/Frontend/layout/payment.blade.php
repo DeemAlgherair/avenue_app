@@ -17,8 +17,8 @@
                             <!-- Display invoice details -->
                             <p><strong>Serial No:</strong> {{ $booking->serial_no }}</p>
                             <p><strong>Booking Date:</strong> {{ $booking->booking_date }}</p>
-                            <p><strong>Avenue Name:</strong> {{ $booking->avenue ? $booking->avenue->name : 'Not Available' }}</p>
-                            <p><strong>Customer Name:</strong> {{ $booking->customer ? $booking->customer->name : 'Not Available' }}</p>
+                            <p><strong>Avenue Name:</strong> {{ $booking->avenues ? $booking->avenues->name : 'Not Available' }}</p>
+                            <p><strong>Customer Name:</strong> {{ $booking->customers ? $booking->customers->name : 'Not Available' }}</p>
                             <p><strong>Booking Status:</strong> {{ $booking->status ? $booking->status->statues_name : 'Not Available' }}</p>
                             <p><strong>Subtotal:</strong> {{ $booking->subtotal }}</p>
                             <p><strong>Tax:</strong> {{ $booking->tax }}</p>

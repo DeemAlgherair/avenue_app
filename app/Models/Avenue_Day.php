@@ -8,25 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Avenue_Day extends Model
 {
     use HasFactory;
-    protected $table = 'avenue_days';
-    public function days()
-    {
-        return $this->belongsTo(Day::class);
-    }
+    protected $table ='avenue_days';
 
-    public function avenue()
-    {
-        return $this->belongsTo(Avenue::class);
-    }
-
-   
-    public function avenues()
-    {
-        return $this->hasMany(Avenue::class);
-    }
+    protected $fillable = [
+        'avenue_id',
+        'day_id',
+    ];
     public function status(){
         return $this->belongsTo(Avenue_Day_Status::class,'status_id');
     }
 
-    
 }

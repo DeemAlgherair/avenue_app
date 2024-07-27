@@ -19,7 +19,6 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::with(['customers','avenues','booking_statuses'])->get();
-        
         return view('Backend.booking.show-booking')->with('bookings',$bookings);
     }
 
@@ -32,10 +31,10 @@ class BookingController extends Controller
     }
     function generateUniqueSerialNumber()
     {
-        // Get the current timestamp (you can adjust this format as needed)
+        // Get the current timestamp
         $timestamp = now()->format('YmdHis');
     
-        // Generate a random string (e.g., 6 characters)
+        // Generate a random string 
         $randomString = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 6);
     
         // Combine timestamp and random string
@@ -53,15 +52,17 @@ class BookingController extends Controller
      
          // Validate form data
          $validatedData = $request->validated();
+
          $customer_id = $request->user() ? $request->user()->id : null;
          $booking = new Booking();
-         $booking->serial_no = $this->generateUniqueSerialNumber();
+    
          $booking->booking_date = now();
+         $booking->serial_no = $this->generateUniqueSerialNumber();
          $booking->customer_id = $customer_id;
          $booking->avenue_id = $selectedAvenue->id;
          $booking->status_id = 1; // 'Pending'
          $booking->subtotal = $validatedData['size'] * $selectedAvenue->price_per_hours;
-         $booking->tax = 0;
+         $booking->tax =  $booking->subtotal * 0.05;// added 
          $booking->total = $booking->subtotal + $booking->tax;
          $booking->save();
          return redirect()->route('invoice.show', $booking->id)
@@ -73,12 +74,14 @@ class BookingController extends Controller
      * Display the specified resource.
      */
     public function show(Request $request,$avenueId)
-    {   $selectedAvenue = Avenue::find($avenueId); // Assuming you have an 'Avenue' model
-        $availableDays = Day::all(); // Assuming you have a 'Day' model
+    {  $selectedAvenue = Avenue::with('days')->findOrFail($avenueId);
+        $bookings = Booking::with(['customers','avenues','booking_statuses'])->get();
     
         return view("Frontend.layout.booking", [
             'selectedAvenue' => $selectedAvenue,
-            'availableDays' => $availableDays
+            //'availableDays' => $availableDays,
+            'bookings' => $bookings
+
         ]);
         
     }
@@ -88,14 +91,14 @@ class BookingController extends Controller
      */
     public function detailsBooking($id)
     {
-       $bookings = Booking::findOrFail($id);
+       $bookings = Booking::with(['customers','avenues','booking_statuses'])->findOrFail($id);
       return view('Backend.booking.details-booking')->with('bookings',$bookings);
     }
     public function printinvoice($id)
     {
         
-       $bookings = Booking::findOrFail($id);
-      return view('Backend.booking.print-invoice')->with('bookings',$bookings);
+        $bookings = Booking::with(['customers','avenues','booking_statuses'])->findOrFail($id);
+        return view('Backend.booking.print-invoice')->with('bookings',$bookings);
     }
 
     /**

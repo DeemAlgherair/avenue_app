@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Document Title, Description, and Author -->
-  <title>Planet - Free Bootstrap Blog Template</title>
+  <title>Online Avenues Reservations</title>
   <meta name="description" content="Planet is a Free Bootstrap Blog Template.">
   <meta name="author" content="BootstrapBrain">
 
@@ -70,9 +70,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('customerLogout')}}">Logout</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
-              </li>
+
             </ul>
           </div>
         </div>

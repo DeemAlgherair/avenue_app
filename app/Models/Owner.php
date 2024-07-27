@@ -14,7 +14,6 @@ class Owner extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
         'phone',
     ];
     public function avenues()

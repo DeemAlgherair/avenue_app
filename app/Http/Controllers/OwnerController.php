@@ -58,10 +58,8 @@ class OwnerController extends Controller
         // Validate the request
         $request->validated();
         
-        // Find the owner
         $owner = Owner::findOrFail($id);
         
-        // Update the owner's information
         $owner->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -78,7 +76,6 @@ class OwnerController extends Controller
             Avenue::whereIn('id', $avenueIdsToRemove)->update(['owener_id' => null]);
         }
         
-        // Flash a success message and redirect
         session()->flash('success', 'Owner updated successfully!');
         return back();
     }

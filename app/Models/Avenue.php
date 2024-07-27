@@ -11,7 +11,6 @@ class Avenue extends Model
     
     protected $fillable = [
         'name',
-        'avenue_day_id',
         'location',
         'price_per_hours',
         'size',
@@ -26,21 +25,27 @@ class Avenue extends Model
     {
         return $this->belongsTo(Owner::class,'owener_id');
     }
+    
+     //pivot table
+     public function days()
+     {
+         return $this->belongsToMany(Day::class, 'avenue_days');
+     }
     /*
     public function days()
     {
         return $this->hasOneThrough(Day::class, Avenue_Day::class,'id', 'id', 'avenue_day_id', 'day_id');
     }
         */
-        public function days()
+        /*public function day()
         {
             return $this->belongsTo(Day::class,'avenue_day_id');
-        }
+        }*/
 
-        public function day()
-        {
-            return $this->hasMany(Avenue_Day::class);
-        }
+        public function avenues()
+    {
+        return $this->belongsToMany(Avenue::class,'avenue_days');
+    }
     /*
     public function image()
     {

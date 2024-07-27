@@ -29,8 +29,8 @@
                                             <tr>
                                                 <td>{{ $booking->serial_no }}</td>
                                                 <td>{{ $booking->booking_date }}</td>
-                                                <td>{{ $booking->avenue->name ?? 'Not Available' }}</td>
-                                                <td>{{ $booking->customer->name ?? 'Not Available' }}</td>
+                                                <td>{{ $booking->avenues->name ?? 'Not Available' }}</td>
+                                                <td>{{ $booking->customers->name ?? 'Not Available' }}</td>
                                                 <td>
                                                     <a href="{{ route('review.booking', $booking->id) }}" class="btn btn-primary">Review</a>
                                                 </td>

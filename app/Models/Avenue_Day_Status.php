@@ -10,8 +10,9 @@ class Avenue_Day_Status extends Model
     use HasFactory;
         protected $table = 'avenue_day_status';
 
-
-    public function avenueDay()
+ 
+    
+    public function days()
     {
         return $this->hasMany(Avenue_Day::class);
     }

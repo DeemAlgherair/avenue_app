@@ -8,16 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Day extends Model
 {
     use HasFactory;
+   
+    //pivot table 
     public function avenues()
     {
-        return $this->hasMany(Avenue_Day::class);
+        return $this->belongsToMany(Avenue::class, 'avenue_days');
     }
 
-//     public function avenueDays()
-// {
-//     return $this->hasMany(Avenue_Day::class);
-// }
-   
+
    
  
 }

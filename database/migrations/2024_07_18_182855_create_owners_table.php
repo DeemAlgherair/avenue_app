@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->notNull();
             $table->string('email')->notNull()->unique();
-            $table->string('password')->notNull();
-            $table->string('phone')->notNull();
+             $table->string('phone')->notNull();
             $table->string('profile_pic')->nullable();
             $table->timestamp('last_login');
             $table->timestamps();

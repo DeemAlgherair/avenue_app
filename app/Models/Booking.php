@@ -22,17 +22,21 @@ class Booking extends Model
         'total',
     ];
 
-    public function customer()
+    public function customers()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class,'customer_id');
     }
 
-    public function avenue()
+    public function avenues()
     {
-        return $this->belongsTo(Avenue::class, 'avenue_id');
+        return $this->belongsTo(Avenue::class,'avenue_id');
     }
 
     public function status()
+    {
+        return $this->belongsTo(Booking_status::class, 'status_id');
+    }
+    public function booking_statuses()
     {
         return $this->belongsTo(Booking_status::class, 'status_id');
     }
