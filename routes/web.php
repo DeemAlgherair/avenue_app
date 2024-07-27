@@ -8,13 +8,9 @@ use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\AvenueController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\IndexController;
-
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\profileController;
-
-
-
-
-
+use App\Http\Controllers\PaymentController;
 
 
 Route::get('/login', [AuthController::class, 'loginIndex'])->name('loginIndex');
@@ -75,7 +71,22 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::get('/profile/{id}',[profileController::class,'info'])->name('profile');
         Route::patch('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
         Route::delete('/profile/{id}',[profileController::class,'destroy'])->name('deleteProfile');
+        //avenue
         Route::get('/avenue/{id}', [AvenueController::class, 'show'])->name('show');
+        //Booking
+        Route::get('/booking/{avenueId}', [BookingController::class, 'show'])->name('booking');
+        Route::post('/booking/{avenueId}', [BookingController::class, 'store'])->name('bookings.store');
+        //invoce
+        Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice.show');
+        //payment
+        Route::get('/payment/{booking}', [PaymentController::class, 'showPaymentForm'])->name('payment.show');
+        Route::post('/payment/{booking}', [PaymentController::class, 'processPayment'])->name('payment.process');
+        // confirmed booking
+        Route::get('/confirmed-bookings', [BookingController::class, 'showConfirmedBookings'])->name('confirmed.bookings');
+        Route::get('/review-booking/{bookingId}', [BookingController::class, 'reviewBooking'])->name('review.booking');
+        Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
+
+
     });
     
     

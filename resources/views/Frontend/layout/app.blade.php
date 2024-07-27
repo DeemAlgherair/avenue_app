@@ -55,16 +55,12 @@
                 <a class="nav-link dropdown-toggle" href="#!" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Avenue</a>
                 <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="categoryDropdown">
                   <li><a class="dropdown-item" href="category.html">Classroom-based Lectures</a></li>
-                  <li><a class="dropdown-item" href="category.html">Online/Virtual Lectures</a></li>
-                  <li><a class="dropdown-item" href="category.html">Pre-recorded Lectures</a></li>
-                  <li><a class="dropdown-item" href="category.html">Hybrid/Blended Lectures</a></li>
-                  <li><a class="dropdown-item" href="category.html">Webinars and Livestreams</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#!" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reservations</a>
                 <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="blogDropdown">
-                  <li><a class="dropdown-item" href="single.html">Confirmed Reservations</a></li>
+                  <li><a class="dropdown-item" href="/Customer-Online-Avenue/confirmed-bookings">Confirmed Reservations</a></li>
                   <li><a class="dropdown-item" href="page.html">UnConfirmed Reservations</a></li>
                 </ul>
               </li>

@@ -1,7 +1,6 @@
 @extends('frontend.layout.app')
 @section('content')
 <body>
-
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Http\Requests\StoreAvenuebinvoiceRequest;
 use App\Http\Requests\UpdateAvenuebinvoiceRequest;
+use App\Models\Booking;
 
 class InvoiceController extends Controller
 {
@@ -37,11 +38,20 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Invoice $avenuebinvoice)
-    {
-        //
-    }
+ // InvoiceController.php
 
+public function show($id)
+{
+    
+    $booking = Booking::with('status')->findOrFail($id);
+   
+    return view('frontend.layout.invoice', compact('booking'));
+}
+
+
+    
+   
+    
     /**
      * Show the form for editing the specified resource.
      */

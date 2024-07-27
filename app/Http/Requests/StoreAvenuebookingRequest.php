@@ -11,7 +11,7 @@ class StoreAvenuebookingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreAvenuebookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'day_id' => 'required|exists:days,id',
+            'size' => 'required|integer|min:1|max:12',
         ];
     }
+
+
 }

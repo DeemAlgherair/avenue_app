@@ -12,6 +12,11 @@ class Day extends Model
     {
         return $this->hasMany(Avenue_Day::class);
     }
+
+//     public function avenueDays()
+// {
+//     return $this->hasMany(Avenue_Day::class);
+// }
    
    
  

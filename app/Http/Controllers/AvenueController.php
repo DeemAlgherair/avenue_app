@@ -70,9 +70,10 @@ class AvenueController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Avenue $avenue)
-    {
-        //
+    public function show( $id)
+    {    $avenue = Avenue::findOrFail($id);
+        
+         return view('Frontend.layout.view')->with('avenue', $avenue);
     }
 
     /**

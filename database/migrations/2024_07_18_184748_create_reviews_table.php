@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('rate');
             $table->longText('comment');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('avenue_id')->constrained('avenues');
- 
-
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('avenue_id')->constrained('avenues')->onDelete('cascade');
+            $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
             $table->timestamps();
         });
     }

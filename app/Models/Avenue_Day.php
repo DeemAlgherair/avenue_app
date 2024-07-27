@@ -14,6 +14,12 @@ class Avenue_Day extends Model
         return $this->belongsTo(Day::class);
     }
 
+    public function avenue()
+    {
+        return $this->belongsTo(Avenue::class);
+    }
+
+   
     public function avenues()
     {
         return $this->hasMany(Avenue::class);

@@ -36,6 +36,11 @@ class Avenue extends Model
         {
             return $this->belongsTo(Day::class,'avenue_day_id');
         }
+
+        public function day()
+        {
+            return $this->hasMany(Avenue_Day::class);
+        }
     /*
     public function image()
     {
