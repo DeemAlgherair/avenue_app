@@ -29,6 +29,13 @@
                             <td>{{ $booking->avenues->name}}</td>
                             <td>{{ $booking->customers->name}}</td>
                             <td>{{ $booking->total}}</td>
+
+
+                            <form action="{{ route('deleteReservation', $booking->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                               @method('PATCH')
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to confirmed this reservation?')">confirmed</button>
+                            </form>
                             <td>{{ $booking->booking_statuses->statues_name}}</td>
                             <td>
                             <a href="/Admin-Online-Avenue/show-reservation/{{$booking->id}}/datail-reservation" class="btn btn-primary btn-sm">Detail</a>

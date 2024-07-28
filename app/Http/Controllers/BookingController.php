@@ -124,7 +124,7 @@ class BookingController extends Controller
     {
         // Fetch all confirmed bookings
         $confirmedBookings = Booking::whereHas('status', function($query) {
-            $query->where('statues_name', 'confirmed');
+            $query->where('id', '2');
         })->get();
 
         return view('Frontend.layout.Confirmed', compact('confirmedBookings'));
@@ -133,11 +133,10 @@ class BookingController extends Controller
     public function reviewBooking($bookingId)
     {
         $booking = Booking::findOrFail($bookingId);
-    
         // Fetch the existing review if it exists
         $review = Review::where('user_id', auth()->id())
                         ->where('avenue_id', $booking->avenue_id)
-                        ->where('booking_id', $bookingId)
+                        ->where('booking_id',$bookingId)
                         ->first();
     
         return view('Frontend.layout.review', [

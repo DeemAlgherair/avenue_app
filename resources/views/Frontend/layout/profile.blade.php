@@ -1,7 +1,10 @@
 @extends('frontend.layout.app')
 
 @section('content')
+
+
 <!-- Profile - Bootstrap Brain Component -->
+
 <section class="bg-light py-3 py-md-5 py-xl-8">
     <div class="container">
         <div class="row">
@@ -16,14 +19,13 @@
                         <form action="{{ route('updateProfile', $customer->id) }}" method="POST" enctype="multipart/form-data" class="row gy-3 gy-xxl-4">
                             @csrf
                             @method('PATCH')
-                            
                             <div class="col-12">
                                 <div class="row gy-2">
-                                    <label class="col-12 form-label m-0">Profile Image</label>
+                                    <label class="col-3 form-label m-0">Profile Image</label>
                                     </div>
                                     <div class="form-group position-relative">
                                         @if($customer->profile_pic)
-                                            <div class="mb-3 position-relative">
+                                            <div class="mb-3 col-1 position-relative">
                                                 <img src="{{ asset('storage/' . $customer->profile_pic) }}" alt="Current Image" class="img-thumbnail" style="max-width: 200px;">
                                                 <label for="image-upload" class="upload-icon position-absolute d-flex align-items-center justify-content-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
