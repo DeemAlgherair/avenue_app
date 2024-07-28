@@ -32,9 +32,13 @@
                                                 <td>{{ $booking->avenues->name ?? 'Not Available' }}</td>
                                                 <td>{{ $booking->customers->name ?? 'Not Available' }}</td>
                                                 <td>
+                                                    @if (!$reviews)
+                                                    <a href="{{ route('review.booking', $booking->id) }}" class="btn btn-primary">Reviewed</a>
+                                                @else
                                                     <a href="{{ route('review.booking', $booking->id) }}" class="btn btn-primary">Review</a>
-                                                </td>
-                                            </tr>
+                                                @endif                                            
+                                            </td>
+                                                  
                                         @endforeach
                                     </tbody>
                                 </table>

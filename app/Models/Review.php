@@ -11,14 +11,14 @@ class Review extends Model
     protected $fillable = [
         'rate',
         'comment',
-        'user_id',
+        'customer_id',
         'avenue_id',
         'booking_id',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function avenue()

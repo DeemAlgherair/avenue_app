@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Avenue;
 use App\Models\Day;
+use Auth;
 use App\Models\Review;
 use App\Models\Booking;
 use App\Http\Requests\StoreAvenuebookingRequest;
@@ -120,21 +121,33 @@ class BookingController extends Controller
         return redirect()->route('showReservation');
     }
 
+    public function confiremdBooking($id)
+    {
+        $bookings = Booking::findOrFail($id)->update([
+            'status_id' => '2',
+        ]);
+        return back();
+
+    }
+
     public function showConfirmedBookings()
     {
         // Fetch all confirmed bookings
-        $confirmedBookings = Booking::whereHas('status', function($query) {
-            $query->where('id', '2');
-        })->get();
+        $customer_id = Auth::guard('customers')->id();
 
-        return view('Frontend.layout.Confirmed', compact('confirmedBookings'));
-    }
-
+        $confirmedBookings = Booking::where('customer_id', $customer_id)
+            ->whereHas('status', function($query) {
+                $query->where('id', 2);
+            })->get();
+        $reviews = Review::all();
+        return view('Frontend.layout.Confirmed')->with('confirmedBookings',$confirmedBookings)
+        ->with('reviews',$reviews);   
+     }
     public function reviewBooking($bookingId)
     {
         $booking = Booking::findOrFail($bookingId);
         // Fetch the existing review if it exists
-        $review = Review::where('user_id', auth()->id())
+        $review = Review::where('customer_id', auth()->id())
                         ->where('avenue_id', $booking->avenue_id)
                         ->where('booking_id',$bookingId)
                         ->first();
@@ -156,7 +169,7 @@ class BookingController extends Controller
     $booking = Booking::findOrFail($bookingId);
 
     // Check if a review already exists
-    $review = Review::where('user_id', auth()->id())
+    $review = Review::where('customer_id', auth()->id())
                     ->where('avenue_id', $booking->avenue_id)
                     ->where('booking_id', $bookingId)
                     ->first();
@@ -172,7 +185,7 @@ class BookingController extends Controller
         Review::create([
             'rate' => $request->input('rate'),
             'comment' => $request->input('comment'),
-            'user_id' => auth()->id(),
+            'customer_id' => auth()->id(),
             'avenue_id' => $booking->avenue_id,
             'booking_id' => $bookingId // Ensure booking_id is provided here
         ]);
@@ -181,6 +194,11 @@ class BookingController extends Controller
     return redirect()->route('confirmed.bookings')
                      ->with('success', 'Review submitted successfully!');
 }
-
+public function showUnconfirmedBookings() { 
+        $unconfirmedBookings = Booking::whereHas('status', function($query) { 
+            $query->where('id', '1'); 
+        })->get(); 
+ 
+        return view('Frontend.layout.unconfirmed', compact('unconfirmedBookings'));}
     
 }

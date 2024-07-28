@@ -42,7 +42,7 @@ class OwnerController extends Controller
         }
     
         session()->flash('success', 'Owner created successfully!');
-        return redirect()->route('showOwner'); 
+        return redirect()->route('addAvenue'); 
     }   
      public function edit($id)
     {

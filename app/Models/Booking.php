@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 // app/Models/Booking.php
 
 class Booking extends Model
 {
     use HasFactory;
+    //use SoftDeletes;
+
 
     protected $fillable = [
         'serial_no',

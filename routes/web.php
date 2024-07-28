@@ -44,6 +44,7 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     //reservation
     Route::get('/show-reservation', [BookingController::class, 'index'])->name('showReservation');
     Route::get('show-reservation/{id}/datail-reservation', [BookingController::class, 'detailsBooking']);
+    Route::put('/confirmed-bookings/{id}', [BookingController::class, 'confiremdBooking'])->name('confiremdBooking');
     Route::delete('show-reservation/{id}/edit-reservation', [BookingController::class, 'destroy'])->name('deleteReservation');
     Route::get('show-reservation/{id}/print-invoice', [BookingController::class, 'printinvoice'])->name('printinvoice');
     //avenue
@@ -85,7 +86,7 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::get('/confirmed-bookings', [BookingController::class, 'showConfirmedBookings'])->name('confirmed.bookings');
         Route::get('/review-booking/{bookingId}', [BookingController::class, 'reviewBooking'])->name('review.booking');
         Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
-
+        Route::get('/unconfirmed-bookings', [BookingController::class, 'showUnconfirmedBookings'])->name('unconfirmed.bookings');
 
     });
     
