@@ -16,7 +16,6 @@
                             <th>Price</th>
                             <th>Day/s</th>
                             <th>Owner</th>
-                            <th>More details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,9 +40,7 @@
                                 <p>No owner assigned</p>
                             @endif</td>
                             
-                            <td>
-                                <a href="/Admin-Online-Avenue/show-avenue/{{$avenue->id}}/edit-avenue" class="btn btn-primary btn-sm">Show</a>
-                            </td>
+                           
                         </tr>
                         @endforeach
                     <tbody>

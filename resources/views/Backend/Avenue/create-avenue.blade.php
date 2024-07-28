@@ -9,7 +9,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Add New Avenue</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('createAvenue') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('createAvenue', $owner_id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Avenue;
 use App\Models\Avenue_Day;
 use App\Models\Day;
+use App\Models\Owner;
 
 use App\Models\Avenue_Image;
 use App\Models\Image;
 use Illuminate\Support\Str;
 
-
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreAvenueRequest;
 use App\Http\Requests\UpdateAvenueRequest;
 class AvenueController extends Controller
@@ -42,24 +43,24 @@ class AvenueController extends Controller
     
         return $serialNumber;
     }
-    public function create()
+    public function create($owner_id)
     {
         $days = Day::all();
         $status = Avenue_Day::with(['status'])->get();
-        return view ('Backend.Avenue.create-avenue')->with('days',$days)->with('status',$status);
+        return view ('Backend.Avenue.create-avenue')->with('days',$days)->with('status',$status)
+        ->with('owner_id', $owner_id );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAvenueRequest $request)
+    public function store(StoreAvenueRequest $request,$owner_id)
     {
     $request->validated();
 
     //
     $path= $request->file('image')->store('avenues','public');
     $image = Image::insertGetId(['url' => $path]);
-
     $avenue = Avenue::create([
         'name' => $request->name,
         'location' => $request->location,
@@ -68,6 +69,7 @@ class AvenueController extends Controller
         'advantages' => $request->advantages,
         'image_id' => $image,
         'serial_no' => $this->generateUniqueSerialNumber(), 
+        'owener_id' =>$owner_id
     ]);
 
 
@@ -77,7 +79,7 @@ class AvenueController extends Controller
         $avenue->days()->sync([]); 
     }
 
-
+  
 
     session()->flash('success', 'Avenue created successfully!');
     return redirect()->route('showAvenue');

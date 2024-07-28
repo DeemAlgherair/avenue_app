@@ -41,6 +41,8 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::put('show-owner/{id}/edit-owner', [OwnerController::class, 'update'])->name('updateOwner');
     Route::get('create-owner', [OwnerController::class, 'create'])->name('showCreateOwner');
     Route::post('create-owner', [OwnerController::class, 'store'])->name('createOwner');
+
+
     //reservation
     Route::get('/show-reservation', [BookingController::class, 'index'])->name('showReservation');
     Route::get('show-reservation/{id}/datail-reservation', [BookingController::class, 'detailsBooking']);
@@ -49,8 +51,8 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::get('show-reservation/{id}/print-invoice', [BookingController::class, 'printinvoice'])->name('printinvoice');
     //avenue
     Route::get('/show-avenue', [AvenueController::class, 'index'])->name('showAvenue');
-    Route::get('create-avenue', [AvenueController::class, 'create'])->name('showCreateAvenue');
-    Route::post('create-avenue', [AvenueController::class, 'store'])->name('createAvenue');
+    Route::get('/create-avenue/{owner_id}', [AvenueController::class, 'create'])->name('showCreateAvenue');
+    Route::post('/create-avenue/{owner_id}', [AvenueController::class, 'store'])->name('createAvenue');
     Route::delete('show-avenue/{id}/edit-avenue', [AvenueController::class, 'destroy'])->name('deleteAvenue');
     Route::get('show-avenue/{id}/edit-avenue', [AvenueController::class, 'edit']);
     Route::put('show-avenue/{id}/edit-avenue', [AvenueController::class, 'update'])->name('updateAvenue');

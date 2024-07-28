@@ -33,9 +33,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $avenue->name }}</h5>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="owned_avenue_{{ $avenue->id }}" name="remove_avenue_ids[]" value="{{ $avenue->id }}">
+                                <input class="form-check-input" type="checkbox" id="owned_avenue_{{ $avenue->id }}" name="update[]" value="{{ $avenue->id }}">
                                 <label class="form-check-label" for="owned_avenue_{{ $avenue->id }}">
-                                    Remove this avenue
+                                    Update this Avenue
                                 </label>
                             </div>
                         </div>
@@ -44,38 +44,23 @@
             @endforeach
         </div>
     </div>
-
     <div class="form-group">
-        <label for="available_avenues">Available Avenues</label>
-        <div class="row">
-            @forelse($avenues as $avenue)
-                @if(is_null($avenue->owner_id))
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $avenue->name }}</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="available_avenue_{{ $avenue->id }}" name="add_avenue_ids[]" value="{{ $avenue->id }}">
-                                    <label class="form-check-label" for="available_avenue_{{ $avenue->id }}">
-                                        Add this avenue
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                @empty
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">No Avenues Available</h5>
-                        </div>
-                    </div>
-                </div>
-            @endforelse
-        </div>
-        <div class="d-flex">
+    <label for="owned_avenues">New Avenue</label>
+    <div class="row">
 
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="owned_avenue_{{ $avenue->id }}" name="add[]" value="{{ $avenue->id }}">
+                    <label class="form-check-label" for="owned_avenue_{{ $avenue->id }}">
+                        Add New Avenue
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this owner?')">Update Owner</button>
 </form>
 <form action="{{ route('deleteOwner', $owner->id) }}" method="POST" style="display:inline;">

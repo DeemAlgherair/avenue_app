@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use App\Models\Avenue;
+use App\Models\Day;
+use App\Models\Avenue_Day;
+
 use App\Http\Requests\StoreOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
 use Illuminate\Support\Facades\Hash;
@@ -26,25 +29,24 @@ class OwnerController extends Controller
     
     public function store(StoreOwnerRequest $request)
     {
-        $request->validated();  
         
-        $owner = Owner::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
+            $validated = $request->validated();
+            $owner = Owner::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone'],
+            ]);
 
-        ]);
+            $days = Day::all();
+            $status = Avenue_Day::with(['status'])->get();
+            return view ('Backend.Avenue.create-avenue')->with('owner_id',$owner->id)
+            ->with('days',$days)->with('status',$status);
         
-        if ($request->has('avenue_ids')) {
-            $avenueIds = $request->input('avenue_ids');
-            Avenue::whereIn('id', $avenueIds)->update(['owener_id' => $owner->id]);
-        }
+        
+    } 
     
-        session()->flash('success', 'Owner created successfully!');
-        return redirect()->route('addAvenue'); 
-    }   
-     public function edit($id)
+
+    public function edit($id)
     {
         $owner = Owner::findOrFail($id);
         $avenues = Avenue::where('owener_id')->get();
@@ -59,23 +61,21 @@ class OwnerController extends Controller
         $request->validated();
         
         $owner = Owner::findOrFail($id);
-        
+        $avenue = Avenue::where('owener_id', $id)->firstOrFail();
         $owner->update([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
         ]);
         
-        if ($request->has('add_avenue_ids')) {
-            $avenueIdsToAdd = $request->input('add_avenue_ids');
-            Avenue::whereIn('id', $avenueIdsToAdd)->update(['owener_id' => $owner->id]);
+        if ($request->has('add')) {
+            return redirect()->route('createAvenue', $owner->id);
+        }
+
+        if ($request->has('update')) {
+            return redirect()->route('updateAvenue', $avenue->id);
         }
     
-        if ($request->has('remove_avenue_ids')) {
-            $avenueIdsToRemove = $request->input('remove_avenue_ids');
-            Avenue::whereIn('id', $avenueIdsToRemove)->update(['owener_id' => null]);
-        }
-        
         session()->flash('success', 'Owner updated successfully!');
         return back();
     }

@@ -17,6 +17,7 @@ class Avenue extends Model
         'advantages',
         'image_id',
         'serial_no',
+        'owener_id',
     ];
 
 

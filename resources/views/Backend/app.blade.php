@@ -76,14 +76,14 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-folder"></i>
-                        <span>Owners</span>
+                        <span>Ownerships</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                         <h6 class="collapse-header">Owner Screens:</h6>
-                        <a class="collapse-item" href="{{route('showCreateOwner')}}">Add Owner</a>
-                        <a class="collapse-item" href="{{route('showOwner')}}">Edit Owners</a>
+                         <h6 class="collapse-header">Ownership Screens:</h6>
+                        <a class="collapse-item" href="{{route('showCreateOwner')}}">New Ownership</a>
+                        <a class="collapse-item" href="{{route('showOwner')}}">Edit Ownerships</a>
 
 
                     </div>
@@ -103,7 +103,6 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Avenues Screens:</h6>
-                            <a class="collapse-item" href="{{route('showCreateAvenue')}}">Add Avenue</a>
                             <a class="collapse-item" href="{{route('showAvenue')}}">Avenues</a>
                         </div>
                 
