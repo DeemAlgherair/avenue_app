@@ -1,4 +1,5 @@
 @extends('frontend.layout.app') 
+
 @section('content') 
 <body> 
     <section class="bg-light py-3 py-md-5 py-xl-8"> 
@@ -21,7 +22,7 @@
                                             <th>Booking Date</th> 
                                             <th>Avenue Name</th> 
                                             <th>Customer Name</th> 
-                                            <th>Actions</th> 
+                                            <th>Status</th> 
                                         </tr> 
                                     </thead> 
                                     <tbody> 
@@ -32,9 +33,13 @@
                                                 <td>{{ $booking->avenues->name ?? 'Not Available' }}</td> 
                                                 <td>{{ $booking->customers->name ?? 'Not Available' }}</td> 
                                                 <td> 
-                                                   
-                                                    <!-- Button to Go to Payment Page --> 
-                                                    <a href="{{ route('payment.show', $booking->id) }}" class="btn btn-success">Pay</a> 
+                                                    @if($booking->status_id=="2") 
+                                                        <!-- Show Pay Button if Confirmed -->
+                                                        <a href="{{ route('payment.show', $booking->id) }}" class="btn btn-success">Pay</a> 
+                                                    @else 
+                                                        <!-- Show Waiting Status if Not Confirmed -->
+                                                        <span class="text-danger">Waiting for Confirmation</span> 
+                                                    @endif 
                                                 </td> 
                                             </tr> 
                                         @endforeach 
@@ -47,5 +52,5 @@
             </div> 
         </div> 
     </section> 
-</body> 
+</body> 
 @endsection

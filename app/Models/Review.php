@@ -16,12 +16,12 @@ class Review extends Model
         'booking_id',
     ];
 
-    public function user()
+    public function customers()
     {
         return $this->belongsTo(Customer::class);
     }
 
-    public function avenue()
+    public function avenues()
     {
         return $this->belongsTo(Avenue::class);
     }

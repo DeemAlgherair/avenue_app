@@ -19,11 +19,11 @@ class StoreAvenuebookingRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'day_id' => 'required|exists:days,id',
-            'size' => 'required|integer|min:1|max:12',
+            'day_id' => 'required|exists:days,id', // Ensure the day_id is selected and exists in the days table
+            'size' => 'required|integer|min:1|max:12', // Ensure size is an integer between 1 and 12
         ];
     }
 

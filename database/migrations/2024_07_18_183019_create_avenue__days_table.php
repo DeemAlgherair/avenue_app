@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('avenue_days', function (Blueprint $table) {
             $table->id();
             $table->foreignId('day_id')->constrained('days');
+            $table->foreignId('avenue_id')->constrained('avenues');
             $table->foreignId('status_id')->constrained('avenue_day_status');
             $table->timestamps();
         });

@@ -26,7 +26,14 @@ class BookingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($avenueId)
+    public function success()
+    {
+        
+        return view('Frontend.layout.success');
+    }
+
+    
+     public function create($avenueId)
     {
         
     }
@@ -159,41 +166,45 @@ class BookingController extends Controller
     }
     
 
-   public function submitReview(Request $request, $bookingId)
-{
-    $request->validate([
-        'rate' => 'required|integer|min:1|max:5',
-        'comment' => 'required|string',
-    ]);
-
-    $booking = Booking::findOrFail($bookingId);
-
-    // Check if a review already exists
-    $review = Review::where('customer_id', auth()->id())
-                    ->where('avenue_id', $booking->avenue_id)
-                    ->where('booking_id', $bookingId)
-                    ->first();
-
-    if ($review) {
-        // Update the existing review
-        $review->update([
-            'rate' => $request->input('rate'),
-            'comment' => $request->input('comment'),
+    public function submitReview(Request $request, $bookingId)
+    {
+        $request->validate([
+            'rate' => 'required|integer|min:1|max:5',
+            'comment' => 'required|string',
         ]);
-    } else {
-        // Create a new review
-        Review::create([
-            'rate' => $request->input('rate'),
-            'comment' => $request->input('comment'),
-            'customer_id' => auth()->id(),
-            'avenue_id' => $booking->avenue_id,
-            'booking_id' => $bookingId // Ensure booking_id is provided here
-        ]);
+    
+        $booking = Booking::findOrFail($bookingId);
+    
+        // Check if a review already exists
+        $review = Review::where('customer_id', auth()->id())
+                        ->where('avenue_id', $booking->avenue_id)
+                        ->where('booking_id', $bookingId)
+                        ->first();
+    
+        if ($review) {
+            // Update the existing review
+            $review->update([
+                'rate' => $request->input('rate'),
+                'comment' => $request->input('comment'),
+            ]);
+    
+            return redirect()->route('confirmed.bookings')
+                             ->with('success', 'Review updated successfully!');
+        } else {
+            // Create a new review
+            Review::create([
+                'rate' => $request->input('rate'),
+                'comment' => $request->input('comment'),
+                'customer_id' => auth()->id(),
+                'avenue_id' => $booking->avenue_id,
+                'booking_id' => $bookingId // Ensure booking_id is provided here
+            ]);
+    
+            return redirect()->route('confirmed.bookings')
+                             ->with('success', 'Review submitted successfully!');
+        }
     }
-
-    return redirect()->route('confirmed.bookings')
-                     ->with('success', 'Review submitted successfully!');
-}
+    
 public function showUnconfirmedBookings() { 
         $unconfirmedBookings = Booking::whereHas('status', function($query) { 
             $query->where('id', '1'); 

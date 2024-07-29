@@ -32,13 +32,20 @@
                                                 <td>{{ $booking->avenues->name ?? 'Not Available' }}</td>
                                                 <td>{{ $booking->customers->name ?? 'Not Available' }}</td>
                                                 <td>
-                                                    @if (!$reviews)
-                                                    <a href="{{ route('review.booking', $booking->id) }}" class="btn btn-primary">Reviewed</a>
-                                                @else
-                                                    <a href="{{ route('review.booking', $booking->id) }}" class="btn btn-primary">Review</a>
-                                                @endif                                            
-                                            </td>
-                                                  
+                                                    @php
+                                                        $reviewed = $booking->reviews()->where('customer_id', $booking->customers->id)->exists();
+                                                    @endphp
+                                                    
+                                                    @if ($reviewed)
+                                                        <a href="{{ route('review.booking', $booking->id) }}" class="btn btn-secondary">Reviewed</a>
+                                                    @else
+                                                        <a href="{{ route('review.booking', $booking->id) }}" class="btn btn-primary">Review</a>
+                                                    @endif
+                                                    
+                                                    <!-- Add Pay button -->
+                                                    <a href="{{ route('payment.show', $booking->id) }}" class="btn btn-success">Pay</a>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

@@ -28,7 +28,7 @@
                                 <p><strong>Total:</strong> {{ $booking->total }}</p>
                                 
                                 <!-- Button to proceed to payment -->
-                                <form action="{{ route('payment.show', ['booking' => $booking->id]) }}"  method="GET">
+                                <form action="{{ route('bookings.success', ['booking' => $booking->id]) }}"  method="GET">
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Proceed to Payment</button>
                                 </form>

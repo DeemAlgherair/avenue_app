@@ -42,4 +42,17 @@ class Booking extends Model
     {
         return $this->belongsTo(Booking_status::class, 'status_id');
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function avenue()
+{
+    return $this->belongsTo(Avenue::class, 'avenue_id');
+}
+public function customer()
+{
+    return $this->belongsTo(Customer::class, 'customer_id');
+}
+
 }

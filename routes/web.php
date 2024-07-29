@@ -89,7 +89,7 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::get('/review-booking/{bookingId}', [BookingController::class, 'reviewBooking'])->name('review.booking');
         Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
         Route::get('/unconfirmed-bookings', [BookingController::class, 'showUnconfirmedBookings'])->name('unconfirmed.bookings');
-
+        Route::get('/booking-success',[BookingController::class, 'success'])->name('bookings.success');
     });
     
     
