@@ -73,4 +73,6 @@ class Avenue extends Model
     {
         return $this->belongsTo(Owner::class,'owener_id');
     }
+
+
 }

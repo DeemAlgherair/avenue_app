@@ -56,7 +56,9 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::delete('show-avenue/{id}/edit-avenue', [AvenueController::class, 'destroy'])->name('deleteAvenue');
     Route::get('show-avenue/{id}/edit-avenue', [AvenueController::class, 'edit']);
     Route::put('show-avenue/{id}/edit-avenue', [AvenueController::class, 'update'])->name('updateAvenue');
-    
+    //profile
+    Route::get('/profile', [profileController::class, 'adminIndex']);
+    Route::put('/profile', [profileController::class, 'adminUpdateProfile'])->name('adminUpdateProfile');
 
 
 });    

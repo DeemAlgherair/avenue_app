@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Customer;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -19,6 +21,11 @@ class profileController extends Controller
     public function index()
     {
        return view('Frontend.layout.profile');
+    }
+    public function adminIndex()
+    {
+        $admin = User::findOrFail(Auth::user()->id);
+       return view('Backend.admin-profile')->with('admin',$admin);
     }
     public function info($id)
     {
@@ -44,7 +51,7 @@ class profileController extends Controller
         'name' => 'required|string|max:255',
         'email'=> 'required|email:rfc,dns|string|max:255',
         'phone' => 'required|string|max:20|min:6',
-        'profile_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'profile_pic' =>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     
     ]);
          $customer = Customer::find($id);  
@@ -60,6 +67,36 @@ class profileController extends Controller
             'profile_pic'=> $path
         ]);
 
+
+        return back();
+
+   }
+   public function adminUpdateProfile(Request $request)
+   {
+
+   
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email'=> 'required|email:rfc,dns|string|max:255',
+        'profile_pic' =>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'password' =>'nullable|confirmed|min:8|max:16',
+    
+    ]);
+         $admin = User::findOrFail(Auth::user()->id);  
+         $path = $admin->profile_pic; 
+       
+  
+         if ($request->hasFile('image')) {
+           $path = $request->file('image')->store('admin', 'public');
+         }
+         $admin->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'profile_pic'=>$path,
+            'password' => $request->has('password') ? Hash::make($request->password) : $admin->password,
+        ]);
+
+        session()->flash('success', 'Profile updated successfully!');
 
         return back();
 

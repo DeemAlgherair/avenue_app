@@ -61,12 +61,12 @@ class BookingController extends Controller
          // Validate form data
          $validatedData = $request->validated();
 
-         $customer_id = $request->user() ? $request->user()->id : null;
+         //$customer_id = $request->user() ? $request->user()->id : null;
          $booking = new Booking();
     
          $booking->booking_date = now();
          $booking->serial_no = $this->generateUniqueSerialNumber();
-         $booking->customer_id = $customer_id;
+         $booking->customer_id = Auth::guard('customers')->id();
          $booking->avenue_id = $selectedAvenue->id;
          $booking->status_id = 1; // 'Pending'
          $booking->subtotal = $validatedData['size'] * $selectedAvenue->price_per_hours;
