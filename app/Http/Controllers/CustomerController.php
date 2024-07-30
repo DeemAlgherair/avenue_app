@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Avenue;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
@@ -15,7 +16,11 @@ class CustomerController extends Controller
     {
         //
     }
-
+    public function all()
+    {
+        $avenues = Avenue::all();
+        return view('frontend.layout.allAvenue', compact('avenues'));
+    }
     /**
      * Show the form for creating a new resource.
      */

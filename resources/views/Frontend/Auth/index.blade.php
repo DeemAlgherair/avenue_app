@@ -124,7 +124,7 @@
       <div class="container">
         <div class="row">
           <div class="col text-center">
-            <a href="#!" class="btn bsb-btn-2xl btn-primary rounded-pill mt-5 mt-xl-10">All Avenues</a>
+            <a href="{{route('all.avenues')}}" class="btn bsb-btn-2xl btn-primary rounded-pill mt-5 mt-xl-10">All Avenues</a>
           </div>
         </div>
       </div>

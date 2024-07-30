@@ -11,7 +11,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\PaymentController;
-
+use App\Http\Controllers\CustomerController;
 
 Route::get('/login', [AuthController::class, 'loginIndex'])->name('loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -92,6 +92,8 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
         Route::get('/unconfirmed-bookings', [BookingController::class, 'showUnconfirmedBookings'])->name('unconfirmed.bookings');
         Route::get('/booking-success',[BookingController::class, 'success'])->name('bookings.success');
+        Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
     });
     
+
     

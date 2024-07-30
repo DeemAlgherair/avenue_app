@@ -54,7 +54,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#!" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Avenue</a>
                 <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="categoryDropdown">
-                  <li><a class="dropdown-item" href="category.html">Classroom-based Lectures</a></li>
+                  <li><a class="dropdown-item" href="{{route('all.avenues')}}">Classroom-based Lectures</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
