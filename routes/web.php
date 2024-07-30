@@ -74,7 +74,7 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::get('/index', [indexController::class,'Index'])->name('home');
         //profile
         Route::get('/profile/{id}',[profileController::class,'info'])->name('profile');
-        Route::patch('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
+        Route::put('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
         Route::delete('/profile/{id}',[profileController::class,'destroy'])->name('deleteProfile');
         //avenue
         Route::get('/avenue/{id}', [AvenueController::class, 'show'])->name('show');

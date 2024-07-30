@@ -25,4 +25,5 @@ class Review extends Model
     {
         return $this->belongsTo(Avenue::class);
     }
+    
 }

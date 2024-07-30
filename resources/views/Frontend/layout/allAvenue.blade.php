@@ -1,45 +1,119 @@
 @extends('frontend.layout.app')
 
 @section('content')
-    <section class="bg-light py-3 py-md-5 py-xl-8">
-        <div class="container">
-            <div class="row gy-4 gy-md-5 gx-xl-6 gy-xl-6 gx-xxl-9 gy-xxl-9">
-                @foreach ($avenues as $avenue)
-                    <div class="col-12 col-lg-4">
-                        <article>
-                            <div class="card border-0 bg-transparent">
-                                <figure class="card-img-top mb-4 overflow-hidden bsb-overlay-hover">
-                                    <a href="{{ route('show', $avenue->id) }}">
-                                        <img class="img-fluid bsb-scale bsb-hover-scale-up" loading="lazy" src="{{ asset('storage/' . $avenue->image->url) }}" alt="{{ $avenue->name }}">
-                                    </a>
-                                    <figcaption>
-                                        <a href="{{ route('show', $avenue->id) }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">
-                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                            </svg>
-                                            <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">view</h4>
-                                        </a>
-                                    </figcaption>
-                                </figure>
-                                <div class="card-body m-0 p-0">
-                                    <div class="entry-header mb-3">
-                                        <ul class="entry-meta list-unstyled d-flex mb-3">
-                                            <li>
-                                                <a class="d-inline-flex px-2 py-1 link-accent text-accent-emphasis bg-accent-subtle border border-accent-subtle rounded-2 text-decoration-none fs-7" href="#!">{{ $avenue->category ?? 'Classroom-based Lectures' }}</a>
-                                            </li>
-                                        </ul>
-                                        <h2 class="card-title entry-title h4 m-0">
-                                            <a class="link-dark text-decoration-none" href="{{ route('show', $avenue->id) }}">{{ $avenue->name }}</a>
-                                        </h2>
-                                        <a class="btn btn-primary mt-2 mb-3" href="{{ route('show', $avenue->id) }}">View</a>
+<style>
+    .star-rating {
+        font-size: 20px;
+        text-align: center;
+    }
+    .star-rating-complete {
+        color: #ffc700;
+    }
+    .star-rating-incomplete {
+        color: #ccc;
+    }
+    .review-section {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .card-img-top {
+        border-bottom: 1px solid #ddd;
+    }
+    .card-body {
+        padding: 1.25rem;
+    }
+    .entry-header {
+        margin-bottom: 1rem;
+    }
+    .entry-meta {
+        margin-bottom: 1rem;
+    }
+    .entry-title {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+    }
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+    }
+    .card-img-zoom {
+        transition: transform 0.3s ease;
+    }
+    .card-img-zoom:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<section class="bg-light py-3 py-md-5 py-xl-8">
+    <div class="container">
+        <div class="card shadow-sm">
+            <div class="card-header ">       
+        <div class="row gy-4 gy-md-5 gx-xl-6 gy-xl-6 gx-xxl-9 gy-xxl-9 py-7">
+            @foreach ($avenues as $avenue)
+                <div class="col-12 col-lg-4">
+                    <article>
+                        <div class="card shadow-sm border-0 bg-transparent">
+                            <figure class="position-relative card-img-top card-img-zoom rounded-3 overflow-hidden mb-3">
+                                <a href="#!">
+                                    <img class="img-fluid" loading="lazy" src="{{ asset('storage/' . $avenue->image->url) }}" alt="{{ $avenue->name }}">
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <div class="entry-header mb-3 text-center">
+                                    <ul class="entry-meta list-unstyled d-flex justify-content-center mb-3">
+                                        <li>
+                                            <a class="d-inline-flex px-2 py-1 link-accent text-accent-emphasis bg-accent-subtle border border-accent-subtle rounded-2 text-decoration-none fs-7" href="#!">
+                                                {{ $avenue->category ?? 'Classroom-based Lectures' }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <h2 class="card-title entry-title h4 m-0">
+                                        <a class="link-dark text-decoration-none" href="#!">{{ $avenue->name }}</a>
+                                    </h2>
+                                </div>
+                                <div class="review-section">
+                                    <p class="font-weight-bold mb-2">Review ({{ $avenue->reviews->count() }} reviews)</p>
+                                    <div class="form-group">
+                                        <div class="star-rating">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $avenue->averageRating)
+                                                    <span class="star-rating-complete">★</span>
+                                                @else
+                                                    <span class="star-rating-incomplete">★</span>
+                                                @endif
+                                            @endfor
+                                        </div>
                                     </div>
                                 </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Price per Hour:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Size:</strong> {{ $avenue->size ?? "Not Found :(" }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Advantages:</strong> {{ $avenue->advantages ?? "Not Found :(" }}
+                                    </li>
+                                </ul>
+                                <div class="text-center mt-4">
+                                    <a class="btn btn-primary btn-lg rounded-pill" href="/Customer-Online-Avenue/booking/{{$avenue->id}}">Book Now</a>
+                                </div>
                             </div>
-                        </article>
-                    </div>
-                @endforeach
-            </div>
+                        </div>
+                    </article>
+                </div>
+            @endforeach
         </div>
-    </section>
+    </div>
+</div>
+    </div>
+</section>
 @endsection

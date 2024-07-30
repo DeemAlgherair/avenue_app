@@ -72,7 +72,7 @@ class OwnerController extends Controller
             return redirect()->route('createAvenue', $owner->id);
         }
 
-        if ($request->has('update')) {
+        if ($request->has('update_avenue')) {
             return redirect()->route('updateAvenue', $avenue->id);
         }
     
