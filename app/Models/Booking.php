@@ -12,7 +12,7 @@ class Booking extends Model
     use HasFactory;
     //use SoftDeletes;
 
-
+     use SoftDeletes;
     protected $fillable = [
         'serial_no',
         'booking_date',
