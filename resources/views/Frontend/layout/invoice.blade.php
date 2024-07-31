@@ -19,8 +19,9 @@
                                 
                                 <!-- Check if avenue is not null -->
                                 <p><strong>Avenue Name:</strong> {{ $booking->avenues ? $booking->avenues->name : 'Not Available' }}</p>
-                                <p><strong>Customer Name:</strong> {{ $booking->customers ? $booking->customers->name : 'Not Available' }}</p>
-                                <p><strong>Booking Status:</strong> {{ $booking->status ? $booking->status->statues_name : 'Not Available' }}</p>
+<p><strong>Customer Name:</strong> {{ $booking->customers ? $booking->customers->name : 'Not Available' }}</p>
+<p><strong>Booking Status:</strong> {{ $booking->status ? $booking->status->status_name : 'Not Available' }}</p>
+
 
 
                                 <p><strong>Subtotal:</strong> {{ $booking->subtotal }}</p>
@@ -28,6 +29,7 @@
                                 <p><strong>Total:</strong> {{ $booking->total }}</p>
                                 
                                 <!-- Button to proceed to payment -->
+                                
                                 <form action="{{ route('bookings.success', ['booking' => $booking->id]) }}"  method="GET">
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Proceed to Payment</button>

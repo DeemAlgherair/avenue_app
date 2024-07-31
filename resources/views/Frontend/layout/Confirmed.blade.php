@@ -43,7 +43,12 @@
                                                     @endif
                                                     
                                                     <!-- Add Pay button -->
-                                                    <a href="{{ route('payment.show', $booking->id) }}" class="btn btn-success">Pay</a>
+                                                    @if($booking->status_id == 3)
+                                                        <span class="btn btn-success disabled">Paid</span>
+                                                    @else
+                                                        <a href="{{ route('payment.show', $booking->id) }}" class="btn btn-success">Pay</a>
+                                                    @endif
+                                                    
                                                 </td>
                                             </tr>
                                         @endforeach

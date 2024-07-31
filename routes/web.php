@@ -84,8 +84,9 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         //invoce
         Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice.show');
         //payment
-        Route::get('/payment/{booking}', [PaymentController::class, 'showPaymentForm'])->name('payment.show');
+        Route::get('/payment/{bookingId}', [PaymentController::class, 'showPaymentForm'])->name('payment.show');
         Route::post('/payment/{booking}', [PaymentController::class, 'processPayment'])->name('payment.process');
+        Route::get('/payment/{booking}/callback',[PaymentController::class, 'callback'])->name('payment.callback');
         // confirmed booking
         Route::get('/confirmed-bookings', [BookingController::class, 'showConfirmedBookings'])->name('confirmed.bookings');
         Route::get('/review-booking/{bookingId}', [BookingController::class, 'reviewBooking'])->name('review.booking');

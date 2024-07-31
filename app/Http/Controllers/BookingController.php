@@ -132,6 +132,7 @@ class BookingController extends Controller
     {
         $bookings = Booking::findOrFail($id)->update([
             'status_id' => '2',
+           
         ]);
         return back();
 
@@ -144,11 +145,14 @@ class BookingController extends Controller
 
         $confirmedBookings = Booking::where('customer_id', $customer_id)
             ->whereHas('status', function($query) {
-                $query->where('id', 2);
+                $query->whereIn('id', [2, 3]);
             })->get();
+        
         $reviews = Review::all();
-        return view('Frontend.layout.Confirmed')->with('confirmedBookings',$confirmedBookings)
-        ->with('reviews',$reviews);   
+        
+        return view('Frontend.layout.Confirmed')
+            ->with('confirmedBookings', $confirmedBookings)
+            ->with('reviews', $reviews); 
      }
     public function reviewBooking($bookingId)
     {
