@@ -35,6 +35,7 @@ class OwnerController extends Controller
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'phone' => $validated['phone'],
+                'last_login'=>now()
             ]);
 
             $days = Day::all();

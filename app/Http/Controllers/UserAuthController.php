@@ -47,6 +47,7 @@ class UserAuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'last_login'=>now()
         ]);
 
         Auth::login($customer);

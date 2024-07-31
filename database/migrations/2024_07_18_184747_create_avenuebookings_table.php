@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('subtotal');
             $table->decimal('tax')->nullable();
             $table->decimal('total');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,8 @@ class Customer extends Authenticatable
         'email',
         'phone',
         'password',
-        'profile_pic'
+        'profile_pic',
+        'last_login'
     ];
     public function bookings()
     {

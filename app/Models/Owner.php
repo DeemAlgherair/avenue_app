@@ -15,6 +15,7 @@ class Owner extends Authenticatable
         'name',
         'email',
         'phone',
+        'last_login'
     ];
     public function avenues()
     {

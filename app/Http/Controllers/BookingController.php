@@ -199,6 +199,20 @@ public function showUnconfirmedBookings() {
             $query->where('id', '1'); 
         })->get(); 
  
-        return view('Frontend.layout.unconfirmed', compact('unconfirmedBookings'));}
+        return view('Frontend.layout.unconfirmed', compact('unconfirmedBookings'));
+    }
+        public function search(Request $request) {
+            $query = $request->input('query');
+        
+            $bookings = Booking::whereHas('customers', function ($q) use ($query) {
+                $q->where('name', 'LIKE', '%' . $query . '%');
+            })->orWhereHas('avenues', function ($q) use ($query) {
+                $q->where('name', 'LIKE', '%' . $query . '%');
+            })->orWhereHas('booking_statuses', function ($q) use ($query) {
+                $q->where('statues_name', 'LIKE', '%' . $query . '%');
+            })->get();
+        
+            return view('Backend.booking.search', compact('bookings'));
+        }
     
 }

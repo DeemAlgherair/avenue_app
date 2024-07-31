@@ -49,6 +49,8 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::put('/confirmed-bookings/{id}', [BookingController::class, 'confiremdBooking'])->name('confiremdBooking');
     Route::delete('show-reservation/{id}/edit-reservation', [BookingController::class, 'destroy'])->name('deleteReservation');
     Route::get('show-reservation/{id}/print-invoice', [BookingController::class, 'printinvoice'])->name('printinvoice');
+    Route::get('/search-reservations', [BookingController::class, 'search'])->name('searchReservations');
+
     //avenue
     Route::get('/show-avenue', [AvenueController::class, 'index'])->name('showAvenue');
     Route::get('/create-avenue/{owner_id}', [AvenueController::class, 'create'])->name('showCreateAvenue');
