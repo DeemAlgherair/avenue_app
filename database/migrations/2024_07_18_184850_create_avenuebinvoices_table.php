@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('serial_no')->notNull();
             $table->foreignId('booking_id')->constrained('bookings');
-            $table->foreignId('status_id')->constrained('invoice_statuses');
+            $table->foreignId('status_id')->default(1)->constrained('invoice_statuses');
             $table->date('creation_date')->notNull();
             $table->date('end_date')->notNull();
             $table->string('invoice_file')->notNull();

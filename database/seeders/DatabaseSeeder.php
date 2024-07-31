@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Models\Owner;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,13 +17,58 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Owner::factory()->count(10)->create();
+        // Create roles
+        DB::table('roles')->insert([
+            'role_name' => 'admin',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-        /*User::factory(10)->create();
+        // Create an admin user
+        DB::table('users')->insert([
+            'role_id' => 1,
+            'name' => 'Admin',
+            'email' => 'admin@gmai.com',
+            'password' => Hash::make('password'),
+            'phone' => '0564843996',
+            'profile_pic' => null,
+            'last_login' => now(),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);*/
+        // Seed days of the week
+        $days = [
+            ['name' => 'Monday', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Tuesday', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Wednesday', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Thursday', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Friday', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Saturday', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Sunday', 'created_at' => now(), 'updated_at' => now()],
+        ];
+        DB::table('days')->insert($days);
+
+        DB::table('avenue_day_status')->insert([
+            'status_name' => 'avilable',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('booking_statuses')->insert([
+            [
+                'statues_name' => 'pending',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'completed',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+        
     }
 }

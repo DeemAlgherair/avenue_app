@@ -35,7 +35,7 @@ return [
         ],
     ],
     'moyasar'=>[
-    'key'=>'pk_test_pz2S5VqavQxetmeVPZoaCqHkWeRzu7evSVZCyxME',
-    'secret'=>'sk_test_U1DSJanX7dwgDfc6mGN7mHeMAB48UhmNmUx6yuiG',]
+    'key'=>'pk_test_FGF1yS9NkbYyipWTsZzwwMyUESAsgnnC6mmZC3FT',
+    'secret'=>'sk_test_ecuNivtFznwjCZvEfR9xy42LQVitQVkpgaYX2kLo',]
 
 ];

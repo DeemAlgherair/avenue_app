@@ -97,7 +97,7 @@
                                         <strong>Price per Hour:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>Size:</strong> {{ $avenue->size ?? "Not Found :(" }}
+                                        <strong>Size (People):</strong> {{ $avenue->size ?? "Not Found :(" }}
                                     </li>
                                     <li class="list-group-item">
                                         <strong>Advantages:</strong> {{ $avenue->advantages ?? "Not Found :(" }}

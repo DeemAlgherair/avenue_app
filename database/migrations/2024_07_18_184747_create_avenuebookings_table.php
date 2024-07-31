@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime('booking_date');
             $table->foreignId('customer_id')->constrained('customers');
             $table->foreignId('avenue_id')->constrained('avenues');
-            $table->foreignId('status_id')->constrained('booking_statuses');
+            $table->foreignId('status_id')->default(1)->constrained('booking_statuses');
             $table->decimal('subtotal');
             $table->decimal('tax')->nullable();
             $table->decimal('total');
