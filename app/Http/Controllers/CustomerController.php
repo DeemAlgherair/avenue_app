@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Avenue;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
@@ -15,7 +16,16 @@ class CustomerController extends Controller
     {
         //
     }
-
+    public function all()
+    {
+        $avenues = Avenue::with('owners', 'image', 'reviews')->get()->map(function($avenue) {
+            $averageRating = $avenue->reviews->avg('rate'); 
+            $avenue->averageRating = $averageRating;
+            return $avenue;
+        });
+    
+        return view('Frontend.layout.allAvenue', ['avenues' => $avenues]);
+    }
     /**
      * Show the form for creating a new resource.
      */

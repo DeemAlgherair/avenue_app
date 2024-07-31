@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class indexController extends Controller
 {
-    public function Index()
+    public function index()
     {
-        $avenue = Avenue::with('owners','image')->get();
-        return view('Frontend.Auth.index')->with('avenues',$avenue);
+        $avenues = Avenue::with('owners', 'image', 'reviews')->get()->map(function($avenue) {
+            $averageRating = $avenue->reviews->avg('rate'); 
+            $avenue->averageRating = $averageRating;
+            return $avenue;
+        });
+    
+        return view('Frontend.Auth.index', ['avenues' => $avenues]);
     }
 }

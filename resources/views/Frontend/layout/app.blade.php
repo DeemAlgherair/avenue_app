@@ -21,7 +21,9 @@
 
   <!-- CSS Files -->
   <link rel="stylesheet" href="{{asset('Frontend/assets/css/planet-bsb.css')}}">
-
+    <!-- JS  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- BSB Head -->
 </head>
 
@@ -54,7 +56,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#!" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Avenue</a>
                 <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="categoryDropdown">
-                  <li><a class="dropdown-item" href="category.html">Classroom-based Lectures</a></li>
+                  <li><a class="dropdown-item" href="{{route('all.avenues')}}">Classroom-based Lectures</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">

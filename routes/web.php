@@ -11,7 +11,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\PaymentController;
-
+use App\Http\Controllers\CustomerController;
 
 Route::get('/login', [AuthController::class, 'loginIndex'])->name('loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -58,7 +58,9 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::delete('show-avenue/{id}/edit-avenue', [AvenueController::class, 'destroy'])->name('deleteAvenue');
     Route::get('show-avenue/{id}/edit-avenue', [AvenueController::class, 'edit']);
     Route::put('show-avenue/{id}/edit-avenue', [AvenueController::class, 'update'])->name('updateAvenue');
-    
+    //profile
+    Route::get('/profile', [profileController::class, 'adminIndex']);
+    Route::put('/profile', [profileController::class, 'adminUpdateProfile'])->name('adminUpdateProfile');
 
 
 });    
@@ -74,7 +76,7 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::get('/index', [indexController::class,'Index'])->name('home');
         //profile
         Route::get('/profile/{id}',[profileController::class,'info'])->name('profile');
-        Route::patch('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
+        Route::put('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
         Route::delete('/profile/{id}',[profileController::class,'destroy'])->name('deleteProfile');
         //avenue
         Route::get('/avenue/{id}', [AvenueController::class, 'show'])->name('show');
@@ -84,14 +86,17 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         //invoce
         Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice.show');
         //payment
-        Route::get('/payment/{booking}', [PaymentController::class, 'showPaymentForm'])->name('payment.show');
+        Route::get('/payment/{bookingId}', [PaymentController::class, 'showPaymentForm'])->name('payment.show');
         Route::post('/payment/{booking}', [PaymentController::class, 'processPayment'])->name('payment.process');
+        Route::get('/payment/{booking}/callback',[PaymentController::class, 'callback'])->name('payment.callback');
         // confirmed booking
         Route::get('/confirmed-bookings', [BookingController::class, 'showConfirmedBookings'])->name('confirmed.bookings');
         Route::get('/review-booking/{bookingId}', [BookingController::class, 'reviewBooking'])->name('review.booking');
         Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
         Route::get('/unconfirmed-bookings', [BookingController::class, 'showUnconfirmedBookings'])->name('unconfirmed.bookings');
-
+        Route::get('/booking-success',[BookingController::class, 'success'])->name('bookings.success');
+        Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
     });
     
+
     
