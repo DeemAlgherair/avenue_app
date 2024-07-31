@@ -18,8 +18,13 @@ class CustomerController extends Controller
     }
     public function all()
     {
-        $avenues = Avenue::all();
-        return view('frontend.layout.allAvenue', compact('avenues'));
+        $avenues = Avenue::with('owners', 'image', 'reviews')->get()->map(function($avenue) {
+            $averageRating = $avenue->reviews->avg('rate'); 
+            $avenue->averageRating = $averageRating;
+            return $avenue;
+        });
+    
+        return view('Frontend.layout.allAvenue', ['avenues' => $avenues]);
     }
     /**
      * Show the form for creating a new resource.

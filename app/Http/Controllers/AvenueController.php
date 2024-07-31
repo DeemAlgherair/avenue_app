@@ -6,6 +6,7 @@ use App\Models\Avenue;
 use App\Models\Avenue_Day;
 use App\Models\Day;
 use App\Models\Owner;
+use App\Models\Review;
 
 use App\Models\Avenue_Image;
 use App\Models\Image;
@@ -89,9 +90,11 @@ class AvenueController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
-    {    $avenue = Avenue::findOrFail($id);
-         return view('Frontend.layout.view')->with('avenue', $avenue);
+    public function show( $id){
+         $avenue = Avenue::with('reviews')->findOrFail($id);
+         $reviews = $avenue->reviews;
+         $averageRating = $reviews->avg('rate'); 
+         return view('Frontend.layout.view')->with('avenue', $avenue)->with('averageRating',$averageRating);
     }
 
     /**

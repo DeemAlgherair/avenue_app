@@ -180,7 +180,7 @@ class BookingController extends Controller
         $booking = Booking::findOrFail($bookingId);
     
         // Check if a review already exists
-        $review = Review::where('customer_id', auth()->id())
+        $review = Review::where('customer_id',Auth::guard('customers')->id())
                         ->where('avenue_id', $booking->avenue_id)
                         ->where('booking_id', $bookingId)
                         ->first();
@@ -199,7 +199,7 @@ class BookingController extends Controller
             Review::create([
                 'rate' => $request->input('rate'),
                 'comment' => $request->input('comment'),
-                'customer_id' => auth()->id(),
+                'customer_id' => Auth::guard('customers')->id(),
                 'avenue_id' => $booking->avenue_id,
                 'booking_id' => $bookingId // Ensure booking_id is provided here
             ]);

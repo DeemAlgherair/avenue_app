@@ -73,6 +73,10 @@ class Avenue extends Model
     {
         return $this->belongsTo(Owner::class,'owener_id');
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
 
+    }
 
 }

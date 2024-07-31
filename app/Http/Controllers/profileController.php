@@ -52,6 +52,7 @@ class profileController extends Controller
         'email'=> 'required|email:rfc,dns|string|max:255',
         'phone' => 'required|string|max:20|min:6',
         'profile_pic' =>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'password' =>'nullable|confirmed|min:8|max:16',
     
     ]);
          $customer = Customer::find($id);  
@@ -64,9 +65,12 @@ class profileController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone'=> $request->phone,
-            'profile_pic'=> $path
+            'profile_pic'=> $path,
+            'password' => $request->has('password') ? Hash::make($request->password) : $customer->password,
+
         ]);
 
+        session()->flash('success', 'Profile updated successfully!');
 
         return back();
 

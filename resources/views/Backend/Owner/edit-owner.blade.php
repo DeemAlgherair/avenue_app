@@ -1,5 +1,5 @@
 @extends('Backend.app')
-@section('title','Online Avenue - Edit Owner')
+@section('title', 'Online Avenue - Edit Owner')
 @section('content')
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -7,71 +7,65 @@
             <h6 class="m-0 font-weight-bold text-primary">Edit Owner</h6>
         </div>
         <div class="card-body">
-<form action="{{ route('updateOwner', $owner->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ $owner->name }}" required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" value="{{ $owner->email }}" required>
-    </div>
-    <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone" name="phone" value="{{ $owner->phone }}" required>
-    </div>
+            <form action="{{ route('updateOwner', $owner->id) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-    <div class="form-group">
-        <label for="owned_avenues">Owned Avenues</label>
-        <div class="row">
-            @foreach($owner->avenues as $avenue)
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $avenue->name }}</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="owned_avenue_{{ $avenue->id }}" name="update[]" value="{{ $avenue->id }}">
-                                <label class="form-check-label" for="owned_avenue_{{ $avenue->id }}">
-                                    Update this Avenue
-                                </label>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $owner->name }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ $owner->email }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $owner->phone }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="owned_avenues">Owned Avenues</label>
+                    <div class="row">
+                        @foreach($owner->avenues as $avenue)
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $avenue->name }}</h5>
+                                        <a href="{{ route('updateAvenue', $avenue->id) }}" class="btn btn-link">
+                                            Update this Avenue
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="new_avenue">New Avenue</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <a href="{{ route('createAvenue', $owner->id) }}" class="btn btn-link">
+                                        Add New Avenue
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="form-group">
-    <label for="owned_avenues">New Avenue</label>
-    <div class="row">
+                <div class ='d-flex py-2'>
+                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this owner?')">Update Owner</button>
+            </form>
 
-    <div class="col-md-4">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="owned_avenue_{{ $avenue->id }}" name="add[]" value="{{ $avenue->id }}">
-                    <label class="form-check-label" for="owned_avenue_{{ $avenue->id }}">
-                        Add New Avenue
-                    </label>
-                </div>
-            </div>
+            <form action="{{ route('deleteOwner', $owner->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Delete Owner</button>
+            </form>
         </div>
-    </div>
-</div>
-    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this owner?')">Update Owner</button>
-</form>
-<form action="{{ route('deleteOwner', $owner->id) }}" method="POST" style="display:inline;">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Delete Owner</button>
-</form>
-
-        </div>
-        </div> 
- 
     </div>
 </div>
 @endsection
