@@ -57,9 +57,16 @@
                 <div class="col-12 col-lg-4">
                     <article>
                         <div class="card shadow-sm border-0 bg-transparent">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                             <figure class="position-relative card-img-top card-img-zoom rounded-3 overflow-hidden mb-3">
                                 <a href="#!">
-                                    <img class="img-fluid" loading="lazy" src="{{ asset('storage/' . $avenue->image->url) }}" alt="{{ $avenue->name }}">
+                                    @foreach($images as $image)
+                                    @if($image->is_main)
+                                    <a href="{{ route('show', $avenue->id) }}">
+                                    <img class="img-fluid" loading="lazy" src="{{ asset('storage/' . $image->url) }}" alt="{{ $avenue->name }}">
+                                    </a>
+                                    @endif
+                                    @endforeach
                                 </a>
                             </figure>
                             <div class="card-body">
@@ -72,7 +79,7 @@
                                         </li>
                                     </ul>
                                     <h2 class="card-title entry-title h4 m-0">
-                                        <a class="link-dark text-decoration-none" href="#!">{{ $avenue->name }}</a>
+                                        <a class="link-dark text-decoration-none" href="{{route('show',$avenue->id)}}">{{ $avenue->name }}</a>
                                     </h2>
                                 </div>
                                 <div class="review-section">
@@ -99,9 +106,7 @@
                                     <li class="list-group-item">
                                         <strong>Size (People):</strong> {{ $avenue->size ?? "Not Found :(" }}
                                     </li>
-                                    <li class="list-group-item">
-                                        <strong>Advantages:</strong> {{ $avenue->advantages ?? "Not Found :(" }}
-                                    </li>
+                                    <a  class="text-center mt-4" href="{{route('show',$avenue->id)}}">Read more</a>
                                 </ul>
                                 <div class="text-center mt-4">
                                     <a class="btn btn-primary btn-lg rounded-pill" href="/Customer-Online-Avenue/booking/{{$avenue->id}}">Book Now</a>

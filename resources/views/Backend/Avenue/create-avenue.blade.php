@@ -3,6 +3,7 @@
 @section('title', 'Online Avenue - Create Avenue')
 
 @section('content')
+
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -30,19 +31,19 @@
                         </div>
                         @endif
                         @foreach($days as $day)
-                                <div class="col-md-3">
-                                    <div class="card mb-2">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $day->name }}</h5>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="day_{{ $day->id }}" name="days[]" value="{{ $day->id }}">
-                                                <label class="form-check-label" for="day_{{ $day->id }}">
-                                                    Select this day
-                                                </label>
-                                            </div>
+                            <div class="col-md-2 days-card " >
+                                <div class="card mb-1">
+                                    <div class="card-body" style=" width: 100%;">
+                                        <h5 class="card-title">{{ $day->name }}</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="day_{{ $day->id }}" name="days[]" value="{{ $day->id }}">
+                                            <label class="form-check-label" for="day_{{ $day->id }}">
+                                                Select this day
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -56,13 +57,17 @@
                         <input type="number" class="form-control" id="price" name="price" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="size">Size (People)</label>
+                        <label for="size">Capacity (People)</label>
                         <input type="number" class="form-control" id="size" name="size" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="image">Image</label>
+                    <label for="image">Main Image</label>
                     <input type="file" class="form-control" id="image" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label for="other_images">Other Images</label>
+                    <input type="file" class="form-control" id="other_images" name="other_images[]" multiple accept="image/*" >
                 </div>
                 <div class="form-group">
                     <label for="advantages">Advantages</label>

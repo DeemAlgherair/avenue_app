@@ -9,12 +9,12 @@ class indexController extends Controller
 {
     public function index()
     {
-        $avenues = Avenue::with('owners', 'image', 'reviews')->get()->map(function($avenue) {
+        $avenues = Avenue::with('owners', 'reviews')->get()->map(function($avenue) {
             $averageRating = $avenue->reviews->avg('rate'); 
             $avenue->averageRating = $averageRating;
             return $avenue;
         });
-    
+        
         return view('Frontend.Auth.index', ['avenues' => $avenues]);
     }
 }

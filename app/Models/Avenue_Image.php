@@ -9,19 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 class Avenue_Image extends Model
 {
     use HasFactory;
-    protected $table = 'avenue_images';
+    protected $table='avenue_images';
     protected $fillable = [
-        'images_id',
+        'url',
+        'avenue_id',
+        'is_main',
     ];
 
     public function avenue()
     {
-        return $this->belongsTo(Avenue::class);
+        return $this->belongsToMany(Avenue::class,'avenue_id');
     }
 
-    public function image()
-    {
-        return $this->belongsTo(Image::class);
-    }
     
 }

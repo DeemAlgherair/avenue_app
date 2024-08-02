@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('avenue_days', function (Blueprint $table) {
             $table->id();
             $table->foreignId('day_id')->constrained('days');
-            $table->foreignId('avenue_id')->constrained('avenues');
+            $table->foreignId('avenue_id')->constrained('avenues')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('status_id')->default(1)->constrained('avenue_day_status');
             $table->timestamps();
         });

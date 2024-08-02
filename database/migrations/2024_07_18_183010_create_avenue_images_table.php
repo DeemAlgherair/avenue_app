@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('avenue_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('images_id')->constrained('images');
-            $table->foreignId('avenue_id')->constrained('avenues');
+            $table->string('url')->notNull();
+            $table->foreignId('avenue_id')->constrained('avenues')->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('is_main')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('avenue__images');
+        Schema::dropIfExists('avenue_images');
     }
 };

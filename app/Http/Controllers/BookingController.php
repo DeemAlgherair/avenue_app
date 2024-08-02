@@ -201,7 +201,8 @@ class BookingController extends Controller
                 'comment' => $request->input('comment'),
                 'customer_id' => Auth::guard('customers')->id(),
                 'avenue_id' => $booking->avenue_id,
-                'booking_id' => $bookingId // Ensure booking_id is provided here
+                'booking_id' => $bookingId ,// Ensure booking_id is provided here
+
             ]);
     
             return redirect()->route('confirmed.bookings')

@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'role_id' => 1,
             'name' => 'Admin',
-            'email' => 'admin@gmai.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'phone' => '0564843996',
             'profile_pic' => null,
@@ -65,6 +65,11 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'statues_name' => 'completed',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'paid',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
