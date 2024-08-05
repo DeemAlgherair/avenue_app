@@ -40,15 +40,18 @@
                                     <input type="text" id="price" name="price" value="{{ $selectedAvenue->price_per_hours }}" class="form-control" readonly>
                                 </div>
                               
-                <label for="day_id">Available Days:</label>
-    <select name="day_id" id="day_id">
-        <option value="">Select a day</option>
-        @foreach ($selectedAvenue->days as $availableDay)
-            <option value="{{ $availableDay->id }}">
-                {{ $availableDay->name }}
-            </option>
-        @endforeach
-    </select>
+                                <div class="mb-3">
+                                    <label>Available Days:</label>
+                                    <div class="form-check">
+                                        @foreach ($selectedAvenue->days as $availableDay)
+                                            <input class="form-check-input" type="checkbox" name="day_id[]" id="day_id_{{ $availableDay->id }}" value="{{ $availableDay->id }}">
+                                            <label class="form-check-label" for="day_id_{{ $availableDay->id }}">
+                                                {{ $availableDay->name }}
+                                            </label>
+                                            <br>
+                                        @endforeach
+                                    </div>
+                                </div>
                                 <div class="mb-3">
                                     <label for="size" class="form-label">Number of Hours:</label>
                                     <input type="number" class="form-control" id="size" name="size" min="1" max="12" required>

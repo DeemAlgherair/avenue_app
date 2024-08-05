@@ -27,13 +27,14 @@
                                 <p><strong>Subtotal:</strong> {{ $booking->subtotal }}</p>
                                 <p><strong>Tax:</strong> {{ $booking->tax }}</p>
                                 <p><strong>Total:</strong> {{ $booking->total }}</p>
-                                
+                                <button class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>Print</button>
                                 <!-- Button to proceed to payment -->
-                                
+                                @if($booking->status_id !=3)
                                 <form action="{{ route('bookings.success', ['booking' => $booking->id]) }}"  method="GET">
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Proceed to Payment</button>
                                 </form>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -42,4 +43,11 @@
         </div>
     </section>
 </body>
+<script src="{{ URL::asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+
+<script type="text/javascript">
+    function printDiv() {
+        window.print();
+    }
+</script>
 @endsection

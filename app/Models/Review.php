@@ -25,5 +25,9 @@ class Review extends Model
     {
         return $this->belongsTo(Avenue::class);
     }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
     
 }

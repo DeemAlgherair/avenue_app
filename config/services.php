@@ -34,8 +34,11 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-    'moyasar'=>[
-    'key'=>'pk_test_FGF1yS9NkbYyipWTsZzwwMyUESAsgnnC6mmZC3FT',
-    'secret'=>'sk_test_ecuNivtFznwjCZvEfR9xy42LQVitQVkpgaYX2kLo',]
+    
+    'moyasar' => [
+        'key' => env('MOYASAR_KEY'),
+        'secret' => env('MOYASAR_SECRET'),
+    ],
+    
 
 ];

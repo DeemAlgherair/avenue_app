@@ -33,13 +33,13 @@
                                                 <td>{{ $booking->avenues->name ?? 'Not Available' }}</td> 
                                                 <td>{{ $booking->customers->name ?? 'Not Available' }}</td> 
                                                 <td> 
-                                                    @if($booking->status_id=="2") 
-                                                        <!-- Show Pay Button if Confirmed -->
-                                                        <a href="{{ route('payment.show', $booking->id) }}" class="btn btn-success">Pay</a> 
-                                                    @else 
+                                                    @if($booking->status_id=="1") 
                                                         <!-- Show Waiting Status if Not Confirmed -->
                                                         <span class="text-danger">Waiting for Confirmation</span> 
+                                                    @elseif($booking->status_id=="4")
+                                                    <span class="text-danger">Payment failed</span> 
                                                     @endif 
+                                                   
                                                 </td> 
                                             </tr> 
                                         @endforeach 

@@ -14,12 +14,11 @@
                 <div class="col-md-8 mx-auto">
                     <div class="card border-light shadow-sm">
                         <!-- Card Header -->
-                        <div class="card-header bg-primary text-light">
+                        <div class="card-header bg-primary text-light ">
                             <h5 class="mb-0">Payment</h5>
                         </div>
                         <div class="card-body">
                             <h4 class="text-primary">Complete Your Payment</h4>
-                            
                             <!-- Display invoice details -->
                             <p><strong>Serial No:</strong> {{ $booking->serial_no }}</p>
                             <p><strong>Booking Date:</strong> {{ $booking->booking_date }}</p>
@@ -65,4 +64,5 @@
         </div>
     </section>
 </body>
+
 @endsection

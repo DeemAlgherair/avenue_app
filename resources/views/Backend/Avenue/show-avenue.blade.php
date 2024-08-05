@@ -16,6 +16,8 @@
                             <th>Price</th>
                             <th>Day/s</th>
                             <th>Owner</th>
+                            <th>Edit</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -38,10 +40,13 @@
                                 <p>{{ $avenue->owner->name }}</p>
                             @else
                                 <p>No owner assigned</p>
-                            @endif</td>
-                            
+                            @endif</td>           
                            
-                        </tr>
+                        <td>
+                            <a href="/Admin-Online-Avenue/show-avenue/{{$avenue->id}}/edit-avenue" class="btn btn-primary btn-sm">Edit</a>
+                        </td>
+                    </tr>
+
                         @endforeach
                     <tbody>
                     </tbody>

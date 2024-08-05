@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('avenue_days', function (Blueprint $table) {
+        Schema::create('advantage_avenue', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('day_id')->constrained('days');
-            $table->foreignId('avenue_id')->constrained('avenues')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('status_id')->default(1)->constrained('avenue_day_status');
+            $table->foreignId('advantage_id')->constrained('advantages')->nullable();
+            $table->foreignId('avenue_id')->constrained('avenues')->nullable()->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
         });
+
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('avenue__days');
+        Schema::dropIfExists('avenue__advantages');
     }
 };

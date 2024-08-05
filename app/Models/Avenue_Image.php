@@ -11,7 +11,9 @@ class Avenue_Image extends Model
     use HasFactory;
     protected $table = 'avenue_images';
     protected $fillable = [
-        'images_id',
+        'url',
+        'avenue_id',
+        'is_main',
     ];
 
     public function avenue()
@@ -19,9 +21,6 @@ class Avenue_Image extends Model
         return $this->belongsTo(Avenue::class);
     }
 
-    public function image()
-    {
-        return $this->belongsTo(Image::class);
-    }
+  
     
 }

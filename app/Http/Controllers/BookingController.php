@@ -143,10 +143,7 @@ class BookingController extends Controller
         // Fetch all confirmed bookings
         $customer_id = Auth::guard('customers')->id();
 
-        $confirmedBookings = Booking::where('customer_id', $customer_id)
-            ->whereHas('status', function($query) {
-                $query->whereIn('id', [2, 3]);
-            })->get();
+        $confirmedBookings = Booking::where('customer_id', $customer_id)->get();
         
         $reviews = Review::all();
         
@@ -210,9 +207,7 @@ class BookingController extends Controller
     }
     
 public function showUnconfirmedBookings() { 
-        $unconfirmedBookings = Booking::whereHas('status', function($query) { 
-            $query->where('id', '1'); 
-        })->get(); 
+        $unconfirmedBookings = Booking::all(); 
  
         return view('Frontend.layout.unconfirmed', compact('unconfirmedBookings'));
     }
@@ -229,5 +224,18 @@ public function showUnconfirmedBookings() {
         
             return view('Backend.booking.search', compact('bookings'));
         }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $booking = Booking::find($id);
+
+        if ($booking) {
+            $booking->status_id = $request->input('status', 4); // Default to 4 if not provided
+            $booking->save();
+
+        }
+        return back();
+
+    }
     
 }

@@ -62,8 +62,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#!" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reservations</a>
                 <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="blogDropdown">
-                  <li><a class="dropdown-item" href="/Customer-Online-Avenue/confirmed-bookings">Confirmed Reservations</a></li>
-                  <li><a class="dropdown-item" href="{{route('unconfirmed.bookings')}}">UnConfirmed Reservations</a></li>
+                  <li><a class="dropdown-item" href="/Customer-Online-Avenue/all-bookings">All Reservations</a></li>
                 </ul>
               </li>
               <li class="nav-item">

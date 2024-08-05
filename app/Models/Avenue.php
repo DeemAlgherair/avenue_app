@@ -15,7 +15,6 @@ class Avenue extends Model
         'price_per_hours',
         'size',
         'advantages',
-        'image_id',
         'serial_no',
         'owener_id',
     ];
@@ -32,37 +31,16 @@ class Avenue extends Model
      {
          return $this->belongsToMany(Day::class, 'avenue_days');
      }
-    /*
-    public function days()
-    {
-        return $this->hasOneThrough(Day::class, Avenue_Day::class,'id', 'id', 'avenue_day_id', 'day_id');
+     public function avenueadvantage()
+     {
+        
+            return $this->belongsToMany(Advantage::class);
     }
-        */
-        /*public function day()
-        {
-            return $this->belongsTo(Day::class,'avenue_day_id');
-        }*/
 
+    
         public function avenues()
     {
         return $this->belongsToMany(Avenue::class,'avenue_days');
-    }
-    /*
-    public function image()
-    {
-        return $this->hasOneThrough(
-            Image::class, 
-            Avenue_Image::class, 
-            'id', 
-            'id', 
-            'image_id',
-            'images_id');
-        }
-    */
-    public function image()
-    {
-        return $this->belongsTo(Image::class);
-
     }
 
         public function bookings()
@@ -78,5 +56,10 @@ class Avenue extends Model
         return $this->hasMany(Review::class);
 
     }
+    public function image()
+{
+    return $this->hasMany(Avenue_Image::class);
+}
+
 
 }
