@@ -7,7 +7,7 @@
       <div class="card border-0 shadow-sm rounded-3">
         <div class="row g-0 align-items-center">
           <div class="col-12 col-md-6">
-            <img class="img-fluid rounded-start object-fit-cover" loading="lazy" src="{{asset('Frontend/assets/img/main.svg')}}" alt="Lecture Hall">
+            <img class="img-fluid rounded-start object-fit-cover" loading="lazy" src="{{asset('Frontend/assets/img/deem.svg')}}" alt="Lecture Hall">
           </div>
           <div class="col-6 col-md-6">
             <div class="card-body p-md-4 p-xl-6">

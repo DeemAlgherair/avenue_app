@@ -4910,7 +4910,7 @@ creative-commons-nd:
 creative-commons-pd:
   changes:
     - 5.0.11
-  label: Creative Commons Public Domain
+  label: Creative Commons Public Dodeem
   search:
     terms: []
   styles:
@@ -4920,7 +4920,7 @@ creative-commons-pd:
 creative-commons-pd-alt:
   changes:
     - 5.0.11
-  label: Alternate Creative Commons Public Domain
+  label: Alternate Creative Commons Public Dodeem
   search:
     terms: []
   styles:
@@ -10173,7 +10173,7 @@ home:
       - abode
       - building
       - house
-      - main
+      - deem
   styles:
     - solid
   unicode: f015

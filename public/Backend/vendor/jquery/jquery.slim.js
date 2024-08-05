@@ -1067,7 +1067,7 @@ function createDisabledPseudo( disabled ) {
 			return elem.disabled === disabled;
 		}
 
-		// Remaining elements are neither :enabled nor :disabled
+		// Redeeming elements are neither :enabled nor :disabled
 		return false;
 	};
 }
@@ -1524,7 +1524,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				return 1;
 			}
 
-			// Maintain original order
+			// deemtain original order
 			return sortInput ?
 				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
 				0;
@@ -2064,7 +2064,7 @@ Expr = Sizzle.selectors = {
 				return fn( argument );
 			}
 
-			// But maintain support for old signatures
+			// But deemtain support for old signatures
 			if ( fn.length > 1 ) {
 				args = [ pseudo, pseudo, "", argument ];
 				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
@@ -2744,7 +2744,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
 			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
 			// no element matchers and no seed.
-			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+			// Incrementing an initially-string "0" `i` allows `i` to redeem a string only in that
 			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
 			// numerically zero.
 			if ( bySet && i !== matchedCount ) {
@@ -2883,7 +2883,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 						context
 				) ) ) {
 
-					// If seed is empty or no tokens remain, we can return early
+					// If seed is empty or no tokens redeem, we can return early
 					tokens.splice( i, 1 );
 					selector = seed.length && toSelector( tokens );
 					if ( !selector ) {
@@ -3992,10 +3992,10 @@ jQuery.extend( {
 		var
 
 			// count of uncompleted subordinates
-			remaining = arguments.length,
+			redeeming = arguments.length,
 
 			// count of unprocessed arguments
-			i = remaining,
+			i = redeeming,
 
 			// subordinate fulfillment data
 			resolveContexts = Array( i ),
@@ -4009,16 +4009,16 @@ jQuery.extend( {
 				return function( value ) {
 					resolveContexts[ i ] = this;
 					resolveValues[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
-					if ( !( --remaining ) ) {
+					if ( !( --redeeming ) ) {
 						primary.resolveWith( resolveContexts, resolveValues );
 					}
 				};
 			};
 
 		// Single- and empty arguments are adopted like Promise.resolve
-		if ( remaining <= 1 ) {
+		if ( redeeming <= 1 ) {
 			adoptValue( singleValue, primary.done( updateFunc( i ) ).resolve, primary.reject,
-				!remaining );
+				!redeeming );
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
 			if ( primary.state() === "pending" ||
@@ -4392,7 +4392,7 @@ var dataUser = new Data();
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
-//	2. Improve the module's maintainability by reducing the storage
+//	2. Improve the module's deemtainability by reducing the storage
 //		paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
@@ -5221,7 +5221,7 @@ jQuery.event = {
 			handler.guid = jQuery.guid++;
 		}
 
-		// Init the element's event structure and main handler, if this is the first
+		// Init the element's event structure and deem handler, if this is the first
 		if ( !( events = elemData.events ) ) {
 			events = elemData.events = Object.create( null );
 		}
@@ -5496,7 +5496,7 @@ jQuery.event = {
 			}
 		}
 
-		// Add the remaining (directly-bound) handlers
+		// Add the redeeming (directly-bound) handlers
 		cur = this;
 		if ( delegateCount < handlers.length ) {
 			handlerQueue.push( { elem: cur, handlers: handlers.slice( delegateCount ) } );
@@ -6290,7 +6290,7 @@ jQuery.fn.extend( {
 				// Prevent memory leaks
 				jQuery.cleanData( getAll( elem, false ) );
 
-				// Remove any remaining nodes
+				// Remove any redeeming nodes
 				elem.textContent = "";
 			}
 		}

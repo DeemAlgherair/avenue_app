@@ -162,7 +162,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.x-dev"
+                    "dev-deem": "3.x-dev"
                 }
             },
             "autoload": {
@@ -674,7 +674,7 @@
             },
             "suggest": {
                 "ext-curl": "Required for CURL handler support",
-                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
+                "ext-intl": "Required for Internationalized Dodeem Name (IDN) support",
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
@@ -1292,7 +1292,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-deem": "0.1.x-dev"
                 }
             },
             "autoload": {
@@ -1487,7 +1487,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.6-dev"
+                    "dev-deem": "2.6-dev"
                 }
             },
             "autoload": {
@@ -1575,7 +1575,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.2-dev"
+                    "dev-deem": "1.2-dev"
                 }
             },
             "autoload": {
@@ -1875,7 +1875,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.x-dev"
+                    "dev-deem": "3.x-dev"
                 }
             },
             "autoload": {
@@ -3274,7 +3274,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.12.x-dev"
+                    "dev-deem": "0.12.x-dev"
                 },
                 "bamarni-bin": {
                     "bin-links": false,
@@ -3791,7 +3791,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.5-dev"
+                    "dev-deem": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -4014,7 +4014,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.5-dev"
+                    "dev-deem": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -5365,7 +5365,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.5-dev"
+                    "dev-deem": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -5624,7 +5624,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.5-dev"
+                    "dev-deem": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -7627,7 +7627,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "10.1-dev"
+                    "dev-deem": "10.1-dev"
                 }
             },
             "autoload": {
@@ -7689,7 +7689,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "4.0-dev"
+                    "dev-deem": "4.0-dev"
                 }
             },
             "autoload": {
@@ -7754,7 +7754,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "4.0-dev"
+                    "dev-deem": "4.0-dev"
                 }
             },
             "autoload": {
@@ -7813,7 +7813,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.0-dev"
+                    "dev-deem": "3.0-dev"
                 }
             },
             "autoload": {
@@ -7873,7 +7873,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "6.0-dev"
+                    "dev-deem": "6.0-dev"
                 }
             },
             "autoload": {
@@ -7960,7 +7960,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "10.5-dev"
+                    "dev-deem": "10.5-dev"
                 }
             },
             "autoload": {
@@ -8033,7 +8033,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.0-dev"
+                    "dev-deem": "2.0-dev"
                 }
             },
             "autoload": {
@@ -8090,7 +8090,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.0-dev"
+                    "dev-deem": "2.0-dev"
                 }
             },
             "autoload": {
@@ -8146,7 +8146,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.0-dev"
+                    "dev-deem": "3.0-dev"
                 }
             },
             "autoload": {
@@ -8205,7 +8205,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "5.0-dev"
+                    "dev-deem": "5.0-dev"
                 }
             },
             "autoload": {
@@ -8279,7 +8279,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.2-dev"
+                    "dev-deem": "3.2-dev"
                 }
             },
             "autoload": {
@@ -8337,7 +8337,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "5.1-dev"
+                    "dev-deem": "5.1-dev"
                 }
             },
             "autoload": {
@@ -8406,7 +8406,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "6.1-dev"
+                    "dev-deem": "6.1-dev"
                 }
             },
             "autoload": {
@@ -8469,7 +8469,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "5.1-dev"
+                    "dev-deem": "5.1-dev"
                 }
             },
             "autoload": {
@@ -8548,7 +8548,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "6.0-dev"
+                    "dev-deem": "6.0-dev"
                 }
             },
             "autoload": {
@@ -8608,7 +8608,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.0-dev"
+                    "dev-deem": "2.0-dev"
                 }
             },
             "autoload": {
@@ -8667,7 +8667,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "5.0-dev"
+                    "dev-deem": "5.0-dev"
                 }
             },
             "autoload": {
@@ -8722,7 +8722,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.0-dev"
+                    "dev-deem": "3.0-dev"
                 }
             },
             "autoload": {
@@ -8777,7 +8777,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "5.0-dev"
+                    "dev-deem": "5.0-dev"
                 }
             },
             "autoload": {
@@ -8840,7 +8840,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "4.0-dev"
+                    "dev-deem": "4.0-dev"
                 }
             },
             "autoload": {
@@ -8893,7 +8893,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "4.0-dev"
+                    "dev-deem": "4.0-dev"
                 }
             },
             "autoload": {

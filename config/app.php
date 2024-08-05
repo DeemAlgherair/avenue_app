@@ -107,20 +107,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
+    | deemtenance Mode Driver
     |--------------------------------------------------------------------------
     |
     | These configuration options determine the driver used to determine and
-    | manage Laravel's "maintenance mode" status. The "cache" driver will
-    | allow maintenance mode to be controlled across multiple machines.
+    | manage Laravel's "deemtenance mode" status. The "cache" driver will
+    | allow deemtenance mode to be controlled across multiple machines.
     |
     | Supported drivers: "file", "cache"
     |
     */
 
-    'maintenance' => [
-        'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
-        'store' => env('APP_MAINTENANCE_STORE', 'database'),
+    'deemtenance' => [
+        'driver' => env('APP_deemTENANCE_DRIVER', 'file'),
+        'store' => env('APP_deemTENANCE_STORE', 'database'),
     ],
 
 ];

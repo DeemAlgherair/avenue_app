@@ -42,7 +42,7 @@ var myBarChart = new Chart(ctx, {
     }],
   },
   options: {
-    maintainAspectRatio: false,
+    deemtainAspectRatio: false,
     layout: {
       padding: {
         left: 10,

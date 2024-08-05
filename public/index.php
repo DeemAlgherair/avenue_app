@@ -4,9 +4,9 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-// Determine if the application is in maintenance mode...
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
+// Determine if the application is in deemtenance mode...
+if (file_exists($deemtenance = __DIR__.'/../storage/framework/deemtenance.php')) {
+    require $deemtenance;
 }
 
 // Register the Composer autoloader...

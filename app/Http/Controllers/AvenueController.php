@@ -73,11 +73,11 @@ public function store(StoreAvenueRequest $request,$owner_id)
         'owener_id' =>$owner_id
     ]);
 
-    $mainImagePath = $request->file('image')->store('avenues', 'public');
-    $mainImage = Avenue_Image::create([
+    $deemImagePath = $request->file('image')->store('avenues', 'public');
+    $deemImage = Avenue_Image::create([
         'avenue_id' => $avenue->id,
-        'url' => $mainImagePath,
-        'is_main' => true,
+        'url' => $deemImagePath,
+        'is_deem' => true,
         'created_at' => now(),
         'updated_at' => now(),
     ]);
@@ -89,7 +89,7 @@ public function store(StoreAvenueRequest $request,$owner_id)
             $image = Avenue_Image::create([
                     'avenue_id' => $avenue->id,
                     'url' => $path,
-                    'is_main' => false,
+                    'is_deem' => false,
                     'created_at' => now(),
                     'updated_at' => now(),
                 
@@ -174,15 +174,15 @@ public function edit($id)
     
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('avenues', 'public');
-            $mainImage = Avenue_Image::where('avenue_id', $avenue->id)->where('is_main', true)->first();
-            $mainImage->update(['url' => $path]);
+            $deemImage = Avenue_Image::where('avenue_id', $avenue->id)->where('is_deem', true)->first();
+            $deemImage->update(['url' => $path]);
             
         }
     
         if ($request->hasFile('other_images')) {
             foreach ($request->file('other_images') as $imageId => $imageFile) {
                 $path = $imageFile->store('avenues', 'public');
-                $imageFile = Avenue_Image::where('avenue_id', $avenue->id)->where('is_main', false)->where('id', $imageId)->first();
+                $imageFile = Avenue_Image::where('avenue_id', $avenue->id)->where('is_deem', false)->where('id', $imageId)->first();
                 $imageFile->update(['url' => $path]);
             
             }
@@ -266,7 +266,7 @@ public function addImage(Request $request, $id)
         [
             'avenue_id'=>$id,
             'url'=>$path,
-            'is_main'=>false
+            'is_deem'=>false
         ]
         );
     

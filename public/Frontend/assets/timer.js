@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
             let duration = parseInt(timer.getAttribute('data-duration')); // Duration in seconds
 
             let savedTime = localStorage.getItem(`timer1-${timerId}`);
-            let remainingTime;
+            let redeemingTime;
 
             if (savedTime) {
-                remainingTime = parseInt(savedTime);
+                redeemingTime = parseInt(savedTime);
             } else {
                 let elapsedTime = Math.floor(Date.now() / 1000) - startTime;
-                remainingTime = duration - elapsedTime;
-                remainingTime = Math.max(remainingTime, 0); // Ensure non-negative time
-                localStorage.setItem(`timer1-${timerId}`, remainingTime);
+                redeemingTime = duration - elapsedTime;
+                redeemingTime = Math.max(redeemingTime, 0); // Ensure non-negative time
+                localStorage.setItem(`timer1-${timerId}`, redeemingTime);
             }
 
             function formatTime(seconds) {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             let interval = setInterval(function countdown() {
-                if (remainingTime <= 0) {
+                if (redeemingTime <= 0) {
                     clearInterval(interval);
                     payButton.style.display = 'none';
                     timeoutMessage.style.display = 'block';
@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                timer.innerHTML = formatTime(remainingTime);
-                remainingTime--;
-                localStorage.setItem(`timer1-${timerId}`, remainingTime);
+                timer.innerHTML = formatTime(redeemingTime);
+                redeemingTime--;
+                localStorage.setItem(`timer1-${timerId}`, redeemingTime);
             }, 1000);
         });
 
@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', function() {
             let duration = parseInt(timer.getAttribute('data-duration')); // Duration in seconds
 
             let savedTime = localStorage.getItem(`timer-waiting-${timerId}`);
-            let remainingTime;
+            let redeemingTime;
 
             if (savedTime) {
-                remainingTime = parseInt(savedTime);
+                redeemingTime = parseInt(savedTime);
             } else {
                 let elapsedTime = Math.floor(Date.now() / 1000) - startTime;
-                remainingTime = duration - elapsedTime;
-                remainingTime = Math.max(remainingTime, 0); // Ensure non-negative time
-                localStorage.setItem(`timer-waiting-${timerId}`, remainingTime);
+                redeemingTime = duration - elapsedTime;
+                redeemingTime = Math.max(redeemingTime, 0); // Ensure non-negative time
+                localStorage.setItem(`timer-waiting-${timerId}`, redeemingTime);
             }
 
             function formatTime(seconds) {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             let interval = setInterval(function countdown() {
-                if (remainingTime <= 0) {
+                if (redeemingTime <= 0) {
                     clearInterval(interval);
                     timer.innerHTML = '00:00';
                     localStorage.removeItem(`timer-waiting-${timerId}`);
@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
                      if (form) form.submit();
                 }
 
-                timer.innerHTML = formatTime(remainingTime);
-                remainingTime--;
-                localStorage.setItem(`timer-waiting-${timerId}`, remainingTime);
+                timer.innerHTML = formatTime(redeemingTime);
+                redeemingTime--;
+                localStorage.setItem(`timer-waiting-${timerId}`, redeemingTime);
             }, 1000);
         });
     }
