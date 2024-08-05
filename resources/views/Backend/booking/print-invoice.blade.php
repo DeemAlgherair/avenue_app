@@ -30,7 +30,7 @@
         </div>
         <div class="row row-sm">
             <div class="col-md-12 col-xl-12">
-                <div class="deem-content-body-invoice" id="print">
+                <div class="main-content-body-invoice" id="print">
                     <div class="card card-invoice">
                         <div class="card-body">
                             <div class="row">
@@ -60,7 +60,7 @@
                                         <tr>
                                             <td class="valign-middle" colspan="2" rowspan="4">
                                                 <div class="invoice-notes">
-                                                    <label class="deem-content-label tx-13">#</label>
+                                                    <label class="main-content-label tx-13">#</label>
                                                 </div>
                                             </td>
                                             <td class="tx-right">Subtotal</td>

@@ -1078,7 +1078,7 @@
 			if ( oLanguage.sUrl )
 			{
 				/* Get the language definitions from a file - because this Ajax call makes the language
-				 * get async to the redeemder of this function we use bInitHandedOff to indicate that
+				 * get async to the remainder of this function we use bInitHandedOff to indicate that
 				 * _fnInitialise will be fired by the returned Ajax handler, rather than the constructor
 				 */
 				$.ajax( {
@@ -1632,7 +1632,7 @@
 	 */
 	DataTable.util = {
 		/**
-		 * Throttle the calls to a function. Arguments and context are deemtained
+		 * Throttle the calls to a function. Arguments and context are maintained
 		 * for the throttled function.
 		 *
 		 * @param {function} fn Function to be called
@@ -1821,7 +1821,7 @@
 	
 	
 	/**
-	 * Provide backwards compatibility for the deem DT options. Note that the new
+	 * Provide backwards compatibility for the main DT options. Note that the new
 	 * options are mapped onto the old parameters, so this is an external interface
 	 * change only.
 	 *  @param {object} init Object to map
@@ -2674,7 +2674,7 @@
 							}
 							out = [];
 	
-							// Get the redeemder of the nested object to get
+							// Get the remainder of the nested object to get
 							a.splice( 0, i+1 );
 							innerSrc = a.join('.');
 	
@@ -2690,7 +2690,7 @@
 							var join = arrayNotation[0].substring(1, arrayNotation[0].length-1);
 							data = (join==="") ? out : out.join(join);
 	
-							// The inner call to fetchData has already traversed through the redeemder
+							// The inner call to fetchData has already traversed through the remainder
 							// of the source requested, so we exit from the loop
 							break;
 						}
@@ -2781,7 +2781,7 @@
 						a[i] = a[i].replace(__reArray, '');
 						data[ a[i] ] = [];
 	
-						// Get the redeemder of the nested object to set so we can recurse
+						// Get the remainder of the nested object to set so we can recurse
 						b = a.slice();
 						b.splice( 0, i+1 );
 						innerSrc = b.join('.');
@@ -2804,7 +2804,7 @@
 							data[ a[i] ] = val;
 						}
 	
-						// The inner call to setData has already traversed through the redeemder
+						// The inner call to setData has already traversed through the remainder
 						// of the source and has set the data, thus we can exit here
 						return;
 					}
@@ -5619,7 +5619,7 @@
 			// node in the data, assign any user defined widths, then insert it into
 			// the DOM and allow the browser to do all the hard work of calculating
 			// table widths
-			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the deem table
+			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the main table
 				.css( 'visibility', 'hidden' )
 				.removeAttr( 'id' );
 	
@@ -5782,7 +5782,7 @@
 	
 	
 	/**
-	 * Throttle the calls to a function. Arguments and context are deemtained for
+	 * Throttle the calls to a function. Arguments and context are maintained for
 	 * the throttled function
 	 *  @param {function} fn Function to be called
 	 *  @param {int} [freq=200] call frequency in mS
@@ -6022,7 +6022,7 @@
 			 * positions in the original data array to provide a stable sort.
 			 *
 			 * Note - I know it seems excessive to have two sorting methods, but the first is around
-			 * 15% faster, so the second is only deemtained for backwards compatibility with sorting
+			 * 15% faster, so the second is only maintained for backwards compatibility with sorting
 			 * methods which do not have a pre-sort formatting function.
 			 */
 			if ( formatters === aSort.length ) {
@@ -8125,7 +8125,7 @@
 			// Delete from the display arrays
 			_fnDeleteIndex( settings.aiDisplayMaster, row );
 			_fnDeleteIndex( settings.aiDisplay, row );
-			_fnDeleteIndex( that[ thatIdx ], row, false ); // deemtain local indexes
+			_fnDeleteIndex( that[ thatIdx ], row, false ); // maintain local indexes
 	
 			// For server-side processing tables - subtract the deleted row from the count
 			if ( settings._iRecordsDisplay > 0 ) {
@@ -10425,7 +10425,7 @@
 		 * that it allows the end user to input multiple words (space separated) and
 		 * will match a row containing those words, even if not in the order that was
 		 * specified (this allow matching across multiple columns). Note that if you
-		 * wish to use filtering in DataTables this must redeem 'true' - to remove the
+		 * wish to use filtering in DataTables this must remain 'true' - to remove the
 		 * default filtering input box and retain filtering abilities, please use
 		 * {@link DataTable.defaults.dom}.
 		 *  @type boolean
@@ -12960,7 +12960,7 @@
 		 * Defining the width of the column, this parameter may take any CSS value
 		 * (3em, 20px etc). DataTables applies 'smart' widths to columns which have not
 		 * been given a specific width through this interface ensuring that the table
-		 * redeems readable.
+		 * remains readable.
 		 *  @type string
 		 *  @default null <i>Automatic</i>
 		 *
@@ -13461,7 +13461,7 @@
 		"sTableId": "",
 	
 		/**
-		 * The TABLE node for the deem table
+		 * The TABLE node for the main table
 		 *  @type node
 		 *  @default null
 		 */
@@ -14039,7 +14039,7 @@
 		 * * {boolean} Include the row in the searched result set (true) or not
 		 *   (false)
 		 *
-		 * Note that as with the deem search ability in DataTables, technically this
+		 * Note that as with the main search ability in DataTables, technically this
 		 * is "filtering", since it is subtractive. However, for consistency in
 		 * naming we call it searching here.
 		 *

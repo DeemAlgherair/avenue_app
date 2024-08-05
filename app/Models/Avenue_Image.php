@@ -13,7 +13,7 @@ class Avenue_Image extends Model
     protected $fillable = [
         'url',
         'avenue_id',
-        'is_deem',
+        'is_main',
     ];
 
     public function avenue()

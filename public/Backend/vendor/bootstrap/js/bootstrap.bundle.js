@@ -1,7 +1,7 @@
 /*!
   * Bootstrap v4.6.0 (https://getbootstrap.com/)
   * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/deem/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
@@ -56,7 +56,7 @@
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v4.6.0): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/deem/LICENSE)
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -2345,12 +2345,12 @@
 
     // depending by the popper placement we have to compute its offsets slightly differently
     var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
-    var deemSide = isHoriz ? 'top' : 'left';
+    var mainSide = isHoriz ? 'top' : 'left';
     var secondarySide = isHoriz ? 'left' : 'top';
     var measurement = isHoriz ? 'height' : 'width';
     var secondaryMeasurement = !isHoriz ? 'height' : 'width';
 
-    popperOffsets[deemSide] = referenceOffsets[deemSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+    popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
     if (placement === secondarySide) {
       popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
     } else {
@@ -3436,12 +3436,12 @@
         return defineProperty({}, placement, value);
       },
       secondary: function secondary(placement) {
-        var deemSide = placement === 'right' ? 'left' : 'top';
-        var value = popper[deemSide];
+        var mainSide = placement === 'right' ? 'left' : 'top';
+        var value = popper[mainSide];
         if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
-          value = Math.min(popper[deemSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+          value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
         }
-        return defineProperty({}, deemSide, value);
+        return defineProperty({}, mainSide, value);
       }
     };
 
@@ -3601,7 +3601,7 @@
      * - `vw`, CSS viewport width unit
      * - `vh`, CSS viewport height unit
      *
-     * For length is intended the deem axis relative to the placement of the popper.<br />
+     * For length is intended the main axis relative to the placement of the popper.<br />
      * This means that if the placement is `top` or `bottom`, the length will be the
      * `width`. In case of `left` or `right`, it will be the `height`.
      *
@@ -3649,12 +3649,12 @@
      * We can say it has "escaped the boundaries" — or just "escaped".<br />
      * In this case we need to decide whether the popper should either:
      *
-     * - detach from the reference and redeem "trapped" in the boundaries, or
+     * - detach from the reference and remain "trapped" in the boundaries, or
      * - if it should ignore the boundary and "escape with its reference"
      *
      * When `escapeWithReference` is set to`true` and reference is completely
      * outside its boundaries, the popper will overflow (or completely leave)
-     * the boundaries in order to redeem attached to the edge of the reference.
+     * the boundaries in order to remain attached to the edge of the reference.
      *
      * @memberof modifiers
      * @inner
@@ -3824,7 +3824,7 @@
      * so that `applyStyle` modifier can apply it. This separation is useful
      * in case you need to replace `applyStyle` with a custom implementation.
      *
-     * This modifier has `850` as `order` value to deemtain backward compatibility
+     * This modifier has `850` as `order` value to maintain backward compatibility
      * with previous versions of Popper.js. Expect the modifiers ordering method
      * to change in future major versions of the library.
      *
@@ -4835,7 +4835,7 @@
       /**
        * `document` has 2 events `EVENT_FOCUSIN` and `EVENT_CLICK_DATA_API`
        * Do not move `document` in `htmlElements` array
-       * It will remove `EVENT_CLICK_DATA_API` event that should redeem
+       * It will remove `EVENT_CLICK_DATA_API` event that should remain
        */
 
       $__default['default'](document).off(EVENT_FOCUSIN);
@@ -5276,7 +5276,7 @@
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v4.6.0): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/deem/LICENSE)
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -6181,7 +6181,7 @@
     };
 
     _proto.setContent = function setContent() {
-      var $tip = $__default['default'](this.getTipElement()); // We use append for html objects to deemtain js events
+      var $tip = $__default['default'](this.getTipElement()); // We use append for html objects to maintain js events
 
       this.setElementContent($tip.find(SELECTOR_TITLE), this.getTitle());
 

@@ -61,7 +61,7 @@
                             <figure class="position-relative card-img-top card-img-zoom rounded-3 overflow-hidden mb-3">
                                 <a href="#!">
                                     @foreach($images as $image)
-                                    @if($image->is_deem && $image->avenue_id == $avenue->id)
+                                    @if($image->is_main && $image->avenue_id == $avenue->id)
                                     <a href="{{ route('show', $avenue->id) }}">
                                     <img class="img-fluid" loading="lazy" src="{{ asset('storage/' . $image->url) }}" alt="{{ $avenue->name }}">
                                     </a>

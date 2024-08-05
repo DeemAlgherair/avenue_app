@@ -2,7 +2,7 @@ compiled.php
 config.php
 down
 events.scanned.php
-deemtenance.php
+maintenance.php
 routes.php
 routes.scanned.php
 schedule-*

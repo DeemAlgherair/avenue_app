@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('url')->notNull();
             $table->foreignId('avenue_id')->constrained('avenues')->onDelete('restrict')->onUpdate('cascade');
-            $table->boolean('is_deem')->default(false);
+            $table->boolean('is_main')->default(false);
             $table->timestamps();
         });
     }

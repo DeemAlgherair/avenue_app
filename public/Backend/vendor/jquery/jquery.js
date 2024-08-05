@@ -1067,7 +1067,7 @@ function createDisabledPseudo( disabled ) {
 			return elem.disabled === disabled;
 		}
 
-		// Redeeming elements are neither :enabled nor :disabled
+		// Remaining elements are neither :enabled nor :disabled
 		return false;
 	};
 }
@@ -1524,7 +1524,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				return 1;
 			}
 
-			// deemtain original order
+			// maintain original order
 			return sortInput ?
 				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
 				0;
@@ -2064,7 +2064,7 @@ Expr = Sizzle.selectors = {
 				return fn( argument );
 			}
 
-			// But deemtain support for old signatures
+			// But maintain support for old signatures
 			if ( fn.length > 1 ) {
 				args = [ pseudo, pseudo, "", argument ];
 				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
@@ -2744,7 +2744,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
 			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
 			// no element matchers and no seed.
-			// Incrementing an initially-string "0" `i` allows `i` to redeem a string only in that
+			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
 			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
 			// numerically zero.
 			if ( bySet && i !== matchedCount ) {
@@ -2883,7 +2883,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 						context
 				) ) ) {
 
-					// If seed is empty or no tokens redeem, we can return early
+					// If seed is empty or no tokens remain, we can return early
 					tokens.splice( i, 1 );
 					selector = seed.length && toSelector( tokens );
 					if ( !selector ) {
@@ -3992,10 +3992,10 @@ jQuery.extend( {
 		var
 
 			// count of uncompleted subordinates
-			redeeming = arguments.length,
+			remaining = arguments.length,
 
 			// count of unprocessed arguments
-			i = redeeming,
+			i = remaining,
 
 			// subordinate fulfillment data
 			resolveContexts = Array( i ),
@@ -4009,16 +4009,16 @@ jQuery.extend( {
 				return function( value ) {
 					resolveContexts[ i ] = this;
 					resolveValues[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
-					if ( !( --redeeming ) ) {
+					if ( !( --remaining ) ) {
 						primary.resolveWith( resolveContexts, resolveValues );
 					}
 				};
 			};
 
 		// Single- and empty arguments are adopted like Promise.resolve
-		if ( redeeming <= 1 ) {
+		if ( remaining <= 1 ) {
 			adoptValue( singleValue, primary.done( updateFunc( i ) ).resolve, primary.reject,
-				!redeeming );
+				!remaining );
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
 			if ( primary.state() === "pending" ||
@@ -4392,7 +4392,7 @@ var dataUser = new Data();
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
-//	2. Improve the module's deemtainability by reducing the storage
+//	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
@@ -5221,7 +5221,7 @@ jQuery.event = {
 			handler.guid = jQuery.guid++;
 		}
 
-		// Init the element's event structure and deem handler, if this is the first
+		// Init the element's event structure and main handler, if this is the first
 		if ( !( events = elemData.events ) ) {
 			events = elemData.events = Object.create( null );
 		}
@@ -5496,7 +5496,7 @@ jQuery.event = {
 			}
 		}
 
-		// Add the redeeming (directly-bound) handlers
+		// Add the remaining (directly-bound) handlers
 		cur = this;
 		if ( delegateCount < handlers.length ) {
 			handlerQueue.push( { elem: cur, handlers: handlers.slice( delegateCount ) } );
@@ -6290,7 +6290,7 @@ jQuery.fn.extend( {
 				// Prevent memory leaks
 				jQuery.cleanData( getAll( elem, false ) );
 
-				// Remove any redeeming nodes
+				// Remove any remaining nodes
 				elem.textContent = "";
 			}
 		}
@@ -7550,11 +7550,11 @@ function Animation( elem, properties, options ) {
 				return false;
 			}
 			var currentTime = fxNow || createFxNow(),
-				redeeming = Math.max( 0, animation.startTime + animation.duration - currentTime ),
+				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
 
 				// Support: Android 2.3 only
 				// Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
-				temp = redeeming / animation.duration || 0,
+				temp = remaining / animation.duration || 0,
 				percent = 1 - temp,
 				index = 0,
 				length = animation.tweens.length;
@@ -7563,11 +7563,11 @@ function Animation( elem, properties, options ) {
 				animation.tweens[ index ].run( percent );
 			}
 
-			deferred.notifyWith( elem, [ animation, percent, redeeming ] );
+			deferred.notifyWith( elem, [ animation, percent, remaining ] );
 
 			// If there's more to do, yield
 			if ( percent < 1 && length ) {
-				return redeeming;
+				return remaining;
 			}
 
 			// If this was an empty animation, synthesize a final progress notification
@@ -9374,7 +9374,7 @@ jQuery.extend( {
 	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
 	ajaxTransport: addToPrefiltersOrTransports( transports ),
 
-	// deem method
+	// main method
 	ajax: function( url, options ) {
 
 		// If url is an object, simulate pre-1.5 signature
@@ -9528,8 +9528,8 @@ jQuery.extend( {
 		// Extract dataTypes list
 		s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnothtmlwhite ) || [ "" ];
 
-		// A cross-dodeem request is in order when the origin doesn't match the current origin.
-		if ( s.crossDodeem == null ) {
+		// A cross-domain request is in order when the origin doesn't match the current origin.
+		if ( s.crossDomain == null ) {
 			urlAnchor = document.createElement( "a" );
 
 			// Support: IE <=8 - 11, Edge 12 - 15
@@ -9541,13 +9541,13 @@ jQuery.extend( {
 				// Support: IE <=8 - 11 only
 				// Anchor's host property isn't correctly set when s.url is relative
 				urlAnchor.href = urlAnchor.href;
-				s.crossDodeem = originAnchor.protocol + "//" + originAnchor.host !==
+				s.crossDomain = originAnchor.protocol + "//" + originAnchor.host !==
 					urlAnchor.protocol + "//" + urlAnchor.host;
 			} catch ( e ) {
 
-				// If there is an error parsing the URL, assume it is crossDodeem,
+				// If there is an error parsing the URL, assume it is crossDomain,
 				// it can be rejected by the transport if it is invalid
-				s.crossDodeem = true;
+				s.crossDomain = true;
 			}
 		}
 
@@ -9987,8 +9987,8 @@ support.ajax = xhrSupported = !!xhrSupported;
 jQuery.ajaxTransport( function( options ) {
 	var callback, errorCallback;
 
-	// Cross dodeem only allowed if supported through XMLHttpRequest
-	if ( support.cors || xhrSupported && !options.crossDodeem ) {
+	// Cross domain only allowed if supported through XMLHttpRequest
+	if ( support.cors || xhrSupported && !options.crossDomain ) {
 		return {
 			send: function( headers, complete ) {
 				var i,
@@ -10015,11 +10015,11 @@ jQuery.ajaxTransport( function( options ) {
 				}
 
 				// X-Requested-With header
-				// For cross-dodeem requests, seeing as conditions for a preflight are
+				// For cross-domain requests, seeing as conditions for a preflight are
 				// akin to a jigsaw puzzle, we simply never set it to be sure.
 				// (it can always be set on a per-request basis or even using ajaxSetup)
-				// For same-dodeem requests, won't change header if already provided.
-				if ( !options.crossDodeem && !headers[ "X-Requested-With" ] ) {
+				// For same-domain requests, won't change header if already provided.
+				if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
 					headers[ "X-Requested-With" ] = "XMLHttpRequest";
 				}
 
@@ -10130,7 +10130,7 @@ jQuery.ajaxTransport( function( options ) {
 
 // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
 jQuery.ajaxPrefilter( function( s ) {
-	if ( s.crossDodeem ) {
+	if ( s.crossDomain ) {
 		s.contents.script = false;
 	}
 } );
@@ -10152,12 +10152,12 @@ jQuery.ajaxSetup( {
 	}
 } );
 
-// Handle cache's special case and crossDodeem
+// Handle cache's special case and crossDomain
 jQuery.ajaxPrefilter( "script", function( s ) {
 	if ( s.cache === undefined ) {
 		s.cache = false;
 	}
-	if ( s.crossDodeem ) {
+	if ( s.crossDomain ) {
 		s.type = "GET";
 	}
 } );
@@ -10165,8 +10165,8 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 // Bind script tag hack transport
 jQuery.ajaxTransport( "script", function( s ) {
 
-	// This transport only deals with cross dodeem or forced-by-attrs requests
-	if ( s.crossDodeem || s.scriptAttrs ) {
+	// This transport only deals with cross domain or forced-by-attrs requests
+	if ( s.crossDomain || s.scriptAttrs ) {
 		var script, callback;
 		return {
 			send: function( _, complete ) {

@@ -50,7 +50,7 @@ var myLineChart = new Chart(ctx, {
     }],
   },
   options: {
-    deemtainAspectRatio: false,
+    maintainAspectRatio: false,
     layout: {
       padding: {
         left: 10,

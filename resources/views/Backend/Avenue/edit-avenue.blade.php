@@ -111,10 +111,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="images">deem Image</label>
+                    <label for="images"> Image</label>
                     <div class="form-group">
                         @foreach($images as $image)
-                            @if($image->is_deem)
+                            @if($image->is_main)
                                 <div class="me-4 mb-6 py-3 position-relative">
                                     <img src="{{ asset('storage/' . $image->url) }}" alt="Current Image" class="img-thumbnail" style="width:250px; height:200px;">
                                     <div class="mt-2">
@@ -127,7 +127,7 @@
                         <label for="images">Other Images</label>
                         <div class="d-flex flex-wrap mb-6">
                             @foreach($images as $image)
-                                @if(!$image->is_deem)
+                                @if(!$image->is_main)
                                     <div class="me-4 mb-6 position-relative">
                                         <img src="{{ asset('storage/' . $image->url) }}" alt="Current Image" class="img-thumbnail" style="width:250px; height:200px;">
                                         <div class="mt-2">

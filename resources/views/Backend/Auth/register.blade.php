@@ -1,4 +1,4 @@
-@extends('Backend.Auth.deem')
+@extends('Backend.Auth.main')
 @section('title','Online Avenue -  Registeration')
 @section('content')
 

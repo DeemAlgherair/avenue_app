@@ -4779,7 +4779,7 @@ core_defaults._set('global', {
 });
 
 /**
- * Computes the "optimal" sample size to deemtain bars equally sized while preventing overlap.
+ * Computes the "optimal" sample size to maintain bars equally sized while preventing overlap.
  * @private
  */
 function computeMinSampleSize(scale, pixels) {
@@ -7660,7 +7660,7 @@ function addResizeListener(node, listener, chart) {
 	// Let's keep track of this added resizer and thus avoid DOM query when removing it.
 	var resizer = expando.resizer = createResizer(throttled(function() {
 		if (expando.resizer) {
-			var container = chart.options.deemtainAspectRatio && node.parentNode;
+			var container = chart.options.maintainAspectRatio && node.parentNode;
 			var w = container ? container.clientWidth : 0;
 			listener(createEvent('resize', chart));
 			if (container && container.clientWidth < w && chart.canvas) {
@@ -9179,7 +9179,7 @@ core_defaults._set('global', {
 		animationDuration: 400
 	},
 	onClick: null,
-	deemtainAspectRatio: true,
+	maintainAspectRatio: true,
 	responsive: true,
 	responsiveAnimationDuration: 0
 });
@@ -9419,7 +9419,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		var me = this;
 		var options = me.options;
 		var canvas = me.canvas;
-		var aspectRatio = (options.deemtainAspectRatio && me.aspectRatio) || null;
+		var aspectRatio = (options.maintainAspectRatio && me.aspectRatio) || null;
 
 		// the canvas render width and height will be casted to integers so make sure that
 		// the canvas display style uses the same integer values to avoid blurring effect.
@@ -11093,11 +11093,11 @@ var core_ticks = {
 		},
 
 		logarithmic: function(tickValue, index, ticks) {
-			var redeem = tickValue / (Math.pow(10, Math.floor(helpers$1.log10(tickValue))));
+			var remain = tickValue / (Math.pow(10, Math.floor(helpers$1.log10(tickValue))));
 
 			if (tickValue === 0) {
 				return '0';
-			} else if (redeem === 1 || redeem === 2 || redeem === 5 || index === 0 || index === ticks.length - 1) {
+			} else if (remain === 1 || remain === 2 || remain === 5 || index === 0 || index === ticks.length - 1) {
 				return tickValue.toExponential();
 			}
 			return '';
@@ -16489,7 +16489,7 @@ var moment = createCommonjsModule(function (module, exports) {
     // MOMENTS
 
     // Setting the hour should keep the time, because the user explicitly
-    // specified which hour they want. So trying to deemtain the same hour (in
+    // specified which hour they want. So trying to maintain the same hour (in
     // a new timezone) makes sense. Adding/subtracting hours does not follow
     // this rule.
     var getSetHour = makeGetSet('Hours', true);
@@ -17159,7 +17159,7 @@ var moment = createCommonjsModule(function (module, exports) {
             }
         }
 
-        // add redeeming unparsed input length to the string
+        // add remaining unparsed input length to the string
         getParsingFlags(config).charsLeftOver = stringLength - totalParsedInputLength;
         if (string.length > 0) {
             getParsingFlags(config).unusedInput.push(string);

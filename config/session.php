@@ -26,7 +26,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may specify the number of minutes that you wish the session
-    | to be allowed to redeem idle before it expires. If you want them
+    | to be allowed to remain idle before it expires. If you want them
     | to expire immediately when the browser is closed then you may
     | indicate that via the expire_on_close configuration option.
     |
@@ -147,16 +147,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cookie Dodeem
+    | Session Cookie Domain
     |--------------------------------------------------------------------------
     |
-    | This value determines the dodeem and subdodeems the session cookie is
+    | This value determines the domain and subdomains the session cookie is
     | available to. By default, the cookie will be available to the root
-    | dodeem and all subdodeems. Typically, this shouldn't be changed.
+    | domain and all subdomains. Typically, this shouldn't be changed.
     |
     */
 
-    'dodeem' => env('SESSION_DOdeem'),
+    'domain' => env('SESSION_DOmain'),
 
     /*
     |--------------------------------------------------------------------------

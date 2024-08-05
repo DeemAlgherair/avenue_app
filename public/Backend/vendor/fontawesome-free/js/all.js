@@ -2516,14 +2516,14 @@
 
     return new P(function (resolve, reject) {
       var results = [];
-      var redeeming = 0;
+      var remaining = 0;
 
       function resolver(index) {
-        redeeming++;
+        remaining++;
         return function (value) {
           results[index] = value;
 
-          if (! --redeeming) {
+          if (! --remaining) {
             resolve(results);
           }
         };
@@ -2539,7 +2539,7 @@
         }
       }
 
-      if (!redeeming) {
+      if (!remaining) {
         resolve(results);
       }
     });
@@ -2756,18 +2756,18 @@
   function makeIconMasking (_ref) {
     var children = _ref.children,
         attributes = _ref.attributes,
-        deem = _ref.deem,
+        main = _ref.main,
         mask = _ref.mask,
         explicitMaskId = _ref.maskId,
         transform = _ref.transform;
-    var deemWidth = deem.width,
-        deemPath = deem.icon;
+    var mainWidth = main.width,
+        mainPath = main.icon;
     var maskWidth = mask.width,
         maskPath = mask.icon;
     var trans = transformForSvg({
       transform: transform,
       containerWidth: maskWidth,
-      iconWidth: deemWidth
+      iconWidth: mainWidth
     });
     var maskRect = {
       tag: 'rect',
@@ -2775,15 +2775,15 @@
         fill: 'white'
       })
     };
-    var maskInnerGroupChildrenMixin = deemPath.children ? {
-      children: deemPath.children.map(fillBlack)
+    var maskInnerGroupChildrenMixin = mainPath.children ? {
+      children: mainPath.children.map(fillBlack)
     } : {};
     var maskInnerGroup = {
       tag: 'g',
       attributes: _objectSpread({}, trans.inner),
       children: [fillBlack(_objectSpread({
-        tag: deemPath.tag,
-        attributes: _objectSpread({}, deemPath.attributes, trans.path)
+        tag: mainPath.tag,
+        attributes: _objectSpread({}, mainPath.attributes, trans.path)
       }, maskInnerGroupChildrenMixin))]
     };
     var maskOuterGroup = {
@@ -2829,7 +2829,7 @@
   function makeIconStandard (_ref) {
     var children = _ref.children,
         attributes = _ref.attributes,
-        deem = _ref.deem,
+        main = _ref.main,
         transform = _ref.transform,
         styles = _ref.styles;
     var styleString = joinStyles(styles);
@@ -2841,8 +2841,8 @@
     if (transformIsMeaningful(transform)) {
       var trans = transformForSvg({
         transform: transform,
-        containerWidth: deem.width,
-        iconWidth: deem.width
+        containerWidth: main.width,
+        iconWidth: main.width
       });
       children.push({
         tag: 'g',
@@ -2851,14 +2851,14 @@
           tag: 'g',
           attributes: _objectSpread({}, trans.inner),
           children: [{
-            tag: deem.icon.tag,
-            children: deem.icon.children,
-            attributes: _objectSpread({}, deem.icon.attributes, trans.path)
+            tag: main.icon.tag,
+            children: main.icon.children,
+            attributes: _objectSpread({}, main.icon.attributes, trans.path)
           }]
         }]
       });
     } else {
-      children.push(deem.icon);
+      children.push(main.icon);
     }
 
     return {
@@ -2869,15 +2869,15 @@
 
   function asIcon (_ref) {
     var children = _ref.children,
-        deem = _ref.deem,
+        main = _ref.main,
         mask = _ref.mask,
         attributes = _ref.attributes,
         styles = _ref.styles,
         transform = _ref.transform;
 
-    if (transformIsMeaningful(transform) && deem.found && !mask.found) {
-      var width = deem.width,
-          height = deem.height;
+    if (transformIsMeaningful(transform) && main.found && !mask.found) {
+      var width = main.width,
+          height = main.height;
       var offset = {
         x: width / height / 2,
         y: 0.5
@@ -2918,7 +2918,7 @@
 
   function makeInlineSvgAbstract(params) {
     var _params$icons = params.icons,
-        deem = _params$icons.deem,
+        main = _params$icons.main,
         mask = _params$icons.mask,
         prefix = params.prefix,
         iconName = params.iconName,
@@ -2931,7 +2931,7 @@
         _params$watchable = params.watchable,
         watchable = _params$watchable === void 0 ? false : _params$watchable;
 
-    var _ref = mask.found ? mask : deem,
+    var _ref = mask.found ? mask : main,
         width = _ref.width,
         height = _ref.height;
 
@@ -2972,7 +2972,7 @@
     var args = _objectSpread({}, content, {
       prefix: prefix,
       iconName: iconName,
-      deem: deem,
+      main: main,
       mask: mask,
       maskId: maskId,
       transform: transform,
@@ -2980,7 +2980,7 @@
       styles: _objectSpread({}, uploadedIconWidthStyle, extra.styles)
     });
 
-    var _ref2 = mask.found && deem.found ? makeIconMasking(args) : makeIconStandard(args),
+    var _ref2 = mask.found && main.found ? makeIconMasking(args) : makeIconStandard(args),
         children = _ref2.children,
         attributes = _ref2.attributes;
 
@@ -3834,12 +3834,12 @@
     return new picked(function (resolve, reject) {
       picked.all([findIcon(iconName, prefix), findIcon(mask.iconName, mask.prefix)]).then(function (_ref) {
         var _ref2 = _slicedToArray(_ref, 2),
-            deem = _ref2[0],
+            main = _ref2[0],
             mask = _ref2[1];
 
         resolve([node, makeInlineSvgAbstract({
           icons: {
-            deem: deem,
+            main: main,
             mask: mask
           },
           prefix: prefix,
@@ -4018,10 +4018,10 @@
           var meta = blankMeta();
           var extra = meta.extra;
           extra.attributes[DATA_FA_PSEUDO_ELEMENT] = position;
-          findIcon(iconName, prefix).then(function (deem) {
+          findIcon(iconName, prefix).then(function (main) {
             var abstract = makeInlineSvgAbstract(_objectSpread({}, meta, {
               icons: {
-                deem: deem,
+                main: main,
                 mask: emptyCanonicalIcon()
               },
               prefix: prefix,
@@ -4305,7 +4305,7 @@
 
       return makeInlineSvgAbstract({
         icons: {
-          deem: asFoundIcon(icon),
+          main: asFoundIcon(icon),
           mask: mask ? asFoundIcon(mask.icon) : {
             found: false,
             width: null,
