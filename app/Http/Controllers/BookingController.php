@@ -6,10 +6,16 @@ use App\Models\Avenue;
 use App\Models\Day;
 use Auth;
 use App\Models\Review;
+use App\Models\User;
+
 use App\Models\Booking;
 use App\Http\Requests\StoreAvenuebookingRequest;
 use App\Http\Requests\UpdateAvenuebookingRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\BookingSubmitted;
+
+
 
 
 class BookingController extends Controller
@@ -73,8 +79,11 @@ class BookingController extends Controller
          $booking->tax =  $booking->subtotal * 0.05;// added 
          $booking->total = $booking->subtotal + $booking->tax;
          $booking->save();
+         $admins = User::where('id', 1)->get(); 
+         Notification::send($admins, new BookingSubmitted($booking));
+
          return redirect()->route('invoice.show', $booking->id)
-         ->with('success', 'Booking created successfully!');
+         ->with('success', 'New Booking Created');
          
      }
 

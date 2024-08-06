@@ -119,7 +119,7 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
+            <!-- main Content -->
             <div id="content">
 
                 <!-- Topbar -->

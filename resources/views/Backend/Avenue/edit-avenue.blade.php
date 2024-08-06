@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="images">Main Image</label>
+                    <label for="images"> Image</label>
                     <div class="form-group">
                         @foreach($images as $image)
                             @if($image->is_main)

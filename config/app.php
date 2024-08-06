@@ -107,7 +107,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
+    | maintenance Mode Driver
     |--------------------------------------------------------------------------
     |
     | These configuration options determine the driver used to determine and
@@ -119,8 +119,8 @@ return [
     */
 
     'maintenance' => [
-        'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
-        'store' => env('APP_MAINTENANCE_STORE', 'database'),
+        'driver' => env('APP_mainTENANCE_DRIVER', 'file'),
+        'store' => env('APP_mainTENANCE_STORE', 'database'),
     ],
 
 ];
