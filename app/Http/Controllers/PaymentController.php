@@ -67,7 +67,7 @@ class PaymentController extends Controller
             $booking->save();
 
             // You do not need to capture a payment that is already paid
-            return redirect()->route('payment.show', [$booking->id])->with('success', 'Order paid!');
+            return redirect()->route('confirmed.bookings', [$booking->id])->with('success', 'Order paid successful!');
         }
 
         // If payment is authorized but not paid, attempt to capture it
@@ -88,7 +88,7 @@ class PaymentController extends Controller
                 $booking->status_id = 3; // paid
                 $booking->save();
 
-                return redirect()->route('invoice.show', [$booking->id])->with('success', 'Payment is successful');
+                return redirect()->route('confirmed.bookings', [$booking->id])->with('success', 'Payment is successful');
             }
         }
 
