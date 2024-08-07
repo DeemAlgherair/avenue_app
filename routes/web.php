@@ -58,7 +58,8 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::delete('show-avenue/{id}/edit-avenue', [AvenueController::class, 'destroy'])->name('deleteAvenue');
     Route::get('show-avenue/{id}/edit-avenue', [AvenueController::class, 'edit']);
     Route::put('show-avenue/{id}/edit-avenue', [AvenueController::class, 'update'])->name('updateAvenue');
-    Route::delete('/remove-image', [AvenueController::class, 'removeImage'])->name('removeImage');
+    Route::delete('/images', [AvenueController::class, 'removeImage'])->name('deleteImage');
+
     Route::post('/add-image/{id}', [AvenueController::class, 'addImage'])->name('addImage');
 
 

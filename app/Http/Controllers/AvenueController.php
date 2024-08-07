@@ -98,12 +98,6 @@ public function store(StoreAvenueRequest $request,$owner_id)
 
     }
 
-    if ($request->has('days')) {
-        $avenue->days()->sync($request->input('days'));}
-         else {
-        $avenue->days()->sync([]); 
-    }
-
     
     if ($request->has('avenueadvantages')) {
         
@@ -188,25 +182,7 @@ public function edit($id)
             }
         }
     
-        // Sync the days relationship
-        $daysToAdd = $request->input('addDays');
-        $daysToRemove = $request->input('removeDays');
-    
-        if ($daysToAdd) {
-            foreach ($daysToAdd as $dayId) {
-                if (!$avenue->days->contains($dayId)) {
-                    $avenue->days()->attach($dayId);
-                }
-            }
-        }
-    
-        if ($daysToRemove) {
-            foreach ($daysToRemove as $dayId) {
-                if ($avenue->days->contains($dayId)) {
-                    $avenue->days()->detach($dayId);
-                }
-            }
-        }
+        
     
         // Sync the advantages relationship
         $advToAdd = $request->input('addAdv');
@@ -243,21 +219,25 @@ public function edit($id)
         session()->flash('success', 'Avenue deleted successfully!');
         return redirect()->route('showAvenue');
     }
+
+
+
     public function removeImage(Request $request)
-{
-    $imageId = $request->input('image_id');
-
-    $image = Avenue_Image::find($imageId);
-
-    if ($image) {
-
-        // Delete the image record from the database
-        $image->delete();
-        return back();
+    {
+        $imageIds = $request->input('delete_image_ids', []);
+    
+        foreach ($imageIds as $imageId) {
+            // Find the image by ID
+            $image = Avenue_Image::find($imageId);
+    
+            if ($image) {
+                $image->delete();
+            }
+        }
+    
+        return back()->with('status', 'Images deleted successfully.');
     }
-    return back();
-
-}
+    
 public function addImage(Request $request, $id)
 {
 

@@ -13,9 +13,13 @@
           <input type="text" class="form-control"name="serial_no" value="{{$bookings->serial_no}}">
         </div>
         <div class="col mb-2">
-         <label for="name">Booking Date</label>
-         <input type="text" class="form-control" name="avenue_id" value="{{ $bookings->booking_date}}">
+         <label for="name">Booking Strat Date</label>
+         <input type="text" class="form-control" name="avenue_id" value="{{ \Carbon\Carbon::parse($bookings->startDate)->format('d-m-Y') }}">
         </div>
+        <div class="col mb-2">
+          <label for="name">Booking End Date</label>
+          <input type="text" class="form-control" name="avenue_id" value="{{  \Carbon\Carbon::parse($bookings->endDate)->format('d-m-Y') }}">
+         </div>
         </div>
         <div class="row">
         <div class="col mb-2">

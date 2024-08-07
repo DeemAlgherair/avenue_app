@@ -63,7 +63,7 @@
                                     @foreach($images as $image)
                                     @if($image->is_main && $image->avenue_id == $avenue->id)
                                     <a href="{{ route('show', $avenue->id) }}">
-                                    <img class="img-fluid" loading="lazy" src="{{ asset('storage/' . $image->url) }}" alt="{{ $avenue->name }}">
+                                    <img class="img-fluid d-block w-100" loading="lazy" src="{{ asset('storage/' . $image->url) }}" alt="{{ $avenue->name }}" style="height: 200px; object-fit: cover;">
                                     </a>
                                     @endif
                                     @endforeach
@@ -101,7 +101,7 @@
                                         <strong>Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>Price per Hour:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
+                                        <strong>Price per Day:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
                                     </li>
                                     <li class="list-group-item">
                                         <strong>Capacity (People):</strong> {{ $avenue->size ?? "Not Found :(" }}

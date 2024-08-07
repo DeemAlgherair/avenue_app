@@ -7,7 +7,7 @@ use App\Models\Day;
 use Auth;
 use App\Models\Review;
 use App\Models\User;
-
+use Carbon\Carbon;
 use App\Models\Booking;
 use App\Http\Requests\StoreAvenuebookingRequest;
 use App\Http\Requests\UpdateAvenuebookingRequest;
@@ -60,31 +60,50 @@ class BookingController extends Controller
      * Store a newly created resource in storage.
      */
     
-     public function store(StoreAvenuebookingRequest $request, $avenueId)
-     {
-         $selectedAvenue = Avenue::find($avenueId);
-     
-         // Validate form data
-         $validatedData = $request->validated();
-
-         //$customer_id = $request->user() ? $request->user()->id : null;
-         $booking = new Booking();
-    
-         $booking->booking_date = now();
-         $booking->serial_no = $this->generateUniqueSerialNumber();
-         $booking->customer_id = Auth::guard('customers')->id();
-         $booking->avenue_id = $selectedAvenue->id;
-         $booking->status_id = 1; // 'Pending'
-         $booking->subtotal = $validatedData['size'] * $selectedAvenue->price_per_hours;
-         $booking->tax =  $booking->subtotal * 0.05;// added 
-         $booking->total = $booking->subtotal + $booking->tax;
-         $booking->save();
+     public function store(StoreAvenuebookingRequest $request, $avenueId) 
+     { 
+         $selectedAvenue = Avenue::findOrFail($avenueId); 
+      
+         // Validate form data 
+         $validatedData = $request->validated(); 
+      
+         // Check for overlapping bookings 
+         $isBooked = Booking::where('avenue_id', $avenueId) 
+             ->where(function ($query) use ($request) { 
+                 $query->whereBetween('startDate', [$request->start_date, $request->end_date]) 
+                       ->orWhereBetween('endDate', [$request->start_date, $request->end_date]) 
+                       ->orWhere(function ($query) use ($request) { 
+                           $query->where('startDate', '<=', $request->start_date) 
+                                 ->where('endDate', '>=', $request->end_date); 
+                       }); 
+             })->exists(); 
+      
+         if ($isBooked) { 
+             return redirect()->back()->withErrors(['date' => 'The selected date range is already booked.'])->withInput(); 
+         } 
+   // Calculate booked days
+   $startDate = Carbon::parse($request->start_date);
+   $endDate = Carbon::parse($request->end_date);
+   $bookedDays = $startDate->diffInDays($endDate) + 1; // Including the end date      
+         // Create a new booking 
+         $booking = new Booking(); 
+         $booking->booking_date = now(); 
+         $booking->startDate = $request->start_date; 
+         $booking->endDate = $request->end_date; 
+         $booking->serial_no = $this->generateUniqueSerialNumber(); 
+         $booking->customer_id = Auth::guard('customers')->id(); 
+         $booking->avenue_id = $selectedAvenue->id; 
+         $booking->status_id = 1; // 'Pending' 
+         $booking->subtotal = $selectedAvenue->price_per_hours *  $bookedDays; 
+         $booking->tax = $booking->subtotal * 0.05; // 5% tax 
+         $booking->total = $booking->subtotal + $booking->tax; 
+      
+         $booking->save(); 
          $admins = User::where('id', 1)->get(); 
          Notification::send($admins, new BookingSubmitted($booking));
-
-         return redirect()->route('invoice.show', $booking->id)
-         ->with('success', 'New Booking Created');
-         
+      
+         return redirect()->route('invoice.show', $booking->id) 
+             ->with('success', 'Booking created successfully!'); 
      }
 
     /**
@@ -164,7 +183,7 @@ class BookingController extends Controller
     {
         $booking = Booking::findOrFail($bookingId);
         // Fetch the existing review if it exists
-        $review = Review::where('customer_id', auth()->id())
+        $review = Review::where('customer_id', Auth::guard('customers')->id() )
                         ->where('avenue_id', $booking->avenue_id)
                         ->where('booking_id',$bookingId)
                         ->first();

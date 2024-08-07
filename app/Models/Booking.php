@@ -19,6 +19,8 @@ class Booking extends Model
         'customer_id',
         'avenue_id',
         'status_id',
+        'startDate', 
+        'endDate',
         'subtotal',
         'tax',
         'total',

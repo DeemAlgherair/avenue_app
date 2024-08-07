@@ -142,7 +142,7 @@
                             <div class="carousel-inner">
                                 @foreach($images as $image)
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                        <img class="d-block w-100" src="{{ asset('storage/' . $image->url) }}" alt="Avenue Image" style="height: 530px; object-fit: cover;">
+                                        <img class="d-block w-100" src="{{ asset('storage/' . $image->url) }}" alt="Avenue Image" style="height: 480px; object-fit: cover;">
                                     </div>
                                 @endforeach
                             </div>
@@ -163,7 +163,7 @@
                                 <strong>Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
                             </li>
                             <li class="list-group-item">
-                                <strong>Price per Hour:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
+                                <strong>Price per Day:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
                             </li>
                             <li class="list-group-item">
                                 <strong>Capacity(People):</strong> {{ $avenue->size ?? "Not Found :(" }}
@@ -194,14 +194,9 @@
                             </li>
                             
                             <li class="list-group-item">
-                                <strong>Additional Features:</strong> {{ $avenue->advantages ?? "Not Found :(" }}
+                                <strong>Additional Features:</strong> {{ $avenue->advantages ?? "" }}
                             </li>
-                            <li class="list-group-item">
-                                <strong>Available Day/s :</strong>
-                                @foreach($avenue->days as $day)
-                                    {{ $day->name ?? "Not Found :(" }},
-                                @endforeach
-                            </li>
+                         
                         </ul>
                         <div class="text-right mt-4 col-12">
                             <a class="btn btn-primary btn-lg rounded-pill btn-book-now" href="/Customer-Online-Avenue/booking/{{$avenue->id}}">Book Now</a>
