@@ -22,6 +22,13 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('Backend/css/sb-admin-2.min.css') }} "rel="stylesheet">
 
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </head>
 
 <body id="page-top">
@@ -58,20 +65,12 @@
 
             <!-- Nav Item  Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link "href="{{route('showReservation')}}">
+            
                     <i class="fas fa-calendar-alt fa-lg"></i>
-                    <span>Reservations</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href=" {{route('showReservation')}}">Reservations</a>
-                        
 
-
-                    </div>
-                </div>
+                    <span>Reservations </span></a>
+     
             </li>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -97,18 +96,15 @@
             <ul class="nav flex-column" id="accordionSidebar">
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                        aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-building fa-lg"></i>
-                        <span>Avenues</span>
-                    </a>
-                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Avenues Screens:</h6>
-                            <a class="collapse-item" href="{{route('showAvenue')}}">Avenues</a>
-                        </div>
+                    <a class="nav-link "href="{{route('showAvenue')}}">
                 
-                    </div>
+                        <i class="fas fa-building fa-lg"></i>
+    
+                        <span>Avenues </span></a>
+         
+                </li>
+                  
+                
                 </li>
             </ul>
    
@@ -130,19 +126,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                 
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

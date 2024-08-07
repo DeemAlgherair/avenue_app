@@ -18,36 +18,7 @@
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="days">Days</label>
-                    <div class="row">
-                        @if($days->isEmpty())
-                        <div class="col-md-4">
-                            <div class="card mb-3 fixed-card">
-                                <div class="card-body">
-                                    <h5 class="card-title">No Days Available</h5>
-                                </div>
-                            </div>
-                        </div>
-                        @else
-                            @foreach($days as $day)
-                                <div class="col-md-2 days-card">
-                                    <div class="card mb-1 fixed-card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $day->name }}</h5>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="day_{{ $day->id }}" name="days[]" value="{{ $day->id }}">
-                                                <label class="form-check-label" for="day_{{ $day->id }}">
-                                                    Select this day
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
+              
                 <div class="form-group">
                     <label for="location">Location</label>
                     <input type="text" class="form-control" id="location" name="location" required>
@@ -55,7 +26,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="price">Price</label>
-                        <input type="number" class="form-control" id="price" name="price" required>
+                        <input type="number" class="form-control" id="price" name="price" required >
                     </div>
                     <div class="form-group col-md-6">
                         <label for="size">Capacity (People)</label>
@@ -129,6 +100,11 @@
             isSelectAll = !isSelectAll;
         });
     });
+document.getElementById('size').addEventListener('input', function() {
+    var size = this.value;
+    var price = size / 0.3;
+    document.getElementById('price').value = price.toFixed(2); 
+});
 </script>
 
 @endsection

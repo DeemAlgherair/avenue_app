@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained('customers');
             $table->foreignId('avenue_id')->constrained('avenues');
             $table->foreignId('status_id')->default(1)->constrained('booking_statuses');
+            $table->dateTime('startDate')->nullable(); 
+            $table->dateTime('endDate')->nullable();
             $table->decimal('subtotal');
             $table->decimal('tax')->nullable();
             $table->decimal('total');

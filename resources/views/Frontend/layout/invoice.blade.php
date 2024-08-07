@@ -54,9 +54,11 @@
                         <div class="col-12 col-sm-6 col-md-4">
                             <h4>Invoice Details</h4>
                             <p>
-                                Invoice #: {{ $booking->serial_no }}<br>
+                                Booking #: {{ $booking->serial_no }}<br>
                                 Invoice Date: {{ \Carbon\Carbon::parse($booking->created_at)->format('d-m-Y') }}<br>
-                                Booking Date: {{ \Carbon\Carbon::parse($booking->booking_date)->format('d-m-Y') }}
+                                Start Date: {{ \Carbon\Carbon::parse($booking->startDate)->format('d-m-Y') }}<br>
+                                End Date: {{ \Carbon\Carbon::parse($booking->endDate)->format('d-m-Y') }}<br>
+
                             </p>
                         </div>
                     </div>
@@ -68,6 +70,7 @@
                                         <tr>
                                             <th scope="col" class="text-uppercase">Avenue Name</th>
                                             <th scope="col" class="text-uppercase text-end">Price</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-divider">

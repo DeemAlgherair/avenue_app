@@ -40,22 +40,16 @@
                                     <input type="text" id="price" name="price" value="{{ $selectedAvenue->price_per_hours }}" class="form-control" readonly>
                                 </div>
                               
-                                <div class="mb-3">
-                                    <label>Available Days:</label>
-                                    <div class="form-check">
-                                        @foreach ($selectedAvenue->days as $availableDay)
-                                            <input class="form-check-input" type="checkbox" name="day_id[]" id="day_id_{{ $availableDay->id }}" value="{{ $availableDay->id }}">
-                                            <label class="form-check-label" for="day_id_{{ $availableDay->id }}">
-                                                {{ $availableDay->name }}
-                                            </label>
-                                            <br>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="size" class="form-label">Number of Hours:</label>
-                                    <input type="number" class="form-control" id="size" name="size" min="1" max="12" required>
+                                <div class="form-group"> 
+                                    <label for="start_date">Start Date</label> 
+                                    <input type="date" class="form-control" id="start_date" name="start_date" required> 
+                                </div> 
+ 
+                                <div class="form-group"> 
+                                    <label for="end_date">End Date</label> 
+                                    <input type="date" class="form-control" id="end_date" name="end_date" required> 
                                 </div>
+                             
  
                                 <button type="submit" class="btn btn-primary">Book Now</button>
                             </form>
@@ -68,4 +62,21 @@
     
 
 </body>
+<div class="card-body"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script type="text/javascript"> 
+        $(function() { 
+            var dtToday = new Date(); 
+            var month = dtToday.getMonth() + 1; 
+            var day = dtToday.getDate(); 
+            var year = dtToday.getFullYear(); 
+
+            if (month < 10) month = '0' + month; 
+            if (day < 10) day = '0' + day; 
+
+            var maxDate = year + '-' + month + '-' + day; 
+            $('#start_date').attr('min', maxDate); 
+            $('#end_date').attr('min', maxDate); 
+        }); 
+    </script>
 @endsection

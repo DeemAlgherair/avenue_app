@@ -27,6 +27,25 @@
     .p-1 {
         padding: 0.25rem;
     }
+
+    .delete-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: rgb(141, 49, 49);
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .delete-btn:hover {
+        background: darkred;
+    }
 </style>
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -62,56 +81,8 @@
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="addDays">Add Days</label>
-                        <div class="row">
-                            @foreach($allDays as $day)
-                                @if(!in_array($day->id, $selectedDays))
-                                    <div class="col-md-4 mb-2">
-                                        <div class="card" style="width: 150px; height: auto;">
-                                            <div class="card-body p-2">
-                                                <h6 class="card-title" style="font-size: 16px;">{{ $day->name }}</h6>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="add_day_{{ $day->id }}" name="addDays[]" value="{{ $day->id }}">
-                                                    <label class="form-check-label" for="add_day_{{ $day->id }}" style="font-size: 14px;">
-                                                        Add
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="removeDays">Remove Days</label>
-                        <div class="row">
-                            @foreach($allDays as $day)
-                                @if(in_array($day->id, $selectedDays))
-                                    <div class="col-md-4 mb-2">
-                                        <div class="card" style="width: 150px; height: auto;">
-                                            <div class="card-body p-2">
-                                                <h6 class="card-title" style="font-size: 16px;">{{ $day->name }}</h6>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="remove_day_{{ $day->id }}" name="removeDays[]" value="{{ $day->id }}">
-                                                    <label class="form-check-label" for="remove_day_{{ $day->id }}" style="font-size: 14px;">
-                                                        Remove
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
                 <div class="form-group">
-                    <label for="images"> Image</label>
+                    <label for="images">Main Image</label>
                     <div class="form-group">
                         @foreach($images as $image)
                             @if($image->is_main)
@@ -130,9 +101,8 @@
                                 @if(!$image->is_main)
                                     <div class="me-4 mb-6 position-relative">
                                         <img src="{{ asset('storage/' . $image->url) }}" alt="Current Image" class="img-thumbnail" style="width:250px; height:200px;">
-                                        <div class="mt-2">
-                                            <input type="file" class="form-control" id="image_{{ $image->id }}" name="other_images[{{ $image->id }}]" style="width:250px;">
-                                        </div>
+                                        <button type="button" class="delete-btn" onclick="deleteImage({{ $image->id }})">X</button>
+                                        <input type="hidden" name="delete_image_ids[]" value="{{ $image->id }}">
                                     </div>
                                 @endif
                             @endforeach
@@ -162,7 +132,7 @@
                     <button id="selectAllBtn" type="button" class="btn mb-2" style="color: green">Select All</button>
                 </div>
 
-                <label for="advantages">Remove Exisiting Features</label>
+                <label for="advantages">Remove Existing Features</label>
                 <div class="row">
                     @foreach($avenue->avenueadvantage as $advantage)
                         <div class="col-md-2 Avenueadvantages-card">
@@ -202,8 +172,10 @@
     </div>
 </div>
 @endsection
-
 <script>
+  
+
+
     document.addEventListener('DOMContentLoaded', function() {
         const selectAllBtn = document.getElementById('selectAllBtn');
         const checkboxes = document.querySelectorAll('input[name="addAdv[]"]');
@@ -214,6 +186,12 @@
             selectAllBtn.textContent = isSelectAll ? 'Deselect All' : 'Select All';
             selectAllBtn.style.color = isSelectAll ? 'red' : 'green';
             isSelectAll = !isSelectAll;
+        });
+
+        document.getElementById('size').addEventListener('input', function() {
+            var size = this.value;
+            var price = size / 0.3;
+            document.getElementById('price').value = price.toFixed(2);
         });
     });
 </script>

@@ -37,7 +37,9 @@
                                 <div class="col-md">
                                     <label class="tx-gray-600">Invoice Info</label>
                                     <p class="invoice-info-row"><span>Serial No :</span><span> {{$bookings->serial_no}}</span></p>
-                                    <p class="invoice-info-row"><span>Booking Date :</span><span>{{$bookings->booking_date}}</span></p>
+                                    <p class="invoice-info-row"><span>Booking Strat Date :</span><span>{{ \Carbon\Carbon::parse($bookings->startDate)->format('d-m-Y') }}</span></p>
+                                    <p class="invoice-info-row"><span>Booking End Date :</span><span>{{ \Carbon\Carbon::parse($bookings->endDate)->format('d-m-Y') }}</span></p>
+
                                 </div>
                             </div>
                             <div class="table-responsive mg-t-30">

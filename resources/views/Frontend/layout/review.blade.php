@@ -57,8 +57,9 @@
                     <div class="card-body">
                         <div class="invoice">
                             <h4 class="text-primary">Booking Details</h4>
-                            <p><strong>Serial No:</strong> {{ $booking->serial_no }}</p>
-                            <p><strong>Booking Date:</strong> {{ $booking->booking_date }}</p>
+                            <p><strong>Booking No:</strong> {{ $booking->serial_no }}</p>
+                            <p><strong>Booking  Start Date:</strong> {{  \Carbon\Carbon::parse($booking->startDate)->format('d-m-Y') }}</p> 
+                            <p><strong>Booking End Date:</strong> {{  \Carbon\Carbon::parse($booking->endDate)->format('d-m-Y') }}</p>
                             <p><strong>Avenue Name:</strong> {{ $booking->avenue ? $booking->avenue->name : 'Not Available' }}</p>
                             <p><strong>Customer Name:</strong> {{ $booking->customer ? $booking->customer->name : 'Not Available' }}</p>
                             <p><strong>Booking Status:</strong> {{ $booking->status ? $booking->status->statues_name : 'Not Available' }}</p>
@@ -83,7 +84,7 @@
                                 <div class="form-group row mt-4">
                                     <div class="col">
                                         <label  title="text">Comment:</label>
-                                        <textarea class="form-control" name="comment" rows="6" placeholder="Comment" maxlength="200">{{ isset($review) ? $review->comment : '' }}</textarea>
+                                        <textarea class="form-control" name="comment" rows="6" placeholder="Comment" maxlength="200" >{{ isset($review) ? $review->comment : '' }}</textarea>
                                     </div>
                                 </div>
                                 <div class="mt-3 text-right">

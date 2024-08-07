@@ -25,7 +25,8 @@
                                         <div class="card border-light {{ $shadowClass }}">
                                             <div class="card-body">
                                                 <p><strong class="mb-3">Booking #{{ $booking->serial_no }}</strong></p>
-                                                <p><strong>Booking Date:</strong> {{ $booking->booking_date }}</p>
+                                                <p><strong>Booking  Start Date:</strong> {{ \Carbon\Carbon::parse($booking->startDate)->format('d-m-Y') }}</p> 
+                                                <p><strong>Booking End Date:</strong>  {{ \Carbon\Carbon::parse($booking->endDate)->format('d-m-Y') }}</p>
                                                 <p><strong>Avenue Name:</strong> {{ $booking->avenues->name ?? 'Not Available' }}</p>
                                                 <p><strong>Customer Name:</strong> {{ $booking->customers->name ?? 'Not Available' }}</p>
 
