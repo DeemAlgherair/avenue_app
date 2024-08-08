@@ -1,22 +1,26 @@
 @extends('frontend.layout.app')
 
 @section('content')
-<section class="bg-light py-4">
+<section class="bg-light py-3 py-md-5 py-xl-8">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-8 mx-auto">
                 <div class="card border-light shadow-sm">
-                    <div class="card-header bg-success text-light">
+                    <div class="card-header bg-primary text-light">
                         <h5 class="mb-0">Booking Successful</h5>
                     </div>
                     <div class="card-body">
+                        <p>Thank you for choosing us ❤</p>
                         <p>Your booking has been successfully submitted. Please wait for confirmation from the host.</p>
                         <p>Once confirmed, you will receive further instructions on how to complete your payment.</p>
-                        <a href="{{ route('home') }}" class="btn btn-primary">Go to Home</a>
+                        <p>Check your reservation page for more details.</p>
+                        <a href="{{ route('confirmed.bookings') }}" class="btn btn-primary">My Reservations</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 @endsection

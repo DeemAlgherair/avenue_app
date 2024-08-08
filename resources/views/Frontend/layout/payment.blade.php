@@ -14,15 +14,15 @@
                 <div class="col-md-8 mx-auto">
                     <div class="card border-light shadow-sm">
                         <!-- Card Header -->
-                        <div class="card-header bg-primary text-light">
+                        <div class="card-header bg-primary text-light ">
                             <h5 class="mb-0">Payment</h5>
                         </div>
                         <div class="card-body">
                             <h4 class="text-primary">Complete Your Payment</h4>
-                            
                             <!-- Display invoice details -->
                             <p><strong>Serial No:</strong> {{ $booking->serial_no }}</p>
-                            <p><strong>Booking Date:</strong> {{ $booking->booking_date }}</p>
+                            <p><strong>Booking Start Date:</strong>  {{ \Carbon\Carbon::parse($booking->startDate)->format('d-m-Y') }}</p> 
+                            <p><strong>Booking End Date:</strong>  {{ \Carbon\Carbon::parse($booking->endDate)->format('d-m-Y') }}</p>
                             <p><strong>Avenue Name:</strong> {{ $booking->avenues ? $booking->avenues->name : 'Not Available' }}</p>
                             <p><strong>Customer Name:</strong> {{ $booking->customers ? $booking->customers->name : 'Not Available' }}</p>
                             <p><strong>Booking Status:</strong> {{ $booking->status ? $booking->status->statues_name : 'Not Available' }}</p>
@@ -65,4 +65,5 @@
         </div>
     </section>
 </body>
+
 @endsection

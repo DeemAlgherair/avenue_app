@@ -14,7 +14,6 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Day/s</th>
                             <th>Owner</th>
                             <th>Edit</th>
 
@@ -26,15 +25,7 @@
                             <th scope="row">{{ ++$key }}</th>
                             <td>{{ $avenue->name }}</td>
                             <td>{{ $avenue->price_per_hours }}</td>
-                            <td>
-                                @foreach($avenue->days as $day) 
-                                @if($day)
-                                    <p>{{ $day->name }},</p>
-                                @else
-                                    <p>No day assigned</p>
-                                @endif
-                            @endforeach
-                        </td>
+                     
                             <td> 
                             @if($avenue->owner)
                                 <p>{{ $avenue->owner->name }}</p>

@@ -61,9 +61,15 @@
                             <figure class="position-relative card-img-top card-img-zoom rounded-3 overflow-hidden mb-3">
                                 <a href="#!">
                                     @foreach($images as $image)
+<<<<<<< HEAD
                                     @if($image->is_main)
                                     <a href="{{ route('show', $avenue->id) }}">
                                     <img class="img-fluid" loading="lazy" src="{{ asset('storage/' . $image->url) }}" alt="{{ $avenue->name }}">
+=======
+                                    @if($image->is_main && $image->avenue_id == $avenue->id)
+                                    <a href="{{ route('show', $avenue->id) }}">
+                                    <img class="img-fluid d-block w-100" loading="lazy" src="{{ asset('storage/' . $image->url) }}" alt="{{ $avenue->name }}" style="height: 200px; object-fit: cover;">
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                                     </a>
                                     @endif
                                     @endforeach
@@ -101,12 +107,20 @@
                                         <strong>Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>Price per Hour:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
+                                        <strong>Price per Day:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
                                     </li>
                                     <li class="list-group-item">
+<<<<<<< HEAD
                                         <strong>Size (People):</strong> {{ $avenue->size ?? "Not Found :(" }}
                                     </li>
                                     <a  class="text-center mt-4" href="{{route('show',$avenue->id)}}">Read more</a>
+=======
+                                        <strong>Capacity (People):</strong> {{ $avenue->size ?? "Not Found :(" }}
+                                    </li>
+                                    <div class="text-center mt-4">
+                                    <a href="{{route('show',$avenue->id)}}">Read more</a>
+                                    </div>
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                                 </ul>
                                 <div class="text-center mt-4">
                                     <a class="btn btn-primary btn-lg rounded-pill" href="/Customer-Online-Avenue/booking/{{$avenue->id}}">Book Now</a>

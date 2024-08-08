@@ -26,7 +26,7 @@ class UpdateAvenueRequest extends FormRequest
             'location' => 'required|string|max:255',
             'price' => 'required|numeric',
             'size' => 'required|numeric',
-            'advantages' => 'required|string|max:255',
+            'advantages' => 'string|max:255',
         ];
     }
 }

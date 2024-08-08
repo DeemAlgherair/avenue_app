@@ -64,7 +64,64 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'statues_name' => 'completed',
+                'statues_name' => 'approved',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'paid',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'not paid',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'not approved',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+        DB::table('advantages')->insert([
+            [
+                'name' => 'Free wi-fi',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'Projector',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'A/C',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Charging plugs',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'Whiteboards',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'Storage',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'Shared table',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'statues_name' => 'Single table',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -77,3 +134,5 @@ class DatabaseSeeder extends Seeder
         
     }
 }
+
+

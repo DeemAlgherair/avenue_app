@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Avenue;
 use App\Models\Avenue_Image;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 

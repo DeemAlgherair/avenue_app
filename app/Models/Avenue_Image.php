@@ -21,5 +21,9 @@ class Avenue_Image extends Model
         return $this->belongsToMany(Avenue::class,'avenue_id');
     }
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
     
 }

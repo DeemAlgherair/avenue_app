@@ -31,6 +31,7 @@ class OwnerController extends Controller
     {
         
             $validated = $request->validated();
+<<<<<<< HEAD
 
             $existingOwner = Owner::where('email', $validated['email'])
             ->orWhere('phone', $validated['phone'])
@@ -44,13 +45,26 @@ class OwnerController extends Controller
           
         }
 
+=======
+            if (Owner::where('email', $validated['email'])->exists()) {
+                toastr()->error('The email has already been taken.');
+                return back();
+            }
+            if (Owner::where('phone', $validated['phone'])->exists()) {
+                toastr()->error('Phone number has already been taken.');
+                return back();
+
+            }
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
             $owner = Owner::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'phone' => $validated['phone'],
                 'last_login'=>now()
             ]);
-
+          
+        
+           
             $days = Day::all();
             $status = Avenue_Day::with(['status'])->get();
             return view ('Backend.Avenue.create-avenue')->with('owner_id',$owner->id)

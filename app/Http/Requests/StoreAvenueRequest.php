@@ -26,7 +26,12 @@ class StoreAvenueRequest extends FormRequest
             'location' => 'required|string|max:255',
             'price' => 'required|numeric|max:300|min:50',
             'size' => 'required|numeric|max:100|min:10',
+<<<<<<< HEAD
             'advantages' => 'required|string|max:255',
+=======
+            'advantages' => 'string|max:255',
+
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
         ];
     }
 }

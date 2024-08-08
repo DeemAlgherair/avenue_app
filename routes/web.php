@@ -58,6 +58,11 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::delete('show-avenue/{id}/edit-avenue', [AvenueController::class, 'destroy'])->name('deleteAvenue');
     Route::get('show-avenue/{id}/edit-avenue', [AvenueController::class, 'edit']);
     Route::put('show-avenue/{id}/edit-avenue', [AvenueController::class, 'update'])->name('updateAvenue');
+    Route::delete('/images', [AvenueController::class, 'removeImage'])->name('deleteImage');
+
+    Route::post('/add-image/{id}', [AvenueController::class, 'addImage'])->name('addImage');
+
+
     //profile
     Route::get('/profile', [profileController::class, 'adminIndex']);
     Route::put('/profile', [profileController::class, 'adminUpdateProfile'])->name('adminUpdateProfile');
@@ -89,13 +94,17 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::get('/payment/{bookingId}', [PaymentController::class, 'showPaymentForm'])->name('payment.show');
         Route::post('/payment/{booking}', [PaymentController::class, 'processPayment'])->name('payment.process');
         Route::get('/payment/{booking}/callback',[PaymentController::class, 'callback'])->name('payment.callback');
+        Route::put('/booking/{id}/update-status', [BookingController::class, 'updateStatus'])->name('updateBookingStatus');
+
         // confirmed booking
-        Route::get('/confirmed-bookings', [BookingController::class, 'showConfirmedBookings'])->name('confirmed.bookings');
+        Route::get('/all-bookings', [BookingController::class, 'showConfirmedBookings'])->name('confirmed.bookings');
         Route::get('/review-booking/{bookingId}', [BookingController::class, 'reviewBooking'])->name('review.booking');
         Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
         Route::get('/unconfirmed-bookings', [BookingController::class, 'showUnconfirmedBookings'])->name('unconfirmed.bookings');
         Route::get('/booking-success',[BookingController::class, 'success'])->name('bookings.success');
         Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
+        Route::put('/booking/{id}/update-status', [BookingController::class, 'updateStatus'])->name('updateBookingStatus');
+
     });
     
 

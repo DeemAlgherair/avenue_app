@@ -18,6 +18,7 @@
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="form-group">
                     <label for="days">Days</label>
                     <div class="row">
@@ -47,6 +48,9 @@
                         @endforeach
                     </div>
                 </div>
+=======
+              
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                 <div class="form-group">
                     <label for="location">Location</label>
                     <input type="text" class="form-control" id="location" name="location" required>
@@ -54,7 +58,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="price">Price</label>
-                        <input type="number" class="form-control" id="price" name="price" required>
+                        <input type="number" class="form-control" id="price" name="price" required >
                     </div>
                     <div class="form-group col-md-6">
                         <label for="size">Capacity (People)</label>
@@ -62,20 +66,89 @@
                     </div>
                 </div>
                 <div class="form-group">
+<<<<<<< HEAD
                     <label for="image">Main Image</label>
+=======
+                    <label for="image">main Image</label>
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                     <input type="file" class="form-control" id="image" name="image" required>
                 </div>
                 <div class="form-group">
                     <label for="other_images">Other Images</label>
+<<<<<<< HEAD
                     <input type="file" class="form-control" id="other_images" name="other_images[]" multiple accept="image/*" >
                 </div>
                 <div class="form-group">
                     <label for="advantages">Advantages</label>
                     <textarea class="form-control" id="advantages" name="advantages" rows="4" required></textarea>
+=======
+                    <input type="file" class="form-control" id="other_images" name="other_images[]" multiple accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="advantages">Avenue Features</label>
+                    <div class="row">
+                        @foreach($Avenueadvantages as $advantage)
+                            <div class="col-md-2 Avenueadvantages-card">
+                                <div class="card mb-1 fixed-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $advantage->name }}</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="avenueadvantages_{{ $advantage->id }}" name="avenueadvantages[]" value="{{ $advantage->id }}">
+                                            <label class="form-check-label" for="avenueadvantages_{{ $advantage->id }}">
+                                                Select
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <button id="selectAllBtn" type="button" class="btn mb-2" style="color: green">Select All</button>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Additional Features</label>
+                    <textarea class="form-control" id="notes" name="note" rows="4" ></textarea>
+>>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                 </div>
                 <button type="submit" class="btn btn-primary">Add Avenue</button>
             </form>
         </div>
     </div>
 </div>
+
+<style>
+    .fixed-card {
+        width: 180px;
+        height: 100px;
+        display: flex;
+        justify-content: left;
+        align-items: left;
+        text-align: left;
+    }
+    .card-body {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectAllBtn = document.getElementById('selectAllBtn');
+        const checkboxes = document.querySelectorAll('input[name="avenueadvantages[]"]');
+        let isSelectAll = true;
+
+        selectAllBtn.addEventListener('click', () => {
+            checkboxes.forEach(checkbox => checkbox.checked = isSelectAll);
+            selectAllBtn.textContent = isSelectAll ? 'Deselect All' : 'Select All';
+            selectAllBtn.style.color = isSelectAll ? 'red' : 'green';
+            isSelectAll = !isSelectAll;
+        });
+    });
+document.getElementById('size').addEventListener('input', function() {
+    var size = this.value;
+    var price = size / 0.3;
+    document.getElementById('price').value = price.toFixed(2); 
+});
+</script>
+
 @endsection
