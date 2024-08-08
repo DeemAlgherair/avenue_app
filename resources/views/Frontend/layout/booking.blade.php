@@ -36,7 +36,7 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="price" class="form-label">Avenue Price Per Hour:</label>
+                                    <label for="price" class="form-label">Avenue Price Per Day:</label>
                                     <input type="text" id="price" name="price" value="{{ $selectedAvenue->price_per_hours }}" class="form-control" readonly>
                                 </div>
                               
