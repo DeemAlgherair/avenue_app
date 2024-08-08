@@ -1,5 +1,5 @@
 @extends('Backend.Auth.main')
-@section('title','Online Avenue -  Registeration')
+@section('title','Hall plus -  Registeration')
 @section('content')
 
 

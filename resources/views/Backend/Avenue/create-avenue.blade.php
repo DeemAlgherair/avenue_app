@@ -1,6 +1,6 @@
 @extends('Backend.app')
 
-@section('title', 'Online Avenue - Create Avenue')
+@section('title', 'Hall plus - Create Avenue')
 
 @section('content')
 

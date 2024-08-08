@@ -247,7 +247,7 @@ public function showUnconfirmedBookings() {
                 $q->where('name', 'LIKE', '%' . $query . '%');
             })->orWhereHas('avenues', function ($q) use ($query) {
                 $q->where('name', 'LIKE', '%' . $query . '%');
-            })->orWhereHas('booking_statuses', function ($q) use ($query) {
+            })->orWhereHas('status', function ($q) use ($query) {
                 $q->where('statues_name', 'LIKE', '%' . $query . '%');
             })->get();
         

@@ -1,5 +1,5 @@
 @extends('Backend.app')
-@section('title', 'Online Avenue - Edit Owner')
+@section('title', 'Hall plus- Edit Owner')
 @section('content')
 <div class="container-fluid">
     <div class="card shadow mb-4">

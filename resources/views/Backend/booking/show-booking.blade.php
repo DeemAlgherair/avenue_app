@@ -1,5 +1,5 @@
 @extends('Backend.app')
-@section('title','Online Avenue - Show Reservations')
+@section('title','Hall plus - Show Reservations')
 @section('content')
 <script src="{{ asset('Frontend/assets/timer.js') }}"></script>
 

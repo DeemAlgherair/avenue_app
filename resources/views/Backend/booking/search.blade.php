@@ -1,5 +1,5 @@
 @extends('Backend.app')
-@section('title','Online Avenue - Show Reservations')
+@section('title','Hall plus- Show Reservations')
 @section('content')
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -45,10 +45,11 @@
                             <form action="{{ route('confiremdBooking', $booking->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                @method('PUT')
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to confirmed this reservation?')">Pending</button>
+                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to confirmed this reservation?')">                            {{$booking->status->statues_name}}
+                              </button>
                             </form>
                             @else
-                            completed
+                            {{$booking->status->statues_name}}
                         </td>
                         @endif
                          

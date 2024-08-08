@@ -12,6 +12,7 @@ use App\Models\Advantage;
 use App\Models\Avenue_Image;
 use App\Models\Image;
 
+
 use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
@@ -253,6 +254,16 @@ public function addImage(Request $request, $id)
         return back();
 
 }
+public function search(Request $request) {
+    $query = $request->input('query');
+    $avenues = Avenue::where('name', 'LIKE', '%' . $query . '%')
+    ->orWhereHas('owners', function ($q) use ($query) {
+       $q->where('name', 'LIKE', '%' . $query . '%');})->get();
+
+
+    return view('Backend.Avenue.search', compact('avenues'));
+}
+
 
 
 

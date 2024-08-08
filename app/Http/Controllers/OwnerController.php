@@ -6,6 +6,7 @@ use App\Models\Owner;
 use App\Models\Avenue;
 use App\Models\Day;
 use App\Models\Avenue_Day;
+use Illuminate\Http\Request; 
 
 use App\Http\Requests\StoreOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
@@ -101,4 +102,14 @@ class OwnerController extends Controller
         session()->flash('success', 'Owner deleted successfully!');
         return redirect()->route('showOwner');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $owners = owner::where('name', 'LIKE', '%' . $query . '%')->get();
+    
+        // تمرير النتائج إلى العرض
+        return view('Backend.Owner.search', compact('owners'));
+    }
+    
 }

@@ -1,7 +1,7 @@
 
 
 @extends('Backend.app')
-@section('title','Online Avenue - Create Owner')
+@section('title','Hall plus - Create Owner')
 @section('content')
 
 

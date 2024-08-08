@@ -1,5 +1,5 @@
 @extends('Backend.app')
-@section('title','Online Avenue - Show Reservations Details')
+@section('title','Hall plus - Show Reservations Details')
 @section('content')
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -45,9 +45,11 @@
           <input type="text" class="form-control" name="total" value="{{ $bookings->total }}">
         </div>
         </div>
+        <div class="row">
         <div class="col mb-2">
-          <label for="phone">Status</label>
+          <label for="phone">Reservation Status</label>
           <input type="text" class="form-control" name="total" value="{{  $bookings->booking_statuses->statues_name }}">
+        </div>
         </div>
         <br>
         <div class="row">

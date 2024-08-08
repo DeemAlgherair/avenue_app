@@ -1,6 +1,6 @@
 @extends('Backend.app')
 
-@section('title', 'Online Avenue - Dashboard')
+@section('title', 'Hall plus - Dashboard')
 
 @section('content')
 <div class="container-fluid">
