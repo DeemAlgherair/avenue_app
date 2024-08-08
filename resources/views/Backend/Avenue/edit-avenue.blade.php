@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="size">Size (People)</label>
+                        <label for="size">Capacity (People)</label>
                         <input type="number" class="form-control" id="size" name="size" value="{{ old('size', $avenue->size) }}" required>
                     </div>
                 </div>
@@ -101,6 +101,7 @@
                                 @if(!$image->is_main)
                                     <div class="me-4 mb-6 position-relative">
                                         <img src="{{ asset('storage/' . $image->url) }}" alt="Current Image" class="img-thumbnail" style="width:250px; height:200px;">
+                                        <input type="file" class="form-control" id="other_images" name="other_images[{{ $image->id }}]" style="width:250px;" value="{{ $image->id }}">
                                         <button type="button" class="delete-btn" onclick="deleteImage({{ $image->id }})">X</button>
                                         <input type="hidden" name="delete_image_ids[]" value="{{ $image->id }}">
                                     </div>

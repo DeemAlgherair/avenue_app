@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+  
   <!-- Required Meta Tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +14,7 @@
   <meta name="author" content="BootstrapBrain">
 
   <!-- Favicon and Touch Icons -->
-  <link rel="icon" type="image/png" sizes="512x512" href="{{asset('frontend/assets/favicon/favicon-512x512.png')}}">
+  <link rel="icon" type="image/png" sizes="512x512" href="{{asset('/Frontend/assets/img/logo.png')}}">
 
   <!-- Google Fonts Files -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +42,7 @@
     <nav class="navbar navbar-expand-lg bsb-navbar bsb-navbar-hover bsb-navbar-caret bsb-tpl-navbar-sticky bg-white border-bottom border-light-subtle" data-bsb-sticky-target="#header">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="{{asset('frontend/assets/favicon/favicon-512x512.png')}}" class="bsb-tpl-logo" alt="">
+          <img src="{{asset('/Frontend/assets/img/logo.png')}}"class="bsb-tpl-logo" alt="">
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -95,7 +97,6 @@
           <div class="col-xs-12 col-sm-6 col-xl-3 order-0 order-xl-0">
             <div class="footer-logo-wrapper text-center text-sm-start">
               <a href="#!">
-                <img src="./assets/img/branding/planet-logo.svg" alt="" class="bsb-tpl-logo-footer">
               </a>
             </div>
           </div>
