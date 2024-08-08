@@ -13,7 +13,7 @@
           <input type="text" class="form-control"name="serial_no" value="{{$bookings->serial_no}}">
         </div>
         <div class="col mb-2">
-         <label for="name">Booking Strat Date</label>
+         <label for="name">Booking Start Date</label>
          <input type="text" class="form-control" name="avenue_id" value="{{ \Carbon\Carbon::parse($bookings->startDate)->format('d-m-Y') }}">
         </div>
         <div class="col mb-2">

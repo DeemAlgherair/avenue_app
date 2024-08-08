@@ -81,26 +81,6 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="addDays">Add Days</label>
-                        <div class="row">
-                            @foreach($allDays as $day)
-                                @if(!in_array($day->id, $selectedDays))
-                                    <div class="col-md-4 mb-2">
-                                        <div class="card" style="width: 150px; height: auto;">
-                                            <div class="card-body p-2">
-                                                <h6 class="card-title" style="font-size: 16px;">{{ $day->name }}</h6>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="add_day_{{ $day->id }}" name="addDays[]" value="{{ $day->id }}">
-                                                    <label class="form-check-label" for="add_day_{{ $day->id }}" style="font-size: 14px;">
-                                                        Add
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-=======
                 <div class="form-group">
                     <label for="images">Main Image</label>
                     <div class="form-group">
@@ -124,81 +104,10 @@
                                         <input type="file" class="form-control" id="other_images" name="other_images[{{ $image->id }}]" style="width:250px;" value="{{ $image->id }}">
                                         <button type="button" class="delete-btn" onclick="deleteImage({{ $image->id }})">X</button>
                                         <input type="hidden" name="delete_image_ids[]" value="{{ $image->id }}">
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                                     </div>
                                 @endif
                             @endforeach
                         </div>
-<<<<<<< HEAD
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="removeDays">Remove Days</label>
-                        <div class="row">
-                            @foreach($allDays as $day)
-                                @if(in_array($day->id, $selectedDays))
-                                    <div class="col-md-4 mb-2">
-                                        <div class="card" style="width: 150px; height: auto;">
-                                            <div class="card-body p-2">
-                                                <h6 class="card-title" style="font-size: 16px;">{{ $day->name }}</h6>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="remove_day_{{ $day->id }}" name="removeDays[]" value="{{ $day->id }}">
-                                                    <label class="form-check-label" for="remove_day_{{ $day->id }}" style="font-size: 14px;">
-                                                        Remove
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <label for="images">Main Image</label>
-                <div class="form-group"> 
-                    @foreach($images as $image) 
-                    @if($image->is_main)
-                            <div class="me-4 mb-6 py-3">
-                                <img src="{{ asset('storage/' . $image->url) }}" alt="Current Image" class="img-thumbnail" style="width:250px; height:200px;">
-                                <div class="mt-2">
-                                    <input type="file" class="form-control" id="image" name="image" style="width:250px;">
-                                </div>
-                            </div>
-                            @endif  
-                    @endforeach
-                    <label for="images">Other Images</label>
-                    <div class="d-flex flex-wrap mb-6">
-                        @foreach($images as $image)
-                        @if(!$image->is_main)
-                            <div class="me-4 mb-6">
-                                <img src="{{ asset('storage/' . $image->url) }}" alt="Current Image" class="img-thumbnail" style="width:250px; height:200px;">
-                                <div class="mt-2">
-                                    <input type="file" class="form-control" id="image_{{ $image->id }}" name="other_images[{{ $image->id }}]" style="width:250px;">
-                                </div>
-                            </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="advantages">Advantages</label>
-                    <textarea class="form-control" id="advantages" name="advantages" rows="4" required>{{ old('advantages', $avenue->advantages) }}</textarea>
-                </div>
-
-                <div class="d-flex">
-                    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this avenue?')">Update Avenue</button>
-            </form>
-
-            <form action="{{ route('deleteAvenue', $avenue->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this avenue?')">Delete Avenue</button>
-            </form>
-        </div>
-
-=======
                     </div>
                 </div>
 
@@ -260,7 +169,6 @@
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this avenue?')">Delete Avenue</button>
                 </form>
             </div>
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
         </div>
     </div>
 </div>

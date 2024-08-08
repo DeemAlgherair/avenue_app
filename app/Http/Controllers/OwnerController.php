@@ -31,21 +31,6 @@ class OwnerController extends Controller
     {
         
             $validated = $request->validated();
-<<<<<<< HEAD
-
-            $existingOwner = Owner::where('email', $validated['email'])
-            ->orWhere('phone', $validated['phone'])
-            ->first();
-    
-        if ($existingOwner) {
-            toastr()->error( 'The email address or phone number is already in use.');
-          
-
-              return redirect()->back();
-          
-        }
-
-=======
             if (Owner::where('email', $validated['email'])->exists()) {
                 toastr()->error('The email has already been taken.');
                 return back();
@@ -55,7 +40,6 @@ class OwnerController extends Controller
                 return back();
 
             }
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
             $owner = Owner::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],

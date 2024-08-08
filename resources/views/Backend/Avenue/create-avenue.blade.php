@@ -18,39 +18,7 @@
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div class="form-group">
-                    <label for="days">Days</label>
-                    <div class="row">
-                        @if($days->isEmpty())
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">No Days Available</h5>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @foreach($days as $day)
-                            <div class="col-md-2 days-card " >
-                                <div class="card mb-1">
-                                    <div class="card-body" style=" width: 100%;">
-                                        <h5 class="card-title">{{ $day->name }}</h5>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="day_{{ $day->id }}" name="days[]" value="{{ $day->id }}">
-                                            <label class="form-check-label" for="day_{{ $day->id }}">
-                                                Select this day
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-=======
               
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                 <div class="form-group">
                     <label for="location">Location</label>
                     <input type="text" class="form-control" id="location" name="location" required>
@@ -66,22 +34,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
-                    <label for="image">Main Image</label>
-=======
                     <label for="image">main Image</label>
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                     <input type="file" class="form-control" id="image" name="image" required>
                 </div>
                 <div class="form-group">
                     <label for="other_images">Other Images</label>
-<<<<<<< HEAD
-                    <input type="file" class="form-control" id="other_images" name="other_images[]" multiple accept="image/*" >
-                </div>
-                <div class="form-group">
-                    <label for="advantages">Advantages</label>
-                    <textarea class="form-control" id="advantages" name="advantages" rows="4" required></textarea>
-=======
                     <input type="file" class="form-control" id="other_images" name="other_images[]" multiple accept="image/*">
                 </div>
                 <div class="form-group">
@@ -108,7 +65,6 @@
                 <div class="form-group">
                     <label for="notes">Additional Features</label>
                     <textarea class="form-control" id="notes" name="note" rows="4" ></textarea>
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                 </div>
                 <button type="submit" class="btn btn-primary">Add Avenue</button>
             </form>

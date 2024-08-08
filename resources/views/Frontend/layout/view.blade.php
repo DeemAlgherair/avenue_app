@@ -1,8 +1,5 @@
 @extends('frontend.layout.app')
-<<<<<<< HEAD
-=======
 
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
 @section('content')
 <style>
     .star-rating {
@@ -93,18 +90,6 @@
         padding: 20px;
     }
     .section-shadow {
-<<<<<<< HEAD
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-
-}
-.list-group-item
-{
-    font-size: 20px;
-    padding: 27px;
-=======
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 10px;
         border-radius: 5px;
@@ -140,7 +125,6 @@
     }
     .custom-checkbox-wrapper input[type="checkbox"] {
     display: none;
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
 }
 </style>
 
@@ -150,102 +134,40 @@
             <div class="section-shadow">
                 <h2 class="text-center mb-2 py-2">{{ $avenue->name ?? "Not Found :(" }}</h2>
             </div>
-<<<<<<< HEAD
-                        <div class="container my-5">
-=======
 
             <div class="container my-5">
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                 <div class="row">
                     <div class="col-md-6">
                         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach($images as $image)
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-<<<<<<< HEAD
-                                        <img class="d-block w-100" src="{{ asset('storage/' . $image->url) }}" alt="Avenue Image" style="height: 500px; object-fit: cover;">
-=======
                                         <img class="d-block w-100" src="{{ asset('storage/' . $image->url) }}" alt="Avenue Image" style="height: 480px; object-fit: cover;">
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                                     </div>
                                 @endforeach
                             </div>
                             <!-- Carousel controls -->
                             <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-<<<<<<< HEAD
-                                <span class="sr-only" style ="color: rgb(255, 255, 255)"></span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only" style ="color: rgb(255, 255, 255)"></span>
-=======
                                 <span class="sr-only" style="color: rgb(255, 255, 255)"></span>
                             </a>
                             <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only" style="color: rgb(255, 255, 255)"></span>
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                             </a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-<<<<<<< HEAD
-                                <strong >Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>Price per Hour:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
-=======
                                 <strong>Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
                             </li>
                             <li class="list-group-item">
                                 <strong>Price per Day:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                             </li>
                             <li class="list-group-item">
                                 <strong>Capacity(People):</strong> {{ $avenue->size ?? "Not Found :(" }}
                             </li>
-<<<<<<< HEAD
-                            <li class="list-group-item">
-                                <strong>Advantages:</strong> {{ $avenue->advantages ?? "Not Found :(" }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>Available Day/s :</strong> 
-                                @foreach($avenue->days as $day)
-                                {{ $day->name ?? "Not Found :(" }},
-                                @endforeach
-                            </li>
-                        </ul>
-                        <div class="text-left mt-4 col-12">
-                            <a class="btn btn-primary btn-lg rounded-pill btn-book-now" href="/Customer-Online-Avenue/booking/{{$avenue->id}}">Book Now</a>
-                        </div>
-                    </div>
-              
-                </div>
-
-              <!-- Review Summary -->
-<div class="review-summary">
-    <div class="section-shadow mb-4">
-    <h4 class="mb-2 py-2">Customer Reviews</h4>
-    </div>
-    @for ($i = 5; $i >= 1; $i--)
-        <div class="star-bar">
-            <span>{{ $i }} ★</span>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: {{ $totalReviews ? round(($reviewCounts[$i] / $totalReviews) * 100) : 0 }}%" aria-valuenow="{{ $reviewCounts[$i] }}" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <span>{{ $totalReviews ? round(($reviewCounts[$i] / $totalReviews) * 100) : 0 }}%</span>
-        </div>
-    @endfor
-  
-</div>
-
-
-                 <!-- Comment Section -->
-                 <div class="comment-section row-6">
-=======
                             <li class="list-group-item py-3 mb-3">
                                 <strong>Features:</strong>
                                 <table cellpadding="5" cellspacing="0" >
@@ -300,7 +222,6 @@
 
                 <!-- Comment Section -->
                 <div class="comment-section">
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                     @foreach($avenue->reviews as $review)
                         <div class="comment">
                             <div class="comment-header">

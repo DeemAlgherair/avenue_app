@@ -28,14 +28,9 @@
     <!-- JS  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
-  <!-- Googal mPS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async></script>
-=======
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.min.js"></script>
 
   <!-- BSB Head -->
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
 </head>
 
 <body>

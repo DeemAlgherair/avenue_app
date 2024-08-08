@@ -56,46 +56,24 @@ class AvenueController extends Controller
         return view ('Backend.Avenue.create-avenue')->with('days',$days)->with('status',$status)
         ->with('owner_id', $owner_id )->with('Avenueadvantages', $Avenueadvantages );
     }
-<<<<<<< HEAD
-
-
-    public function store(StoreAvenueRequest $request,$owner_id)
-=======
 public function store(StoreAvenueRequest $request,$owner_id)
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
     {
      
     $request->validated();
 
-<<<<<<< HEAD
-
-    // Create the avenue
-=======
     $path= $request->file('image')->store('avenues','public');
     $image = Image::insertGetId(['url' => $path]);
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
     $avenue = Avenue::create([
         'name' => $request->name,
         'location' => $request->location,
         'price_per_hours' => $request->price,
         'size' => $request->size,
-<<<<<<< HEAD
-        'advantages' => $request->advantages,
-        'serial_no' => $this->generateUniqueSerialNumber(),
-        'owener_id' => $owner_id,
-=======
         'advantages' => $request->note,
         'serial_no' => $this->generateUniqueSerialNumber(), 
         'owener_id' =>$owner_id
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
     ]);
-    
-    $mainImagePath = $request->file('image')->store('avenues', 'public');
 
-<<<<<<< HEAD
-=======
     $mainImagePath = $request->file('image')->store('avenues', 'public');
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
     $mainImage = Avenue_Image::create([
         'avenue_id' => $avenue->id,
         'url' => $mainImagePath,
@@ -103,10 +81,7 @@ public function store(StoreAvenueRequest $request,$owner_id)
         'created_at' => now(),
         'updated_at' => now(),
     ]);
-<<<<<<< HEAD
-=======
 
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
     if ($request->hasFile('other_images')) {
         foreach ($request->file('other_images') as $image) {
 
@@ -120,56 +95,6 @@ public function store(StoreAvenueRequest $request,$owner_id)
                 
             ]);
         }
-<<<<<<< HEAD
-
-    }
-   
-
-    if ($request->has('days')) {
-        $validated = $request->validate([
-            'days' => 'required|array|min:1',
-            'days.*' => 'integer|exists:days,id', 
-        ]);
-        $avenue->days()->sync($validated['days']);
-    } else {
-        $avenue->days()->sync([]); 
-    }
-
-    session()->flash('success', 'Avenue created successfully!');
-    return redirect()->route('showAvenue');
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show( $id){
-         $avenue = Avenue::with('reviews')->findOrFail($id);
-         $reviews = $avenue->reviews;
-         $totalReviews = $reviews->count();
-         $averageRating = $reviews->avg('rate');
-         $reviewCounts = [
-            5 => $reviews->where('rate', 5)->count(),
-            4 => $reviews->where('rate', 4)->count(),
-            3 => $reviews->where('rate', 3)->count(),
-            2 => $reviews->where('rate', 2)->count(),
-            1 => $reviews->where('rate', 1)->count(),
-        ]; 
-         $images = Avenue_Image::where('avenue_id', $id)->get();
-         return view('Frontend.layout.view')
-         ->with('avenue', $avenue)
-         ->with('images', $images)
-         ->with('reviewCounts', $reviewCounts)
-         ->with('totalReviews', $totalReviews)
-         ->with('averageRating',$averageRating);
-         
-    }
-
-    public function edit($id)
-    {
-        $avenues = Avenue::with(['owner', 'days'])->findOrFail($id);
-        $images = Avenue_Image::where('avenue_id', $id)->get();
-=======
 
     }
 
@@ -189,7 +114,6 @@ public function store(StoreAvenueRequest $request,$owner_id)
 public function edit($id)
     {
         $avenues = Avenue::with(['owner', 'days','image','avenueadvantage'])->findOrFail($id);
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
         $alldays = Day::all();
         $Avenueadvantages = Advantage::all();
         $selectedDays = $avenues->days->pluck('id')->toArray();
@@ -197,7 +121,6 @@ public function edit($id)
 
         return view ('Backend.Avenue.edit-avenue')
         ->with('avenue',$avenues)
-        ->with('images',$images)
         ->with('allDays',$alldays)
         ->with('images',$images)
         ->with('selectedDays',$selectedDays)->with('Avenueadvantages',$Avenueadvantages);
@@ -232,26 +155,17 @@ public function edit($id)
     {
         // Validate the request
         $request->validated();
-<<<<<<< HEAD
-        $avenue = Avenue::findOrFail($id);
-=======
     
         $avenue = Avenue::findOrFail($id);
     
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
         $avenue->update([
             'name' => $request->name,
             'location' => $request->location,
             'price_per_hours' => $request->price,
             'size' => $request->size,
-<<<<<<< HEAD
-            'advantages' => $request->advantages,
-        ]);
-=======
             'advantages' => $request->note,
         ]);
     
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('avenues', 'public');
             $mainImage = Avenue_Image::where('avenue_id', $avenue->id)->where('is_main', true)->first();
@@ -262,20 +176,6 @@ public function edit($id)
         if ($request->hasFile('other_images')) {
             foreach ($request->file('other_images') as $imageId => $imageFile) {
                 $path = $imageFile->store('avenues', 'public');
-<<<<<<< HEAD
-                $imageFile = Avenue_Image::where('avenue_id', $avenue->id)->where('is_main', false)->where('id',$imageId);
-                $imageFile->update(['url' => $path]);
-            }
-        }
-    
-
-        $daysToAdd = $request->input('addDays');
-        $daysToRemove = $request->input('removeDays');
-        if ($daysToAdd) {
-            foreach ($daysToAdd as $dayId) {
-                if (!$avenue->days->contains($dayId)) {
-                    $avenue->days()->attach($dayId);
-=======
                 $imageFile = Avenue_Image::where('avenue_id', $avenue->id)->where('is_main', false)->where('id', $imageId)->first();
                 $imageFile->update(['url' => $path]);
             
@@ -292,22 +192,14 @@ public function edit($id)
             foreach ($advToAdd as $advId) {
                 if (!$avenue->avenueadvantage->contains($advId)) {
                     $avenue->avenueadvantage()->attach($advId);
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                 }
             }
         }
     
-<<<<<<< HEAD
-        if ($daysToRemove) {
-            foreach ($daysToRemove as $dayId) {
-                if ($avenue->days->contains($dayId)) {
-                    $avenue->days()->detach($dayId);
-=======
         if ($advToRemove) {
             foreach ($advToRemove as $advId) {
                 if ($avenue->avenueadvantage->contains($advId)) {
                     $avenue->avenueadvantage()->detach($advId);
->>>>>>> 2efb48683cbab543e6b5ccf766db9866186d6380
                 }
             }
         }
