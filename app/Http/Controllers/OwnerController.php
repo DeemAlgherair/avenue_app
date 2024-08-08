@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use App\Models\Avenue;
+use App\Models\Advantage;
+
 use App\Models\Day;
 use App\Models\Avenue_Day;
 use Illuminate\Http\Request; 
@@ -52,12 +54,13 @@ class OwnerController extends Controller
            
             $days = Day::all();
             $status = Avenue_Day::with(['status'])->get();
+            $Avenueadvantages = Advantage::all();
+
             return view ('Backend.Avenue.create-avenue')->with('owner_id',$owner->id)
-            ->with('days',$days)->with('status',$status);
+            ->with('days',$days)->with('status',$status)->with('Avenueadvantages',$Avenueadvantages);
         
         
-    } 
-    
+    }
 
     public function edit($id)
     {
