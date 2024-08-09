@@ -12,7 +12,6 @@ use App\Models\Advantage;
 use App\Models\Avenue_Image;
 use App\Models\Image;
 
-
 use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
@@ -57,13 +56,11 @@ class AvenueController extends Controller
         return view ('Backend.Avenue.create-avenue')->with('days',$days)->with('status',$status)
         ->with('owner_id', $owner_id )->with('Avenueadvantages', $Avenueadvantages );
     }
-public function store(StoreAvenueRequest $request,$owner_id)
+    public function store(StoreAvenueRequest $request,$owner_id)
     {
      
     $request->validated();
 
-    $path= $request->file('image')->store('avenues','public');
-    $image = Image::insertGetId(['url' => $path]);
     $avenue = Avenue::create([
         'name' => $request->name,
         'location' => $request->location,
@@ -128,31 +125,39 @@ public function edit($id)
     }
  
 
-    public function show( $id){
-         $avenue = Avenue::with('reviews')->findOrFail($id);
-         $reviews = $avenue->reviews;
-         $totalReviews = $reviews->count();
-         $averageRating = $reviews->avg('rate');
-         $reviewCounts = [
+    public function show($id)
+    {
+        $avenue = Avenue::with('reviews')->findOrFail($id);
+        
+        
+        $reviews = Review::where('avenue_id',$id)->get();
+        
+        // Calculations
+        $totalReviews = $reviews->count();
+        $averageRating = $reviews->avg('rate');
+        $reviewCounts = [
             5 => $reviews->where('rate', 5)->count(),
             4 => $reviews->where('rate', 4)->count(),
             3 => $reviews->where('rate', 3)->count(),
             2 => $reviews->where('rate', 2)->count(),
             1 => $reviews->where('rate', 1)->count(),
-        ]; 
+        ];
+        
+        // Other Data
         $Avenueadvantages = Advantage::all();
-         $images = Avenue_Image::where('avenue_id', $id)->get();
-         return view('Frontend.layout.view')
-         ->with('avenue', $avenue)
-         ->with('images', $images)
-         ->with('reviewCounts', $reviewCounts)
-         ->with('totalReviews', $totalReviews)
-         ->with('Avenueadvantages', $Avenueadvantages)
-         ->with('averageRating',$averageRating);
-         
+        $images = Avenue_Image::where('avenue_id', $id)->get();
+        
+        
+        return view('Frontend.layout.view')
+            ->with('avenue', $avenue)
+            ->with('images', $images)
+            ->with('reviews', $reviews) 
+            ->with('reviewCounts', $reviewCounts)
+            ->with('totalReviews', $totalReviews)
+            ->with('Avenueadvantages', $Avenueadvantages)
+            ->with('averageRating', $averageRating);
     }
-
-    public function update(UpdateAvenueRequest $request, $id)
+        public function update(UpdateAvenueRequest $request, $id)
     {
         // Validate the request
         $request->validated();
@@ -254,6 +259,8 @@ public function addImage(Request $request, $id)
         return back();
 
 }
+
+
 public function search(Request $request) {
     $query = $request->input('query');
     $avenues = Avenue::where('name', 'LIKE', '%' . $query . '%')
@@ -263,6 +270,8 @@ public function search(Request $request) {
 
     return view('Backend.Avenue.search', compact('avenues'));
 }
+
+
 
 
 

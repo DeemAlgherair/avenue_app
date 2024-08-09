@@ -1,12 +1,10 @@
-
-
-
 @extends('frontend.layout.app')
 @section('title','HALL Plus')
 
 @section('content')
 <link rel="stylesheet" href="{{asset('Frontend/assets/css/avenue.css')}}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+
 
 <div class="container my-5">
     <div class="card shadow">
@@ -109,7 +107,7 @@
                                 <div class="dropdown-container">
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                            Sort <i class="fa fa-sort"></i>
+                                            Sort 
                                         </button>
                                         <ul class="dropdown-menu">
                                             <div class="sort-options d-flex">
@@ -159,11 +157,18 @@
         </div>
     </div>
 </div>
-</div>
+                </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
 
+<script>
+$(document).ready(function() {
+  // Smooth scroll to reviews-container when the page loads
+  const reviewsContainer = document.getElementById('reviews-container');
+  if (reviewsContainer) {
+    reviewsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   // Read more/less functionality
   $('.show-more').on('click', function(e) {
@@ -177,7 +182,7 @@
       $(this).text('Read less');
     }
   });
-
+});
 </script>
 
 @endsection

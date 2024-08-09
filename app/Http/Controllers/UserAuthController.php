@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\Customer;
-use Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Requests\LoginRequset;
 use Illuminate\Http\Request;
+
 use App\Http\Requests\StoreUserRequset;
 
 class UserAuthController extends Controller

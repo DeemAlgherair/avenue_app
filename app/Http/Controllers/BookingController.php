@@ -15,7 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\BookingSubmitted;
 
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApprovedMail; 
+use Illuminate\Support\Facades\Log;
 
 
 class BookingController extends Controller
@@ -68,7 +70,8 @@ class BookingController extends Controller
          $validatedData = $request->validated(); 
       
          // Check for overlapping bookings 
-         $isBooked = Booking::where('avenue_id', $avenueId) 
+         $isBooked = Booking::where('avenue_id', $avenueId)
+         ->where('status_id', 3)
              ->where(function ($query) use ($request) { 
                  $query->whereBetween('startDate', [$request->start_date, $request->end_date]) 
                        ->orWhereBetween('endDate', [$request->start_date, $request->end_date]) 
@@ -101,9 +104,8 @@ class BookingController extends Controller
          $booking->save(); 
          $admins = User::where('id', 1)->get(); 
          Notification::send($admins, new BookingSubmitted($booking));
-      
-         return redirect()->route('invoice.show', $booking->id) 
-             ->with('success', 'Booking created successfully!'); 
+         session()->flash('customer_message', 'Booking created successfully!');
+         return redirect()->route('invoice.show', $booking->id);
      }
 
     /**
@@ -112,6 +114,8 @@ class BookingController extends Controller
     public function show(Request $request,$avenueId)
     {  $selectedAvenue = Avenue::with('days')->findOrFail($avenueId);
         $bookings = Booking::with(['customers','avenues','booking_statuses'])->get();
+
+
     
         return view("Frontend.layout.booking", [
             'selectedAvenue' => $selectedAvenue,
@@ -158,22 +162,52 @@ class BookingController extends Controller
 
     public function confiremdBooking($id)
     {
-        $bookings = Booking::findOrFail($id)->update([
-            'status_id' => '2',
-           
-        ]);
-        return back();
+        $booking = Booking::findOrFail($id);
+        $booking->status_id = 2; // Assuming 2 is the ID for "Approved"
+        $booking->save();
+        $paymentDeadline = now()->addHours(24)->format('d-m-Y H:i');
+        // Send an email to the customer
+        $customerName = $booking->customers->name;
+        $bookingDetailsUrl = route('invoice.show', ['id' => $booking->id]);
+        $customerEmail = $booking->customers->email;
+    
+    
+        Mail::to($customerEmail)->send(new ApprovedMail($customerName, $booking->serial_no, $bookingDetailsUrl,$paymentDeadline));
+    
+        session()->flash('customer_message', 'Your booking is confirmed. Please proceed to payment.');
+        return back()->with('success', 'Booking confirmed and email sent!');
 
     }
 
-    public function showConfirmedBookings()
+    public function showConfirmedBookings( Request $request)
     {
-        // Fetch all confirmed bookings
-        $customer_id = Auth::guard('customers')->id();
+        $customer_id = Auth::guard('customers')->user()->id;
 
         $confirmedBookings = Booking::where('customer_id', $customer_id)->get();
         
-        $reviews = Review::all();
+        $reviews = Review::where('customer_id', $customer_id)->get();
+
+        $filter = $request->query('filter', 'latest');
+    
+        $query = Booking::where('customer_id', $customer_id);
+        if ($filter == 'latest') {
+            $query->orderBy('created_at', 'desc');
+        } elseif ($filter == 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        } elseif ($filter == 'paid') {
+            $query->orderBy('created_at', 'desc');
+
+            $query->where('status_id', 3);
+        } elseif ($filter == 'not_paid') {
+            $query->where('status_id', 2);
+        } elseif ($filter == 'not_approved') {
+            $query->whereIn('status_id', [4, 5]);
+            $query->orderBy('created_at', 'desc');
+
+        }
+        
+        $confirmedBookings = $query->get();
+
         
         return view('Frontend.layout.Confirmed')
             ->with('confirmedBookings', $confirmedBookings)
@@ -234,25 +268,26 @@ class BookingController extends Controller
                              ->with('success', 'Review submitted successfully!');
         }
     }
+
     
 public function showUnconfirmedBookings() { 
         $unconfirmedBookings = Booking::all(); 
  
         return view('Frontend.layout.unconfirmed', compact('unconfirmedBookings'));
     }
-        public function search(Request $request) {
-            $query = $request->input('query');
-        
-            $bookings = Booking::whereHas('customers', function ($q) use ($query) {
-                $q->where('name', 'LIKE', '%' . $query . '%');
-            })->orWhereHas('avenues', function ($q) use ($query) {
-                $q->where('name', 'LIKE', '%' . $query . '%');
-            })->orWhereHas('status', function ($q) use ($query) {
-                $q->where('statues_name', 'LIKE', '%' . $query . '%');
-            })->get();
-        
-            return view('Backend.booking.search', compact('bookings'));
-        }
+    public function search(Request $request) {
+        $query = $request->input('query');
+    
+        $bookings = Booking::whereHas('customers', function ($q) use ($query) {
+            $q->where('name', 'LIKE', '%' . $query . '%');
+        })->orWhereHas('avenues', function ($q) use ($query) {
+            $q->where('name', 'LIKE', '%' . $query . '%');
+        })->orWhereHas('status', function ($q) use ($query) {
+            $q->where('statues_name', 'LIKE', '%' . $query . '%');
+        })->get();
+    
+        return view('Backend.booking.search', compact('bookings'));
+    }
 
     public function updateStatus(Request $request, $id)
     {
