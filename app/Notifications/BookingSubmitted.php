@@ -27,7 +27,7 @@ class BookingSubmitted extends Notification
     {
         return (new MailMessage)
             ->line('A new booking has been submitted.')
-            ->action('View Booking', url('/admin/bookings/' . $this->booking->id))
+            ->action('View Booking', url('/Admin-Online-Avenue/show-reservation'))
             ->line('Thank you for using our application!');
     }
     /**

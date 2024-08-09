@@ -1,6 +1,6 @@
 @extends('Backend.app')
 
-@section('title', 'Online Avenue - Create Avenue')
+@section('title', 'Hall plus - Create Avenue')
 
 @section('content')
 
@@ -102,7 +102,7 @@
     });
 document.getElementById('size').addEventListener('input', function() {
     var size = this.value;
-    var price = size / 0.3;
+    var price = size *10;
     document.getElementById('price').value = price.toFixed(2); 
 });
 </script>

@@ -1,0 +1,98 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+}
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #5e17eb, #ac87f7);
+    }
+
+    .shadow-default {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .shadow-error {
+        box-shadow: 0 4px 12px rgba(41, 17, 17, 0.25);
+    }
+
+    .bg-gray {
+        background-color: #f0f0f0;
+
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #5e17eb, #ac87f7);
+        border: none;
+        border-radius: 0.3rem;
+        font-size: 15px;
+
+    }
+    
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #5e17eb, #ac87f7);
+    }
+    
+    .btn-success {
+        background: linear-gradient(135deg, #28a745, #218838);
+        border: none;
+        font-size: 15px;
+        border-radius: 0.5rem;
+        
+    }
+
+    .btn-success:hover {
+        background: linear-gradient(135deg, #218838, #28a745);
+    }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #6c757d, #5a6268);
+        border: none;
+        border-radius: 0.3rem;
+        font-size: 15px;
+
+    }
+    
+    .btn-secondary:hover {
+        background: linear-gradient(135deg, #5a6268, #6c757d);
+    }
+
+    .text-warning {
+        color: #ffc107;
+    }
+
+    .text-danger {
+        color: #dc3545;
+    }
+
+ 
+.waiting{
+    background: linear-gradient(135deg, #5e17eb, #ac87f7);
+    color: #fff;
+    font-size: 15px;
+
+    font: bolder;
+    font-size: 0.875rem;
+}
+
+    .btn-light {
+        background: #f8f9fa;
+        color: #495057;
+        border: 1px solid #ced4da;
+    }
+
+    .btn-light:hover {
+        background: #e2e6ea;
+    }
+
+    .card-body p {
+        margin-bottom: 1rem;
+    }
+
+    .card-body h6 {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .card {
+        height: auto;
+        overflow: hidden;
+    }

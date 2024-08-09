@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title','Online Avenue')</title>
+    <title>@yield('title','Hall plus')</title>
 
 
         <!-- Custom fonts for this template-->

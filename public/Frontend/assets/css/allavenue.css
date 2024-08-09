@@ -1,0 +1,234 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+}
+
+.card {
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 2rem;
+    text-align: center;
+}
+
+.entry-header {
+    margin-bottom: 1.5rem;
+}
+
+.entry-title {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.entry-meta {
+    margin-bottom: 1.5rem;
+}
+
+.entry-meta a {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: #5e17eb;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    background-color: transparent;
+    border: 1px solid #5e17eb;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.entry-meta a:hover {
+    background: linear-gradient(135deg, #5e17eb, #ac87f7);
+    color: #fff;
+}
+
+.star-rating {
+    font-size: 1.5rem;
+    color: #ffc107;
+    text-align: center;
+}
+
+.review-section {
+    margin-bottom: 1.5rem;
+}
+
+.list-group-item {
+    border: none;
+    padding: 1rem 1.5rem;
+    background-color: #ffffff;
+}
+
+.list-group-item:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.btn-primary {
+    border: none;
+    border-radius: 2rem;
+    padding: 0.75rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #5e17eb;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #4a0dc6;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    background-color: #3d0b9a;
+    transform: translateY(0);
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(94, 23, 235, 0.5);
+}
+
+/* Filter Sidebar Styles */
+.card-body form {
+    padding: 1.5rem;
+}
+
+.form-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.form-check {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.form-check-label {
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-control:focus {
+    border-color: #5e17eb;
+    box-shadow: 0 0 0 0.2rem rgba(94, 23, 235, 0.25);
+}
+
+.btn-light {
+    border-radius: 2rem;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #f8f9fa;
+    color: #5e17eb;
+    border: 1px solid #5e17eb;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.btn-light:hover {
+    background-color: #e9ecef;
+    color: #4a0dc6;
+}
+.filter-card {
+    width: 100%;
+
+    display: block;
+}
+
+.card-body-filter {
+    padding: 15px;
+    border: none;
+  
+}
+
+.filter-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust gap as needed */
+}
+
+.filter-item {
+    flex: 1;
+    min-width: 200px; /* Adjust minimum width as needed */
+}
+
+.filter-item label {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .filter-content {
+        flex-direction: column;
+    }
+
+    .filter-item {
+        min-width: 100%;
+    }
+}
+
+.collapse {
+    display: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.collapse.show {
+    display: block;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.filter-card-coll{
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    display: block;
+    padding: 15px;
+    border: none;
+}

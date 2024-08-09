@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use App\Models\Avenue;
+use App\Models\Advantage;
+
 use App\Models\Day;
 use App\Models\Avenue_Day;
+use Illuminate\Http\Request; 
 
 use App\Http\Requests\StoreOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
@@ -51,12 +54,13 @@ class OwnerController extends Controller
            
             $days = Day::all();
             $status = Avenue_Day::with(['status'])->get();
+            $Avenueadvantages = Advantage::all();
+
             return view ('Backend.Avenue.create-avenue')->with('owner_id',$owner->id)
-            ->with('days',$days)->with('status',$status);
+            ->with('days',$days)->with('status',$status)->with('Avenueadvantages',$Avenueadvantages);
         
         
-    } 
-    
+    }
 
     public function edit($id)
     {
@@ -101,4 +105,14 @@ class OwnerController extends Controller
         session()->flash('success', 'Owner deleted successfully!');
         return redirect()->route('showOwner');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $owners = owner::where('name', 'LIKE', '%' . $query . '%')->get();
+    
+        // تمرير النتائج إلى العرض
+        return view('Backend.Owner.search', compact('owners'));
+    }
+    
 }

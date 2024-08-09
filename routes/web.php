@@ -10,6 +10,8 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\ReviewsController;
+
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CustomerController;
 
@@ -21,6 +23,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/register', [UserAuthController::class, 'registerIndex'])->name('registerIndex');
 Route::post('/register', [UserAuthController::class, 'register'])->name('register');
+
+
 
 Route::get('/forgot-password', [AuthController::class, 'forgotPasswordIndex'])->name('forgotPasswordIndex');
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
@@ -66,8 +70,9 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     //profile
     Route::get('/profile', [profileController::class, 'adminIndex']);
     Route::put('/profile', [profileController::class, 'adminUpdateProfile'])->name('adminUpdateProfile');
-
-
+    //search 
+    Route::get('/search-owner', [OwnerController::class, 'search'])->name('searchOwner');
+Route::get('/search-avenue', [AvenueController::class, 'search'])->name('searchAvenue');   
 });    
 
 
@@ -85,9 +90,13 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::delete('/profile/{id}',[profileController::class,'destroy'])->name('deleteProfile');
         //avenue
         Route::get('/avenue/{id}', [AvenueController::class, 'show'])->name('show');
+
         //Booking
         Route::get('/booking/{avenueId}', [BookingController::class, 'show'])->name('booking');
         Route::post('/booking/{avenueId}', [BookingController::class, 'store'])->name('bookings.store');
+        //review 
+        Route::get('/avenue/{id}/sort', [ReviewsController::class, 'sortReviews'])->name('sortReviews');
+
         //invoce
         Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice.show');
         //payment
@@ -105,7 +114,11 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
         Route::put('/booking/{id}/update-status', [BookingController::class, 'updateStatus'])->name('updateBookingStatus');
 
-    });
+
+Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
+Route::get('/all-avenus/filter', [CustomerController::class, 'filter'])->name('filterAvenues');
+Route::get('/avenue/{id}/sort', [ReviewsController::class, 'sortReviews'])->name('sortReviews');
+ });
     
 
     
