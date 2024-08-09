@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title','Online Avenue - Avenues')</title>
+    <title>@yield('title','Hall plus - Avenues')</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
@@ -18,6 +18,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('Backend/css/sb-admin-2.min.css') }} "rel="stylesheet">
@@ -28,7 +29,9 @@
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
+<style>
+.body: {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+</style>
 </head>
 
 <body id="page-top">
@@ -38,10 +41,9 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">Online Avenue<sup></sup></div>
+                <div class="sidebar-brand-text mx-3">Hall plus<sup></sup></div>
             </a>
 
             <!-- Divider -->

@@ -1,42 +1,22 @@
 @extends('frontend.layout.app')
 
 @section('content')
-<style>
-    @media print {
-        body * {
-            visibility: hidden;
-        }
-        .printable, .printable * {
-            visibility: visible;
-        }
-        .printable {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            width: 100%;
-        }
-        #print_Button {
-            display: none !important; 
-        }
-    }
-</style>
+<link rel="stylesheet" href="{{asset('Frontend/assets/css/invoice.css')}}">
 
-<!-- Invoice 1 - Bootstrap Brain Component -->
-<div class="container py-4 py-md-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
-            <div class="card border-light shadow-sm printable">
-                <!-- Card Header -->
-                <div class="card-header bg-primary text-light">
-                    <h2 class="text-start m-0">Invoice</h2>
+<section class="container">
+    <div class=" container container1 py-5" id="print">
+        <div class="row justify-content-center">
+            <div class="col-24 col-md-16 col-lg-12">
+                <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
+                    <div class="card-header bg-gradient-primary text-white border-0">
+                    <h3 class="text-start m-0">Invoice</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body " >
                     <div class="row mb-3">
                         <div class="col-12">
                             <h4>From</h4>
                             <address>
-                                <strong>Online Avenue Lecture Hall Reservation</strong><br>
+                                <strong>Hall plus Lecture Hall Reservation</strong><br>
                                 Phone: (966) 0505130147<br>
                                 Email: OnlineAvenue@gmail.com
                             </address>
@@ -68,7 +48,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-uppercase">Avenue Name</th>
+                                            <th scope="col" class="text-uppercase">Hall Name</th>
                                             <th scope="col" class="text-uppercase text-end">Price</th>
                                             
                                         </tr>
@@ -103,7 +83,7 @@
                             @if($booking->status_id != 3)
                             <form action="{{ route('bookings.success', ['booking' => $booking->id]) }}" method="GET">
                                 @csrf
-                                <button type="submit" class="btn btn-danger mb-3">Submit Payment</button>
+                                <button type="submit" class="btn btn-primary mb-3">Submit Payment</button>
                             </form>
                             @endif
                         </div>

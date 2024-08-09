@@ -68,7 +68,8 @@ class BookingController extends Controller
          $validatedData = $request->validated(); 
       
          // Check for overlapping bookings 
-         $isBooked = Booking::where('avenue_id', $avenueId) 
+         $isBooked = Booking::where('avenue_id', $avenueId)
+         ->where('status_id', 3)
              ->where(function ($query) use ($request) { 
                  $query->whereBetween('startDate', [$request->start_date, $request->end_date]) 
                        ->orWhereBetween('endDate', [$request->start_date, $request->end_date]) 
@@ -112,6 +113,8 @@ class BookingController extends Controller
     public function show(Request $request,$avenueId)
     {  $selectedAvenue = Avenue::with('days')->findOrFail($avenueId);
         $bookings = Booking::with(['customers','avenues','booking_statuses'])->get();
+
+
     
         return view("Frontend.layout.booking", [
             'selectedAvenue' => $selectedAvenue,
@@ -166,14 +169,35 @@ class BookingController extends Controller
 
     }
 
-    public function showConfirmedBookings()
+    public function showConfirmedBookings( Request $request)
     {
-        // Fetch all confirmed bookings
-        $customer_id = Auth::guard('customers')->id();
+        $customer_id = Auth::guard('customers')->user()->id;
 
         $confirmedBookings = Booking::where('customer_id', $customer_id)->get();
         
-        $reviews = Review::all();
+        $reviews = Review::where('customer_id', $customer_id)->get();
+
+        $filter = $request->query('filter', 'latest');
+    
+        $query = Booking::where('customer_id', $customer_id);
+        if ($filter == 'latest') {
+            $query->orderBy('created_at', 'desc');
+        } elseif ($filter == 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        } elseif ($filter == 'paid') {
+            $query->orderBy('created_at', 'desc');
+
+            $query->where('status_id', 3);
+        } elseif ($filter == 'not_paid') {
+            $query->where('status_id', 2);
+        } elseif ($filter == 'not_approved') {
+            $query->whereIn('status_id', [4, 5]);
+            $query->orderBy('created_at', 'desc');
+
+        }
+        
+        $confirmedBookings = $query->get();
+
         
         return view('Frontend.layout.Confirmed')
             ->with('confirmedBookings', $confirmedBookings)
@@ -234,6 +258,7 @@ class BookingController extends Controller
                              ->with('success', 'Review submitted successfully!');
         }
     }
+
     
 public function showUnconfirmedBookings() { 
         $unconfirmedBookings = Booking::all(); 

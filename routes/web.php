@@ -10,6 +10,8 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\ReviewsController;
+
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CustomerController;
 
@@ -85,9 +87,13 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::delete('/profile/{id}',[profileController::class,'destroy'])->name('deleteProfile');
         //avenue
         Route::get('/avenue/{id}', [AvenueController::class, 'show'])->name('show');
+
         //Booking
         Route::get('/booking/{avenueId}', [BookingController::class, 'show'])->name('booking');
         Route::post('/booking/{avenueId}', [BookingController::class, 'store'])->name('bookings.store');
+        //review 
+        Route::get('/avenue/{id}/sort', [ReviewsController::class, 'sortReviews'])->name('sortReviews');
+
         //invoce
         Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice.show');
         //payment
@@ -102,8 +108,11 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
         Route::get('/unconfirmed-bookings', [BookingController::class, 'showUnconfirmedBookings'])->name('unconfirmed.bookings');
         Route::get('/booking-success',[BookingController::class, 'success'])->name('bookings.success');
-        Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
         Route::put('/booking/{id}/update-status', [BookingController::class, 'updateStatus'])->name('updateBookingStatus');
+        //All Avenue
+        Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
+        Route::get('/all-avenus/filter', [CustomerController::class, 'filter'])->name('filterAvenues');
+
 
     });
     
