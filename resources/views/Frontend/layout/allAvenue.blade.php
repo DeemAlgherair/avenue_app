@@ -12,7 +12,7 @@
             </button>
             <div class="filter-card ">
                 <div class="card-body-filter ">
-                    <div class="filter-card-coll " id="filterContent">
+                    <div class="filter-card-coll collapse " id="filterContent">
                         <form action="{{ route('filterAvenues') }}" method="GET" class="row g-3">
                             <div class="col-12">
                                 <label class="form-label">Location</label>
@@ -131,11 +131,8 @@
 <script>
     document.getElementById('filterToggle').addEventListener('click', function () {
         var filterContent = document.getElementById('filterContent');
-        if (filterContent.classList.contains('collapse')) {
-            filterContent.classList.remove('collapse');
-        } else {
-            filterContent.classList.add('collapse');
-        }
+        filterContent.classList.toggle('collapse');
+
     });
 </script>
 @endsection

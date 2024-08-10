@@ -25,6 +25,12 @@
                                         <img class="d-block w-100" src="{{ asset('storage/' . $image->url) }}" alt="Avenue Image" style="height: 480px; object-fit: cover;">
                                     </div>
                                 @endforeach
+                                <a class="carousel-control-prev"href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </a>
                             </div>
                             <!-- Carousel controls if needed -->
                         </div>
