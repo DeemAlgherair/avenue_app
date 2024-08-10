@@ -42,4 +42,5 @@ class DashboardController extends Controller
 
         return view('Backend.dashboard', compact('bookings', 'owners', 'avenues', 'customers', 'data', 'reservationsData', 'reviewsData'));
     }
+    
 }
