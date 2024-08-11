@@ -74,18 +74,17 @@
                 <a class="nav-link active" aria-current="page" href="{{route('customerloginIndex')}}">Login</a>
               </li>
               @endif
-              @if(Auth::guard('customers')->user())
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#!" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Avenue</a>
                 <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="categoryDropdown">
                   <li><a class="dropdown-item" href="{{route('all.avenues')}}">Classroom-based Lectures</a></li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#!" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reservations</a>
-                <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="blogDropdown">
-                  <li><a class="dropdown-item" href="/Customer-Online-Avenue/all-bookings">All Reservations</a></li>
-                </ul>
+              @if(Auth::guard('customers')->user())
+            
+            
+              <li class="nav-item">
+                <a class="nav-link" href="/Customer-Online-Avenue/all-bookings">All Reservations</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/Customer-Online-Avenue/profile/{{  Auth::guard('customers')->user()->id}}">Profile</a>

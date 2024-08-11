@@ -88,7 +88,7 @@ class PaymentController extends Controller
                 $booking->status_id = 3; // paid
                 $booking->save();
 
-                return redirect()->route('confirmed.bookings', [$booking->id])->with('success', 'Payment is successful');
+                return redirect()->route('confirmed.bookings', [$booking->id])->with('success', 'Order paid successful!');
             }
         }
 

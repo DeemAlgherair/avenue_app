@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="text-center mt-4">
-                                <a class="btn btn-primary" href="{{ route('customerloginIndex') }}">Go to Pay</a>
+                                <a class="btn btn-primary" href="{{ route('payment.show',$id)}} ">Go to Pay</a>
                             </div>
                         </div>
                     </div>

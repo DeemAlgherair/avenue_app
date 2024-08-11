@@ -33,22 +33,19 @@
       </div>
     </article> 
   </div>
-  <div class="container my-5">
-    <article id="about-us">
+  <div class="container my-5" id="about-us">
+    <article>
       <div class="card border-0 shadow-sm rounded-3">
         <div class="row g-0 align-items-center">
-           <!-- Image on the Right -->
-           <div class="col-12 col-md-6">
-            <img class="img-fluid rounded-end object-fit-cover" loading="lazy" src="{{asset('Frontend/assets/img/COC.png')}}" alt="Lecture Hall">
-          </div>
+
           <!-- Text Content on the Left -->
           <div class="col-12 col-md-6">
             <div class="card-body p-md-4 p-xl-5">
               <h2 class="card-title display-4 fw-bold mb-4 lh-1">
-                <a class="link-dark text-decoration-none" href="#!">About Us</a>
+                <a class="link-dark text-decoration-none py-5" href="#!">About Us</a>
               </h2>
               <p class="card-text text-secondary mb-4">
-                We are a team of Qassim University students who have undergone training at Qassim Tech. As part of our final project, we proudly present HALL+—an innovative platform designed to connect hall owners with users looking to book fully equipped classrooms for educational and professional events.
+                We are a team of Qassim University students who have undergone training at Qassim Tech. As part of our final project, we proudly present HALL+ an innovative platform designed to connect hall owners with users looking to book fully equipped classrooms for educational and professional events.
               </p>
               <h3 class="mb-3">Group Members:</h3>
               <div class="entry-footer">
@@ -97,7 +94,10 @@
               </div>
             </div>
           </div>
-  
+             <!-- Image on the Right -->
+             <div class="col-12 col-md-6">
+              <img class="img-fluid rounded-end object-fit-cover" loading="lazy" src="{{asset('Frontend/assets/img/COC.png')}}" alt="Lecture Hall">
+            </div>
         </div>
       </div>
     </article>
