@@ -7,30 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ApprovedNotification extends Notification
+class ApprovedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-    public $message;
+
     public $subject;
-    public $fromEmail;
-    public $mailer;
+    public $bookingUrl;
 
     /**
      * Create a new notification instance.
+     *
+     * @param string $bookingUrl
      */
-    public function __construct()
+    public function __construct($bookingUrl)
     {
-        $this->message="Dear [Customer Name],
-We are pleased to inform you that your booking with us has been successfully approved! 
-To complete your reservation, please proceed with the payment at your earliest convenience. You can view and manage your booking details using the link below:
-[View Booking Details]
-If you have any questions or need further assistance, feel free to contact us.
-Thank you for choosing us!
-Best regards,
-The Hall Plus Team";
-        $this->subject="Your Booking Has Been Approved – Pay";
-        $this->fromEmail="aloufihMona@gmail.com";
-        $this->mailer='smtp';
+        $this->subject = "Your Booking Has Been Approved – Pay";
+        $this->bookingUrl = $bookingUrl;
     }
 
     /**
@@ -38,7 +30,7 @@ The Hall Plus Team";
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
         return ['mail'];
     }
@@ -46,13 +38,17 @@ The Hall Plus Team";
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->mailer('smtp')
                     ->subject($this->subject)
-                    ->greeting('Hello '. $notifiable->name)
-                    ->line($this->message);
+                    ->greeting('Hello ' . $notifiable->name)
+                    ->line('We are pleased to inform you that your booking with us has been successfully approved!')
+                    ->line('To complete your reservation, please proceed with the payment at your earliest convenience.')
+                    ->action('View Booking Details', $this->bookingUrl)
+                    ->line('If you have any questions or need further assistance, feel free to contact us.')
+                    ->line('Thank you for choosing us!')
+                    ->salutation('Best regards, The Hall Plus Team');
     }
 
     /**
@@ -60,7 +56,7 @@ The Hall Plus Team";
      *
      * @return array<string, mixed>
      */
-    public function toArray(object $notifiable): array
+    public function toArray($notifiable)
     {
         return [
             //

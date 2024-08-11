@@ -79,11 +79,11 @@ Route::get('/search-avenue', [AvenueController::class, 'search'])->name('searchA
 Route::get('/login-customer', [UserAuthController::class, 'index'])->name('customerloginIndex');
 Route::post('/login-customer', [UserAuthController::class, 'customerLogin'])->name('customerLogin');
 
+Route::get('/index', [indexController::class,'Index'])->name('home');
 
 Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(function () {
     //login
     Route::get('logout', [UserAuthController::class,'logout'])->name('customerLogout');
-        Route::get('/index', [indexController::class,'Index'])->name('home');
         //profile
         Route::get('/profile/{id}',[profileController::class,'info'])->name('profile');
         Route::put('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
