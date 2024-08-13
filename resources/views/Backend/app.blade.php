@@ -161,27 +161,39 @@
        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-bell fa-fw"></i>
         <!-- Counter - Alerts -->
-        <span id="alertBadge" class="badge badge-danger badge-counter">0</span>
+        <span id="alertBadge" class="badge badge-danger badge-counter">{{Auth::user()->unreadNotifications->count()}}</span>
     </a>
     <!-- Dropdown - Alerts -->
     <div id="alertsDropdownMenu" class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
          aria-labelledby="alertsDropdown">
+         <div class="row">
         <h6 class="dropdown-header">
             Alerts Center
         </h6>
+        <a class="dropdown-header" href="{{route('MAR')}}">
+            Mark all as read
+        </a>
+        </div>
         <!-- New Booking Alert Template -->
-        <div id="newBookingAlertTemplate" class="dropdown-item d-flex align-items-center" style="display: none;">
-            <div class="mr-3">
-                <div class="icon-circle bg-primary">
-                    <i class="fas fa-calendar-check text-white"></i>
-                </div>
+        @foreach (Auth::user()->unreadNotifications as $notification)
+    <div class="dropdown-item d-flex align-items-center">
+        <div class="mr-3">
+            <div class="icon-circle bg-primary">
+            <i class="fas fa-calendar-check text-white"></i>
             </div>
-            <div>
-                <div class="small text-gray-500"></div>
-                <span class="font-weight-bold">A new booking has been made!</span>
+        </div>
+        <div>
+            <div class="small text-gray-500">
+                {{ $notification->created_at->diffForHumans() }}
             </div>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
+            <a  href="{{route('details',$notification->data['bookings_id'])}}">
+            <span class="font-weight-bold">
+                {{ $notification->data['message'] ?? 'A new booking has been made!' }}
+            </span>
+            </a>
+        </div>
+    </div>
+@endforeach
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">

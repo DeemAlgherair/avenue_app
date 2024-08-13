@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Avenue;
 use App\Models\Day;
+use App\Notifications\AvenueBooked;
 use Auth;
 use App\Models\Review;
 use App\Models\User;
@@ -14,7 +15,7 @@ use App\Http\Requests\UpdateAvenuebookingRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\BookingSubmitted;
-
+use DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ApprovedMail; 
 use Illuminate\Support\Facades\Log;
@@ -27,7 +28,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with(['customers','avenues','booking_statuses'])->get();
+        $bookings = Booking::with(['customers','avenues','booking_statuses'])->orderBy('created_at', 'desc')->get();
         return view('Backend.booking.show-booking')->with('bookings',$bookings);
     }
 
@@ -103,6 +104,9 @@ class BookingController extends Controller
       
          $booking->save(); 
          $admins = User::where('id', 1)->get(); 
+         //send to database
+         Notification::send($admins , new AvenueBooked($booking->id));
+         //send to mail
          Notification::send($admins, new BookingSubmitted($booking));
 
 
@@ -115,7 +119,8 @@ class BookingController extends Controller
      * Display the specified resource.
      */
     public function show(Request $request,$avenueId)
-    {  $selectedAvenue = Avenue::with('days')->findOrFail($avenueId);
+    { 
+        $selectedAvenue = Avenue::with('days')->findOrFail($avenueId);
         $bookings = Booking::with(['customers','avenues','booking_statuses'])->get();
 
 
@@ -134,9 +139,23 @@ class BookingController extends Controller
      */
     public function detailsBooking($id)
     {
-       $bookings = Booking::with(['customers','avenues','booking_statuses'])->findOrFail($id);
-      return view('Backend.booking.details-booking')->with('bookings',$bookings);
+        // استرجاع تفاصيل الحجز
+        $bookings = Booking::with(['customers', 'avenues', 'booking_statuses'])->findOrFail($id);
+    
+        // استرجاع معرفات الإشعارات المرتبطة بهذا الحجز
+        $booknotiIds = DB::table('notifications')
+            ->where('data->booking_id', $id)
+            ->pluck('id');
+    
+        // تحديث الإشعارات كمقروءة
+        DB::table('notifications')
+            ->whereIn('id', $booknotiIds)
+            ->update(['read_at' => now()]);
+    
+        // عرض تفاصيل الحجز في الواجهة
+        return view('Backend.booking.details-booking')->with('bookings', $bookings);
     }
+    
     public function printinvoice($id)
     {
         
@@ -280,17 +299,47 @@ public function showUnconfirmedBookings() {
     }
     public function search(Request $request) {
         $query = $request->input('query');
+        $paymentStatus = $request->input('payment_status');
+        
+        // بناء الاستعلام الأساسي
+        $bookings = Booking::where(function ($q) use ($query) {
+            $q->whereHas('customers', function ($q) use ($query) {
+                $q->where('name', 'LIKE', '%' . $query . '%');
+            })->orWhereHas('avenues', function ($q) use ($query) {
+                $q->where('name', 'LIKE', '%' . $query . '%');
+            })->orWhereHas('status', function ($q) use ($query) {
+                $q->where('statues_name', 'LIKE', '%' . $query . '%');
+            });
     
-        $bookings = Booking::whereHas('customers', function ($q) use ($query) {
-            $q->where('name', 'LIKE', '%' . $query . '%');
-        })->orWhereHas('avenues', function ($q) use ($query) {
-            $q->where('name', 'LIKE', '%' . $query . '%');
-        })->orWhereHas('status', function ($q) use ($query) {
-            $q->where('statues_name', 'LIKE', '%' . $query . '%');
-        })->get();
+            // إضافة البحث النصي عن حالة الدفع
+            if (str_contains(strtolower($query), 'payment failed')) {
+                $q->orWhere('status_id', 4); // الدفع فشل
+            } elseif (str_contains(strtolower($query), 'payment succeeded')) {
+                $q->orWhere('status_id', 3); // الدفع نجح
+            } elseif (str_contains(strtolower($query), 'waiting for payment')) {
+                $q->orWhere('status_id', 2); // بانتظار الدفع
+            }
+        });
     
+        // إضافة فلترة حالة الدفع إذا تم اختيارها
+        if ($paymentStatus) {
+            if ($paymentStatus == 'failed') {
+                $bookings->where('status_id', 4); // الدفع فشل
+            } elseif ($paymentStatus == 'succeeded') {
+                $bookings->where('status_id', 3); // الدفع نجح
+            } elseif ($paymentStatus == 'waiting') {
+                $bookings->where('status_id', 2); // بانتظار الدفع
+            }
+        }
+    
+        // تنفيذ الاستعلام وجلب النتائج
+        $bookings = $bookings->get();
+    
+        // إعادة عرض النتائج
         return view('Backend.booking.search', compact('bookings'));
     }
+    
+    
 
     public function updateStatus(Request $request, $id)
     {
@@ -302,6 +351,14 @@ public function showUnconfirmedBookings() {
 
         }
         return back();
+    }
+
+    public function MAR(){
+        $userUnreadNotification = auth()->user()->unreadNotifications;
+        if($userUnreadNotification){
+            $userUnreadNotification-> markAsRead();
+            return back();
+        }
 
     }
     

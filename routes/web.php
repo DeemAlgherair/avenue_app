@@ -49,7 +49,7 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
 
     //reservation
     Route::get('/show-reservation', [BookingController::class, 'index'])->name('showReservation');
-    Route::get('show-reservation/{id}/datail-reservation', [BookingController::class, 'detailsBooking']);
+    Route::get('show-reservation/{id}/datail-reservation', [BookingController::class, 'detailsBooking'])->name('details');
     Route::put('/confirmed-bookings/{id}', [BookingController::class, 'confiremdBooking'])->name('confiremdBooking');
     Route::delete('show-reservation/{id}/edit-reservation', [BookingController::class, 'destroy'])->name('deleteReservation');
     Route::get('show-reservation/{id}/print-invoice', [BookingController::class, 'printinvoice'])->name('printinvoice');
@@ -72,6 +72,10 @@ Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
     Route::put('/profile', [profileController::class, 'adminUpdateProfile'])->name('adminUpdateProfile');
     //search 
     Route::get('/search-owner', [OwnerController::class, 'search'])->name('searchOwner');
+
+    //Notifications
+    Route::get('/notification/markasread', [BookingController::class, 'MAR'])->name('MAR');
+
 Route::get('/search-avenue', [AvenueController::class, 'search'])->name('searchAvenue');   
 });    
 
