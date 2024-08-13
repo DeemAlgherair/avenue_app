@@ -16,16 +16,20 @@ class ApprovedMail extends Mailable
     public $bookingId;
     public $bookingDetailsUrl;
     public $paymentDeadline;
+    public $id;
+
 
     /**
      * Create a new message instance.
      */
-    public function __construct($customerName, $bookingId, $bookingDetailsUrl,$paymentDeadline)
+    public function __construct($customerName, $bookingId, $bookingDetailsUrl,$paymentDeadline,$id)
     {
         $this->customerName = $customerName;
         $this->bookingId = $bookingId;
         $this->bookingDetailsUrl = $bookingDetailsUrl;
         $this->paymentDeadline = $paymentDeadline;
+        $this->id = $id;
+
     }
 
     /**
@@ -49,6 +53,8 @@ class ApprovedMail extends Mailable
             'bookingId' => $this->bookingId,
             'bookingDetailsUrl' => $this->bookingDetailsUrl,
             'paymentDeadline' => $this->paymentDeadline,
+            'id' => $this->id,
+
         ]);
     }
 

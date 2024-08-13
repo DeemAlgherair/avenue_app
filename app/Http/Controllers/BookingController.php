@@ -104,6 +104,9 @@ class BookingController extends Controller
          $booking->save(); 
          $admins = User::where('id', 1)->get(); 
          Notification::send($admins, new BookingSubmitted($booking));
+
+
+
          session()->flash('customer_message', 'Booking created successfully!');
          return redirect()->route('invoice.show', $booking->id);
      }
@@ -171,8 +174,8 @@ class BookingController extends Controller
         $bookingDetailsUrl = route('invoice.show', ['id' => $booking->id]);
         $customerEmail = $booking->customers->email;
     
-    
-        Mail::to($customerEmail)->send(new ApprovedMail($customerName, $booking->serial_no, $bookingDetailsUrl,$paymentDeadline));
+        Mail::to($customerEmail)->send(new ApprovedMail($customerName, $booking->serial_no, $bookingDetailsUrl,$paymentDeadline,$booking->id));
+
     
         session()->flash('customer_message', 'Your booking is confirmed. Please proceed to payment.');
         return back()->with('success', 'Booking confirmed and email sent!');

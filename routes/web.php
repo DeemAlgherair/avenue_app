@@ -79,11 +79,14 @@ Route::get('/search-avenue', [AvenueController::class, 'search'])->name('searchA
 Route::get('/login-customer', [UserAuthController::class, 'index'])->name('customerloginIndex');
 Route::post('/login-customer', [UserAuthController::class, 'customerLogin'])->name('customerLogin');
 
+Route::get('/index', [indexController::class,'Index'])->name('home');
+
+Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
+Route::get('/all-avenus/filter', [CustomerController::class, 'filter'])->name('filterAvenues');
 
 Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(function () {
     //login
     Route::get('logout', [UserAuthController::class,'logout'])->name('customerLogout');
-        Route::get('/index', [indexController::class,'Index'])->name('home');
         //profile
         Route::get('/profile/{id}',[profileController::class,'info'])->name('profile');
         Route::put('/profile/{id}',[profileController::class,'update'])->name('updateProfile');
@@ -111,12 +114,9 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::post('/submit-review/{bookingId}', [BookingController::class, 'submitReview'])->name('review.submit');
         Route::get('/unconfirmed-bookings', [BookingController::class, 'showUnconfirmedBookings'])->name('unconfirmed.bookings');
         Route::get('/booking-success',[BookingController::class, 'success'])->name('bookings.success');
-        Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
         Route::put('/booking/{id}/update-status', [BookingController::class, 'updateStatus'])->name('updateBookingStatus');
 
 
-Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
-Route::get('/all-avenus/filter', [CustomerController::class, 'filter'])->name('filterAvenues');
 Route::get('/avenue/{id}/sort', [ReviewsController::class, 'sortReviews'])->name('sortReviews');
  });
     

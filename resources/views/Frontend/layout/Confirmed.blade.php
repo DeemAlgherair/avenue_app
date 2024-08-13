@@ -4,6 +4,12 @@
 @section('content')
 <script src="{{ asset('Frontend/assets/timer.js') }}"></script>
 <link rel="stylesheet" href="{{asset('Frontend/assets/css/allBooking.css')}}">
+@if(session()->has('success'))
+<div class="alert alert-success">{{ session()->get('success') }}</div>
+@endif
+@if(session()->has('error'))
+<div class="alert alert-danger">{{ session()->get('error') }}</div>
+@endif
 
 <section class="bg-light">
     <div class="container py-5">

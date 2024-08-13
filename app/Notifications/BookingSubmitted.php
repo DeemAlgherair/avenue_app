@@ -26,10 +26,10 @@ class BookingSubmitted extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('A new booking has been submitted.')
-            ->action('View Booking', url('/Admin-Online-Avenue/show-reservation'))
-            ->line('Thank you for using our application!');
-    }
+            ->line('A new Reseravtion has been submitted.')
+            ->action('View Reseravtion', url('/Admin-Online-Avenue/show-reservation'))
+            ->line("Go check the user's reservation!");
+        }
     /**
      * Get the array representation of the notification.
      *
