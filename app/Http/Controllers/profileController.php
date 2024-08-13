@@ -50,7 +50,7 @@ class profileController extends Controller
     $request->validate([
         'name' => 'required|string|max:255',
         'email'=> 'required|email:rfc,dns|string|max:255',
-        'phone' => 'required|string|max:20|min:6',
+        'phone' => 'nullable|string|max:20|min:5',
         'profile_pic' =>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'password' =>'nullable|confirmed|min:8|max:16',
     
@@ -64,7 +64,7 @@ class profileController extends Controller
          $customer->update([
             'name' => $request->name,
             'email' => $request->email,
-            'phone'=> $request->phone,
+            'phone'=>  $request->full_phone ?? $customer->phone,
             'profile_pic'=> $path,
             'password' => $request->has('password') ? Hash::make($request->password) : $customer->password,
 

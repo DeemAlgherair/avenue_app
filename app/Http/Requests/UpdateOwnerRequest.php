@@ -24,7 +24,7 @@ class UpdateOwnerRequest extends FormRequest
         return [
             'name' => 'required|string|max:255|min:1',
             'email' => 'required|string|email|max:255',
-            'phone' => 'required|string|max:20|min:9',
+            'phone' => 'nullable|string|max:20|min:9',
       
          ];
     }

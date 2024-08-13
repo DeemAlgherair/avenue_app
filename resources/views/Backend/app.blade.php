@@ -186,7 +186,7 @@
             <div class="small text-gray-500">
                 {{ $notification->created_at->diffForHumans() }}
             </div>
-            <a  href="{{route('details',$notification->data['bookings_id'])}}">
+            <a  href="{{route('showReservation')}}">
             <span class="font-weight-bold">
                 {{ $notification->data['message'] ?? 'A new booking has been made!' }}
             </span>

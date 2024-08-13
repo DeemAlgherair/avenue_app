@@ -34,20 +34,22 @@ class OwnerController extends Controller
     {
         
             $validated = $request->validated();
+
+
             if (Owner::where('email', $validated['email'])->exists()) {
                 toastr()->error('The email has already been taken.');
                 return back();
             }
-            if (Owner::where('phone', $validated['phone'])->exists()) {
+            if (Owner::where('phone', $request->full_phone)->exists()) {
                 toastr()->error('Phone number has already been taken.');
                 return back();
 
             }
             $owner = Owner::create([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'phone' => $validated['phone'],
-                'last_login'=>now()
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->full_phone,
+            'last_login'=>now()
             ]);
           
         
@@ -81,8 +83,8 @@ class OwnerController extends Controller
         $owner->update([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
-        ]);
+            'phone'=>  $request->full_phone ?? $owner->phone,      
+         ]);
         
         if ($request->has('add')) {
             return redirect()->route('createAvenue', $owner->id);

@@ -25,6 +25,8 @@ class StoreUserRequset extends FormRequest
             'name' => 'required|string|max:255|min:2',
             "email"=>"required|string|max:255",
             "password"=>"required|min:3|max:255",
+            'phone' => 'nullable|string|max:20|min:6',
+
         ];
     }
 }

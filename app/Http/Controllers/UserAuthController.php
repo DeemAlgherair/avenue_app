@@ -37,17 +37,10 @@ class UserAuthController extends Controller
 }
     public function register(StoreUserRequset $request) {
         $request->validated();
-
-        /* 
-        validate([
-            'name' => 'required|string|max:255',
-            "email"=>"required|email:rfc,dns|string|max:255",
-            "password"=>"required|min:3|max:255",
-        ]);*/ 
-
         $customer = Customer::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->full_phone,
             'password' => Hash::make($request->password),
             'last_login'=>now()
         ]);
@@ -61,7 +54,7 @@ class UserAuthController extends Controller
     }
 
     public function logout(Request $request) {
-        Auth::logout();
+        Auth::guard('customers')->logout();
         $request->session()->invalidate();    
         return redirect()->route('customerLogin');
 }
