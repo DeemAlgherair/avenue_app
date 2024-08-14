@@ -38,7 +38,7 @@
                             <td>{{ $owner->phone }}</td>
 
                             <td>
-                                <a href="/Admin-Online-Avenue/show-owner/{{$owner->id}}/edit-owner" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="/Admin-HALL-PLUS/show-owner/{{$owner->id}}/edit-owner" class="btn btn-primary btn-sm">Edit</a>
                             </td>
                         </tr>
                         @endforeach

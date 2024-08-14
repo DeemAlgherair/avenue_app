@@ -46,7 +46,7 @@
                             @endif</td>           
                            
                         <td>
-                            <a href="/Admin-Online-Avenue/show-avenue/{{$avenue->id}}/edit-avenue" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="/Admin-HALL-PLUS/show-avenue/{{$avenue->id}}/edit-avenue" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
 

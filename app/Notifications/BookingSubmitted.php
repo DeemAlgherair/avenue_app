@@ -27,7 +27,7 @@ class BookingSubmitted extends Notification
     {
         return (new MailMessage)
             ->line('A new Reseravtion has been submitted.')
-            ->action('View Reseravtion', url('/Admin-Online-Avenue/show-reservation'))
+            ->action('View Reseravtion', url('/Admin-HALL-PLUS/show-reservation'))
             ->line("Go check the user's reservation!");
         }
     /**

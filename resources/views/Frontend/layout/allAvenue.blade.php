@@ -115,7 +115,7 @@
                                             <a class="btn btn-primary" href="{{ route('show', $avenue->id) }}">Read More</a>
                                         </ul>
                                         <ul class="entry-meta list-unstyled d-flex justify-content-center mt-4">
-                                            <a class="btn btn-primary" href="/Customer-Online-Avenue/booking/{{$avenue->id}}">Book Now</a>
+                                            <a class="btn btn-primary" href="/Customer-HALL-PLUS/booking/{{$avenue->id}}">Book Now</a>
                                         </ul>
                                     </div>
                                 </div>

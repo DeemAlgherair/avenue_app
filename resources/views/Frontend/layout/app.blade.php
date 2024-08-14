@@ -84,10 +84,10 @@
             
             
               <li class="nav-item">
-                <a class="nav-link" href="/Customer-Online-Avenue/all-bookings">All Reservations</a>
+                <a class="nav-link" href="/Customer-HALL-PLUS/all-bookings">All Reservations</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/Customer-Online-Avenue/profile/{{  Auth::guard('customers')->user()->id}}">Profile</a>
+                <a class="nav-link" href="/Customer-HALL-PLUS/profile/{{  Auth::guard('customers')->user()->id}}">Profile</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{route('customerLogout')}}">Logout</a>

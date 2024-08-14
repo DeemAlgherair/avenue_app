@@ -83,7 +83,7 @@
                                             @endif
                                             @if($booking->status_id == 3)
                                                 <span class="btn btn-success btn-sm disabled">Paid</span>
-                                                <a class="btn btn-primary btn-sm" href="/Customer-Online-Avenue/invoice/{{$booking->id}}">Invoice</a>
+                                                <a class="btn btn-primary btn-sm" href="/Customer-HALL-PLUS/invoice/{{$booking->id}}">Invoice</a>
                                             @elseif($booking->status_id == 2)
                                                 <div class="d-flex align-items-center mt-2">
                                                     <a href="{{ route('payment.show', $booking->id) }}" class="btn btn-success btn-sm" id="pay-button-{{ $booking->id }}" style="padding-left: 1rem;">Pay

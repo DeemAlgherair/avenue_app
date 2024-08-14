@@ -73,7 +73,7 @@
                             </li>
                         </ul>
                         <ul class="entry-meta list-unstyled d-flex justify-content-center mt-4">
-                            <a class="btn btn-primary btn-lg rounded-pill btn-book-now" href="/Customer-Online-Avenue/booking/{{$avenue->id}}">Book Now</a>
+                            <a class="btn btn-primary btn-lg rounded-pill btn-book-now" href="/Customer-HALL-PLUS/booking/{{$avenue->id}}">Book Now</a>
                         </ul>
                     </div>
                 </div>

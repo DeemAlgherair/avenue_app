@@ -88,7 +88,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/Admin-Online-Avenue/show-reservation/{{$booking->id}}/datail-reservation" class="btn btn-primary btn-sm">Detail</a>
+                                <a href="/Admin-HALL-PLUS/show-reservation/{{$booking->id}}/datail-reservation" class="btn btn-primary btn-sm">Detail</a>
                             </td>
                             <td>
                                 <form action="{{ route('deleteReservation', $booking->id) }}" method="POST" style="display:inline;">

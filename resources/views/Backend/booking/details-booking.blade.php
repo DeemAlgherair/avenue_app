@@ -54,7 +54,7 @@
         <br>
         <div class="row">
           <div class="col-12">
-          <a href="/Admin-Online-Avenue/show-reservation/{{$bookings->id}}/print-invoice"class="btn btn-primary btn-sm ml-auto"><i class="fas fa-print"></i>&nbsp;&nbsp; print invoice</a>
+          <a href="/Admin-HALL-PLUS/show-reservation/{{$bookings->id}}/print-invoice"class="btn btn-primary btn-sm ml-auto"><i class="fas fa-print"></i>&nbsp;&nbsp; print invoice</a>
           </div>
         </div>
     </div>

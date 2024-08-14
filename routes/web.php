@@ -14,6 +14,7 @@ use App\Http\Controllers\ReviewsController;
 
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\StripeController;
 
 Route::get('/login', [AuthController::class, 'loginIndex'])->name('loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -34,7 +35,7 @@ Route::post('/reset-password', [AuthController::class, 'storeResetPassword'])->n
 
 
 
-Route::prefix('Admin-Online-Avenue')->middleware(['admin'])->group(function () {
+Route::prefix('Admin-HALL-PLUS')->middleware(['admin'])->group(function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('AdminDashboard');
@@ -88,7 +89,7 @@ Route::get('/index', [indexController::class,'Index'])->name('home');
 Route::get('/all-avenus',[CustomerController::class, 'all'])->name('all.avenues');
 Route::get('/all-avenus/filter', [CustomerController::class, 'filter'])->name('filterAvenues');
 
-Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(function () {
+Route::prefix('Customer-HALL-PLUS')->middleware(['customers'])->group(function () {
     //login
     Route::get('logout', [UserAuthController::class,'logout'])->name('customerLogout');
         //profile
@@ -111,7 +112,10 @@ Route::prefix('Customer-Online-Avenue')->middleware(['customers'])->group(functi
         Route::post('/payment/{booking}', [PaymentController::class, 'processPayment'])->name('payment.process');
         Route::get('/payment/{booking}/callback',[PaymentController::class, 'callback'])->name('payment.callback');
         Route::put('/booking/{id}/update-status', [BookingController::class, 'updateStatus'])->name('updateBookingStatus');
-
+        Route::post('/pay/{bookingId}', [StripeController::class, 'pay'])->name('pay');
+        Route::get('/payment/success/{bookingId}', [StripeController::class, 'success'])->name('payment.success');
+        Route::get('/payment/cancel', [StripeController::class, 'cancel'])->name('payment.cancel');
+        
         // confirmed booking
         Route::get('/all-bookings', [BookingController::class, 'showConfirmedBookings'])->name('confirmed.bookings');
         Route::get('/review-booking/{bookingId}', [BookingController::class, 'reviewBooking'])->name('review.booking');
