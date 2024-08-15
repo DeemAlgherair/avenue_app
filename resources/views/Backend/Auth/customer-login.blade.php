@@ -35,6 +35,9 @@
                         <div class="text-center mt-2">
                             <a class="" href="{{ route('registerIndex') }}">Create an Account!</a>
                         </div>
+                        <div class="text-center mt-2">
+                            <a class="" href="{{ route('forgotPasswordCustomerIndex') }}">Forget Password?</a>
+                        </div>
                     </div>
                 </div>
             </div>

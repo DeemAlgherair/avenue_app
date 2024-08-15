@@ -36,9 +36,7 @@
                                         </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="{{route('registerIndex')}}">Create an Account!</a>
-                                    </div>
+                                  
                                     <div class="text-center">
                                         <a class="small" href="{{route('loginIndex')}}">Already have an account? Login!</a>
                                     </div>

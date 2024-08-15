@@ -8,20 +8,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
+use App\Models\Customer;
 
 class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public User $user;
+    public Customer $user;
 
     /**
      * Create a new message instance.
      *
      * @param string $name
      */
-    public function __construct(User $user)
+    public function __construct(Customer $user)
     {
         $this->user = $user;
     }

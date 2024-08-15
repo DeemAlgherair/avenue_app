@@ -1,6 +1,6 @@
 @extends('Frontend.layout.app')
 
-@section('title', 'Hall Plus - Login')
+@section('title', 'Hall Plus - Forget Password')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('Frontend/assets/css/booking.css') }}">
@@ -31,13 +31,13 @@
                         </div>
                         </form>
 
-                        <hr>
-
-                        <div class="text-center">
-                            <a class="small" href="{{ route('registerIndex') }}">Create an Account!</a>
+                        <div class="text-center mt-4">
                         </div>
-                        <div class="text-center">
-                            <a class="small" href="{{ route('customerloginIndex') }}">Already have an account? Login!</a>
+                        <div class="text-center mt-2">
+                            <a class="" href="{{ route('registerIndex') }}">Create an Account!</a>
+                        </div>
+                        <div class="text-center mt-2">
+                            <a class="" href="{{ route('customerloginIndex') }}">Already have an account? Login!</a>
                         </div>
                     </div>
                 </div>

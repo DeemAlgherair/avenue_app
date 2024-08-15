@@ -46,6 +46,9 @@
                         <div class="text-center mt-2">
                             <a class="" href="{{ route('customerloginIndex') }}">Already have an account? Login</a>
                         </div>
+                        <div class="text-center mt-2">
+                            <a class="" href="{{ route('forgotPasswordCustomerIndex') }}">Forget Password?</a>
+                        </div>
                     </div>
                 </div>
             </div>

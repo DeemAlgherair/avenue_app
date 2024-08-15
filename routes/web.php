@@ -33,6 +33,12 @@ Route::get('/reset-password/{token}', [AuthController::class, 'resetPassword']);
 Route::post('/reset-password', [AuthController::class, 'storeResetPassword'])->name('resetPassowrd');
 
 
+Route::get('/forgot-password-customer', [UserAuthController::class, 'forgotPasswordCustomerIndex'])->name('forgotPasswordCustomerIndex');
+Route::post('/forgot-password-customer', [UserAuthController::class, 'forgotPasswordCustomer'])->name('forgotPasswordCustomer');
+Route::get('/reset-password-customer/{token}', [UserAuthController::class, 'resetPassword']);
+Route::post('/reset-password-customer', [UserAuthController::class, 'storeResetPassword'])->name('resetPassowrdCustomer');
+
+
 
 
 Route::prefix('Admin-HALL-PLUS')->middleware(['admin'])->group(function () {
