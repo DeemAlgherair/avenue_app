@@ -1,25 +1,24 @@
-@extends('Backend.Auth.main')
-@section('title', 'Hall Plus - Booking Approved')
-@section('content')
-
-<body class="bg-gradient-primary">
-
-    <div class="container">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="p-5 d-flex flex-column">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-2">Booking Approved</h1>
-                                <p class="mb-4">We are pleased to inform you that your booking with us has been successfully approved!</p>
-                            </div>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome To Hall Plus</title>
+    <link rel="stylesheet" href="{{ asset('Backend/css/mail.css') }}">
+</head>
+<body>
+<section class="body py-3 justify-content-center">
+    <div class="container container1 justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-24 col-md-16 col-lg-12">
+                <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
+                    <div class="card-body">
+                        <h3 class="mb-6 text-center text-gray-900">Booking Approved</h3>
+                        <h4 class="mb-6 text-center text-gray-900">We are pleased to inform you that your booking with us has been successfully approved!</h4>
+                    </div>
+                              
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Message</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,4 +49,5 @@
         </div>
     </div>
 
-@endsection
+</body>
+</html>
