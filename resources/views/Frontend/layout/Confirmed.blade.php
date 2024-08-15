@@ -18,8 +18,9 @@
                 <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
                     <!-- Card Header -->
                     
-                    <div class="card-header bg-gradient-primary text-white border-0 py-3">
+                    <div class="card-header bg-gradient-primary text-white border-0 py-3 d-flex justify-content-between align-items-center">
                         <h3 class="text-start mb-0">My Bookings</h3>
+                        <a href="{{ url()->previous() }}" class="btn btn-outline-light">Back</a>
                     </div>
                     <div class="card-body ">
                         <div class="d-flex justify-content-between align-items-center py-2">

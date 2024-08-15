@@ -6,10 +6,18 @@
 <section class="container py-5">
     <div class="row">
         <!-- Filter Button -->
-        <div class="col-md-6 mb-4">
-            <button class="btn btn-light w-50" id="filterToggle">
+        <div class="col-md-4 mb-4">
+            <!-- Filter Button -->
+            <div class = "d-flex justify-content-between">
+            <button class="btn btn-light w-50 me-2" id="filterToggle">
                 <i class="fa fa-filter py-2" aria-hidden="true"></i> Filters
             </button>
+            <!-- Back Button -->
+            <a href="{{ url()->previous() }}" class="btn btn-light w-50 ms-2">
+                <i class="fa fa- py-2" aria-hidden="true"></i> Back </a>
+            </div>
+
+
             <div class="filter-card ">
                 <div class="card-body-filter ">
                     <div class="filter-card-coll collapse " id="filterContent">

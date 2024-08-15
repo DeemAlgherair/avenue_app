@@ -10,8 +10,10 @@
         <div class="row justify-content-center">
             <div class="col-24 col-md-16 col-lg-12">
                 <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
-                    <div class="card-header bg-gradient-primary text-white border-0">
+                    <div class="card-header bg-gradient-primary text-white border-0 d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">Booking</h3>
+                        <a href="javascript:history.back()" class="text-white h3 mb-0">
+                            <a href="{{ url()->previous() }}" class="btn btn-outline-light">Back</a>
                     </div>
                     <div class="card-body p-4">
                         @if ($errors->any())

@@ -11,9 +11,13 @@
 <div class="container my-5">
     <div class="card shadow">
         <div class="card-body py-5">
+            <div class="d-flex justify-content-end mb-3">
+                <a href="javascript:history.back()"  class="btn btn-primary btn-lg rounded-pill">Back</a>
+            </div>
+            
             <div class="section-shadow">
                 <h2 class="text-center mb-2 py-2">{{ $avenue->name ?? "Not Found :(" }}</h2>
-            </div>
+                            </div>
 
             <div class="container my-5">
                 <div class="row">

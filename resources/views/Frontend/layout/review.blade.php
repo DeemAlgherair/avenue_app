@@ -11,9 +11,10 @@
         <div class="row justify-content-center">
             <div class="col-24 col-md-16 col-lg-12">
                 <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
-                    <div class="card-header bg-gradient-primary text-white border-0">
-                    <h3 class="text-start m-0">Review</h3>
-                </div>
+                    <div class="card-header bg-gradient-primary text-white border-0 d-flex justify-content-between align-items-center">
+                        <h3 class="text-start mb-0">Review</h3>
+                        <a href="{{ url()->previous() }}" class="btn btn-outline-light">Back</a>
+                    </div>
                     <div class="card-body">
                             <div class="row row-cols-md-2">
                                 <div class="col mb-3 avenue-info">
