@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name')->notNull();
             $table->string('serial_no')->notNull();
-            $table->string('location')->notNull();
+            $table->string('city')->notNull();
+            $table->string('neighborhood')->notNull();
+            $table->string('street')->notNull();
+            $table->integer('building_number')->notNull();
             $table->decimal('price_per_hours');
-            $table->integer('size')->nullable();
+            $table->building_number('size')->nullable();
             $table->longText('advantages')->nullable();
             $table->foreignId('owener_id')->constrained('owners')->nullable();
             $table->timestamps();

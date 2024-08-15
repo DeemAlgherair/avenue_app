@@ -11,7 +11,7 @@
             <div class="col-24 col-md-16 col-lg-12">
                 <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
                     <div class="card-header bg-gradient-primary text-white border-0">
-                        <h3 class="mb-0">Book Your Hall</h3>
+                        <h3 class="mb-0">Booking</h3>
                     </div>
                     <div class="card-body p-4">
                         @if ($errors->any())
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="avenue_location" class="form-label">Location:</label>
-                                        <input type="text" id="avenue_location" value="{{ $selectedAvenue->location }}" class="form-control bg-light" readonly>
+                                        <input type="text" id="avenue_location" value="{{ $selectedAvenue->city }}, {{ $selectedAvenue->neighborhood }}, {{ $selectedAvenue->street }}, {{ $selectedAvenue->building_number }}" class="form-control bg-light" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label for="avenue_price" class="form-label">Price Per Day:</label>

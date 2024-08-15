@@ -11,7 +11,10 @@ class Avenue extends Model
     
     protected $fillable = [
         'name',
-        'location',
+        'city',
+        'neighborhood',
+        'street',
+        'building_number',
         'price_per_hours',
         'size',
         'advantages',

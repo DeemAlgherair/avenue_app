@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="hall_location" class="form-label">Location:</label>
-                                            <input type="text" id="hall_location" value="{{ $booking->avenues->location }}" class="form-control bg-light" readonly>
+                                            <input type="text" id="hall_location"       value="{{ $booking->avenue->city }}, {{ $booking->avenue->neighborhood }}, {{ $booking->avenue->street }}, {{ $booking->avenue->building_number }}" class="form-control bg-light" readonly>
                                         </div>
                                         <div class="mb-3">
                                             <label for="total_price" class="form-label">Total Price:</label>

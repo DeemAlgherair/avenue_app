@@ -15,19 +15,30 @@
                     <div class="filter-card-coll collapse " id="filterContent">
                         <form action="{{ route('filterAvenues') }}" method="GET" class="row g-3">
                             <div class="col-12">
-                                <label class="form-label">Location</label>
+                                <label class="form-label">City</label>
                                 <!-- Location Checkboxes -->
-                                @foreach(['Buraydah'] as $location)
+                                @foreach(['Buraydah'] as $city)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="location[]" value="{{ $location }}" id="location{{ $location }}" 
-                                            {{ in_array($location, request()->input('location', [])) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="location{{ $location }}">
-                                            {{ $location }}
+                                        <input class="form-check-input" type="checkbox" name="city[]" value="{{ $city }}" id="city{{ $city }}" 
+                                            {{ in_array($city, request()->input('location', [])) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="city{{ $city }}">
+                                            {{ $city }}
                                         </label>
                                     </div>
                                 @endforeach
                             </div>
-
+                            <div class="col-12">
+                                    <label class="form-label">Neighborhood</label>
+                                    @foreach($neighborhoodOptions as $neighborhood)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="neighborhood[]" value="{{ $neighborhood }}" id="neighborhood{{ $neighborhood }}"
+                                                {{ in_array($neighborhood, $selectedNeighborhoods) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="neighborhood{{ $neighborhood }}">
+                                                {{ $neighborhood }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             <div class="col-12">
                                 <label class="form-label">Capacity (People)</label>
                                 <!-- Size Checkboxes -->
@@ -102,7 +113,9 @@
                                         </div>
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <strong>Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
+                                                <strong>Location:</strong> 
+                                                {{ $avenue->city }}, {{ $avenue->neighborhood }}, <br>
+                                                {{ $avenue->street }}, {{ $avenue->building_number }}
                                             </li>
                                             <li class="list-group-item">
                                                 <strong>Price per Day:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}

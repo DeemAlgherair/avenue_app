@@ -19,10 +19,28 @@
                     </div>
                 </div>
               
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" class="form-control" id="location" name="location" required>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="neighborhood">Neighborhood</label>
+                        <input type="text" class="form-control" id="neighborhood" name="neighborhood" required>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="street">Street</label>
+                        <input type="text" class="form-control" id="street" name="street"  required>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="building_number">Building Number</label>
+                        <input type="number" class="form-control" id="building_number" name="building_number" required>
+                    </div>
                 </div>
+                
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="price">Price</label>
@@ -33,14 +51,7 @@
                         <input type="number" class="form-control" id="size" name="size" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="image">main Image</label>
-                    <input type="file" class="form-control" id="image" name="image" required>
-                </div>
-                <div class="form-group">
-                    <label for="other_images">Other Images</label>
-                    <input type="file" class="form-control" id="other_images" name="other_images[]" multiple accept="image/*">
-                </div>
+               
                 <div class="form-group">
                     <label for="advantages">Avenue Features</label>
                     <div class="row">
@@ -65,6 +76,14 @@
                 <div class="form-group">
                     <label for="notes">Additional Features</label>
                     <textarea class="form-control" id="notes" name="note" rows="4" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Main Image</label>
+                    <input type="file" class="form-control" id="image" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label for="other_images">Other Images</label>
+                    <input type="file" class="form-control" id="other_images" name="other_images[]" multiple accept="image/*">
                 </div>
                 <button type="submit" class="btn btn-primary">Add Avenue</button>
             </form>
@@ -100,11 +119,12 @@
             isSelectAll = !isSelectAll;
         });
     });
-document.getElementById('size').addEventListener('input', function() {
-    var size = this.value;
-    var price = size *10;
-    document.getElementById('price').value = price.toFixed(2); 
-});
+
+    document.getElementById('size').addEventListener('input', function() {
+        var size = this.value;
+        var price = size * 10;
+        document.getElementById('price').value = price.toFixed(2); 
+    });
 </script>
 
 @endsection

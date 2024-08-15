@@ -23,9 +23,12 @@ class UpdateAvenueRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'size' => 'required|numeric',
+            'city' => 'required|string|max:255',
+            'neighborhood' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'building_number' => 'required|numeric',
+            'price' => 'required|numeric|min:0',
+            'size' => 'required|numeric|min:0',
             'advantages' => 'string|max:255',
         ];
     }

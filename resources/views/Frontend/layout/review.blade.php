@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="avenue_location" class="form-label">Location:</label>
-                                        <input type="text" id="avenue_location" value="{{ $booking->avenue->location }}" class="form-control bg-light" readonly>
+                                        <input type="text" id="avenue_location"        value="{{ $booking->avenue->city }}, {{ $booking->avenue->neighborhood }}, {{ $booking->avenue->street }}, {{ $booking->avenue->building_number }} " class="form-control bg-light" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label for="avenue_price" class="form-label">Price Per Day:</label>

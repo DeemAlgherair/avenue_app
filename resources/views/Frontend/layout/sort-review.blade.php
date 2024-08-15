@@ -30,8 +30,9 @@
                     <div class="col-md-6">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <strong>Location:</strong> {{ $avenue->location ?? "Not Found :(" }}
-                            </li>
+                                <strong>Location:</strong> 
+                                {{ $avenue->city }}, {{ $avenue->neighborhood }}, 
+                                {{ $avenue->street }}, {{ $avenue->building_number }}                            </li>
                             <li class="list-group-item">
                                 <strong>Price per Day:</strong> {{ $avenue->price_per_hours ?? "Not Found :(" }}
                             </li>

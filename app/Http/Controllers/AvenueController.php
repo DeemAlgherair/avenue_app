@@ -63,7 +63,10 @@ class AvenueController extends Controller
 
     $avenue = Avenue::create([
         'name' => $request->name,
-        'location' => $request->location,
+        'city' => $request->city,
+        'neighborhood' => $request->neighborhood,
+        'street' => $request->street,
+        'building_number' => $request->building_number,
         'price_per_hours' => $request->price,
         'size' => $request->size,
         'advantages' => $request->note,
@@ -106,7 +109,7 @@ class AvenueController extends Controller
     }
    
 
-    session()->flash('success', 'Avenue created successfully!');
+    session()->flash('success', 'Hall created successfully!');
     return redirect()->route('showAvenue');
 }
 public function edit($id)
@@ -163,31 +166,19 @@ public function edit($id)
         $request->validated();
     
         $avenue = Avenue::findOrFail($id);
-    
+
         $avenue->update([
             'name' => $request->name,
-            'location' => $request->location,
+            'city' => $request->city,
+            'neighborhood' => $request->neighborhood,
+            'street' => $request->street,
+            'building_number' => $request->building_number,
             'price_per_hours' => $request->price,
             'size' => $request->size,
             'advantages' => $request->note,
         ]);
     
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('avenues', 'public');
-            $mainImage = Avenue_Image::where('avenue_id', $avenue->id)->where('is_main', true)->first();
-            $mainImage->update(['url' => $path]);
-            
-        }
-    
-        if ($request->hasFile('other_images')) {
-            foreach ($request->file('other_images') as $imageId => $imageFile) {
-                $path = $imageFile->store('avenues', 'public');
-                $imageFile = Avenue_Image::where('avenue_id', $avenue->id)->where('is_main', false)->where('id', $imageId)->first();
-                $imageFile->update(['url' => $path]);
-            
-            }
-        }
-    
+      
         
     
         // Sync the advantages relationship
@@ -211,7 +202,7 @@ public function edit($id)
         }
     
         // Flash success message and redirect back
-        session()->flash('success', 'Avenue updated successfully!');
+        session()->flash('success', 'Hall updated successfully!');
         return back();
     }
     
@@ -222,43 +213,63 @@ public function edit($id)
         $image = Avenue_Image::where('avenue_id',$id)->delete();
         $avenue= Avenue::findOrFail($id);
         $avenue->delete();
-        session()->flash('success', 'Avenue deleted successfully!');
+        session()->flash('success', 'Hall deleted successfully!');
         return redirect()->route('showAvenue');
     }
 
 
-
-    public function removeImage(Request $request)
+    public function updateImage(Request $request, $id)
     {
-        $imageIds = $request->input('delete_image_ids', []);
-    
-        foreach ($imageIds as $imageId) {
-            // Find the image by ID
-            $image = Avenue_Image::find($imageId);
-    
-            if ($image) {
-                $image->delete();
-            }
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('avenues', 'public');
+            $mainImage = Avenue_Image::where('avenue_id', $id)->where('is_main', true)->first();
+            $mainImage->update(['url' => $path]);
         }
     
-        return back()->with('status', 'Images deleted successfully.');
+        if ($request->hasFile('other_images')) {
+            foreach ($request->file('other_images') as $imageId => $imageFile) {
+                $path = $imageFile->store('avenues', 'public');
+                $imageFile = Avenue_Image::where('avenue_id', $id)->where('is_main', false)->where('id', $imageId)->first();
+                $imageFile->update(['url' => $path]);
+            }
+        }
+   
+    
+        if ($request->hasFile('new_images')) {
+            foreach ($request->file('new_images') as $image) {
+    
+                $path = $image->store('avenues', 'public');
+                $image = Avenue_Image::create([
+                        'avenue_id' => $id,
+                        'url' => $path,
+                        'is_main' => false,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    
+                ]);
+            }
+    
+        }
+        session()->flash('success', 'Images updated successfully!');
+
+        return back();
     }
     
-public function addImage(Request $request, $id)
-{
-
-    $path = $request->file('new_image')->store('avenues', 'public');
-    $image = Avenue_Image::where('avenue_id',$id)->create(
-        [
-            'avenue_id'=>$id,
-            'url'=>$path,
-            'is_main'=>false
-        ]
-        );
+    public function deleteImage(Request $request, $id)
+    {
+        $image = Avenue_Image::find($id);
     
-        return back();
+        if ($image) {
+            $image->delete();
+            session()->flash('success', 'Images deleted successfully!');
+            return back();
+        }
+        session()->flash('error', 'Image not found.');
 
-}
+        return back();
+    }
+    
+    
 
 
 public function search(Request $request) {

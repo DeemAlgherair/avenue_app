@@ -23,7 +23,10 @@ class StoreAvenueRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'neighborhood' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'building_number' =>'required|integer',
             'price' => 'required|numeric|max:300|min:50',
             'size' => 'required|numeric|max:100|min:10',
 

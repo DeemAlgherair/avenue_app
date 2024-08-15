@@ -63,9 +63,9 @@ Route::prefix('Admin-HALL-PLUS')->middleware(['admin'])->group(function () {
     Route::delete('show-avenue/{id}/edit-avenue', [AvenueController::class, 'destroy'])->name('deleteAvenue');
     Route::get('show-avenue/{id}/edit-avenue', [AvenueController::class, 'edit']);
     Route::put('show-avenue/{id}/edit-avenue', [AvenueController::class, 'update'])->name('updateAvenue');
-    Route::delete('/images', [AvenueController::class, 'removeImage'])->name('deleteImage');
-
+    Route::put('/images/{id}', [AvenueController::class, 'updateImage'])->name('updateImage');
     Route::post('/add-image/{id}', [AvenueController::class, 'addImage'])->name('addImage');
+    Route::put('/delete-image/{id}', [AvenueController::class, 'deleteImage'])->name('deleteImage');
 
 
     //profile
